@@ -1,0 +1,40 @@
+//
+//  AccountParser.swift
+//  SwiftBeanCount
+//
+//  Created by Steffen Kötte on 2017-06-11.
+//  Copyright © 2017 Steffen Kötte. All rights reserved.
+//
+
+import Foundation
+
+struct AccountParser {
+
+    static private let regex: NSRegularExpression = {
+        try! NSRegularExpression(pattern: "^([0-9]{4}-[0-9]{2}-[0-9]{2})\\s+(open|close)\\s+([^\\s]+:[^\\s]+)(\\s+([^;\\s][^\\s]*))?\\s*(;.*)?$", options: [])
+    }()
+
+    /// Parse account openings and closings from a line String
+    ///
+    /// - Parameter line: String of one line
+    /// - Returns: Bool if the line could be parsed
+    static func parseFrom(line: String, for ledger: Ledger) -> Bool {
+        let transactionMatches = line.matchingStrings(regex: self.regex)
+        if let match = transactionMatches[safe: 0] {
+            if let date = DateParser.parseFrom(string: match[1]) {
+                let account = ledger.getAccountBy(name: match[3])
+                if match[2] == "open" && account.opening == nil {
+                    let commodity = match[4] != "" ? ledger.getCommodityBy(symbol: match[5]) : nil
+                    account.opening = date
+                    account.commodity = commodity
+                    return true
+                } else if match[2] == "close" && match[5] == "" && account.closing == nil {
+                    account.closing = date
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+}

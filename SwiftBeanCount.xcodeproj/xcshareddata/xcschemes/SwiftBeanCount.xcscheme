@@ -41,16 +41,6 @@
                ReferencedContainer = "container:SwiftBeanCount.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F9ED3DAE1EE7E03D00F6C79E"
-               BuildableName = "SwiftBeanCountUITests.xctest"
-               BlueprintName = "SwiftBeanCountUITests"
-               ReferencedContainer = "container:SwiftBeanCount.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
