@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		F9ED3D961EE7E03D00F6C79E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */; };
-		F9ED3D981EE7E03D00F6C79E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3D971EE7E03D00F6C79E /* ViewController.swift */; };
 		F9ED3D9A1EE7E03D00F6C79E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */; };
 		F9ED3D9D1EE7E03D00F6C79E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9ED3D9B1EE7E03D00F6C79E /* Main.storyboard */; };
 		F9ED3DA91EE7E03D00F6C79E /* SwiftBeanCountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DA81EE7E03D00F6C79E /* SwiftBeanCountTests.swift */; };
 		F9ED3DB41EE7E03D00F6C79E /* SwiftBeanCountUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DB31EE7E03D00F6C79E /* SwiftBeanCountUITests.swift */; };
+		F9ED3DD41EE91CC700F6C79E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DD11EE9163300F6C79E /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,6 @@
 /* Begin PBXFileReference section */
 		F9ED3D921EE7E03D00F6C79E /* SwiftBeanCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F9ED3D971EE7E03D00F6C79E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9ED3D9C1EE7E03D00F6C79E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9ED3D9E1EE7E03D00F6C79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		F9ED3DAF1EE7E03D00F6C79E /* SwiftBeanCountUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ED3DB31EE7E03D00F6C79E /* SwiftBeanCountUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountUITests.swift; sourceTree = "<group>"; };
 		F9ED3DB51EE7E03D00F6C79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9ED3DD11EE9163300F6C79E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */,
-				F9ED3D971EE7E03D00F6C79E /* ViewController.swift */,
-				F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */,
-				F9ED3D9B1EE7E03D00F6C79E /* Main.storyboard */,
-				F9ED3D9E1EE7E03D00F6C79E /* Info.plist */,
-				F9ED3D9F1EE7E03D00F6C79E /* SwiftBeanCount.entitlements */,
+				F9ED3DD01EE9160400F6C79E /* Views */,
+				F9ED3DCB1EE90DCD00F6C79E /* Resources */,
 			);
 			path = SwiftBeanCount;
 			sourceTree = "<group>";
@@ -122,6 +119,25 @@
 				F9ED3DB51EE7E03D00F6C79E /* Info.plist */,
 			);
 			path = SwiftBeanCountUITests;
+			sourceTree = "<group>";
+		};
+		F9ED3DCB1EE90DCD00F6C79E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */,
+				F9ED3D9E1EE7E03D00F6C79E /* Info.plist */,
+				F9ED3D9F1EE7E03D00F6C79E /* SwiftBeanCount.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F9ED3DD01EE9160400F6C79E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9ED3D9B1EE7E03D00F6C79E /* Main.storyboard */,
+				F9ED3DD11EE9163300F6C79E /* ViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9ED3D981EE7E03D00F6C79E /* ViewController.swift in Sources */,
+				F9ED3DD41EE91CC700F6C79E /* ViewController.swift in Sources */,
 				F9ED3D961EE7E03D00F6C79E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,10 +480,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/SwiftBeanCount.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/Resources/SwiftBeanCount.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = D99VYUJN25;
-				INFOPLIST_FILE = SwiftBeanCount/Info.plist;
+				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -479,10 +495,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/SwiftBeanCount.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/Resources/SwiftBeanCount.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = D99VYUJN25;
-				INFOPLIST_FILE = SwiftBeanCount/Info.plist;
+				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -571,6 +587,7 @@
 				F9ED3DBA1EE7E03D00F6C79E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F9ED3DBB1EE7E03D00F6C79E /* Build configuration list for PBXNativeTarget "SwiftBeanCountTests" */ = {
 			isa = XCConfigurationList;
@@ -579,6 +596,7 @@
 				F9ED3DBD1EE7E03D00F6C79E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F9ED3DBE1EE7E03D00F6C79E /* Build configuration list for PBXNativeTarget "SwiftBeanCountUITests" */ = {
 			isa = XCConfigurationList;
@@ -587,6 +605,7 @@
 				F9ED3DC01EE7E03D00F6C79E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
