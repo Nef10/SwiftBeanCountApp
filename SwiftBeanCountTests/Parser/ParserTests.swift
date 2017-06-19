@@ -35,7 +35,6 @@ class ParserTests: XCTestCase {
     func testPostingWithoutTransaction() {
         let ledger = ensureEmpty(testFile: .PostingWithoutTransaction)
         XCTAssertEqual(ledger.errors.count, 1)
-        XCTAssertEqual(ledger.errors[0], "Invalid format in line 1: Posting   Assets:Checking 1.00 EUR without transaction")
     }
 
     func testTransactionWithoutPosting() {

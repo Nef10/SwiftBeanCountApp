@@ -8,10 +8,15 @@
 
 import Foundation
 
-struct Transaction {
+class Transaction {
 
     let metaData : TransactionMetaData
-    let postings : [Posting]
+    var postings : [Posting]
+
+    init(metaData : TransactionMetaData, postings : [Posting] = []) {
+        self.metaData = metaData;
+        self.postings = postings;
+    }
 
 }
 

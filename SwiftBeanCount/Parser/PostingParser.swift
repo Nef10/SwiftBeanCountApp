@@ -18,13 +18,13 @@ struct PostingParser {
     ///
     /// - Parameter line: String of one line
     /// - Returns: a Posting or nil if the line does not contain a valid Posting
-    static func parseFrom(line: String, for ledger: Ledger? = nil) -> Posting? {
+    static func parseFrom(line: String, into transaction: Transaction, for ledger: Ledger? = nil) -> Posting? {
         let postingMatches = line.matchingStrings(regex: self.regex)
         if let match = postingMatches[safe: 0] {
             let amount = self.parseAmountDecimalFrom(string: match[2])
             let account = ledger?.getAccountBy(name: match[1]) ?? Account(name: match[1])
             let commodity = ledger?.getCommodityBy(symbol: match[5]) ?? Commodity(symbol: match[5])
-            return Posting(account:account, amount:amount, commodity:commodity)
+            return Posting(account: account, amount: amount, commodity: commodity, transaction: transaction)
         }
         return nil
     }

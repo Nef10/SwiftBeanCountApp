@@ -13,6 +13,7 @@ struct Posting {
     let account : Account
     let amount : Decimal
     let commodity : Commodity
+    unowned let transaction : Transaction
 
 }
 

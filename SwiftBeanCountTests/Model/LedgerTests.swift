@@ -52,9 +52,10 @@ class LedgerTests: XCTestCase {
 
     func testDescription() {
         let accountName = "Assets:Cash"
-        let posting = Posting(account: Account(name: accountName), amount: Decimal(10), commodity: Commodity(symbol: "EUR"))
         let transactionMetaData = TransactionMetaData(date: Date(timeIntervalSince1970: 1496991600), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: [])
-        let transaction = Transaction(metaData: transactionMetaData, postings: [posting])
+        let transaction = Transaction(metaData: transactionMetaData)
+        let posting = Posting(account: Account(name: accountName), amount: Decimal(10), commodity: Commodity(symbol: "EUR"), transaction: transaction)
+        transaction.postings.append(posting)
         let ledger = Ledger()
 
         // Empty leder
@@ -73,7 +74,7 @@ class LedgerTests: XCTestCase {
 
     func testEqual() {
         let name = "Name1"
-        let transaction1 = Transaction(metaData: TransactionMetaData(date:Date(), payee:name, narration:name, flag:Flag.Complete, tags: []), postings: [])
+        let transaction1 = Transaction(metaData: TransactionMetaData(date:Date(), payee:name, narration:name, flag:Flag.Complete, tags: []))
 
         let ledger1 = Ledger()
         let ledger2 = Ledger()

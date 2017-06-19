@@ -19,6 +19,27 @@ class Account {
         self.name = name
     }
 
+    func isPostingValid(_ posting : Posting) -> Bool {
+        return posting.account == self && self.allowsPosting(in: posting.commodity) && self.wasOpen(at: posting.transaction.metaData.date)
+    }
+
+    private func wasOpen(at date : Date) -> Bool {
+        if let opening = self.opening, opening <= date {
+            if let closing = self.closing {
+                return closing >= date
+            }
+            return true
+        }
+        return false;
+    }
+
+    private func allowsPosting(in commodity : Commodity) -> Bool {
+        if let ownCommodity = self.commodity {
+            return ownCommodity == commodity
+        }
+        return true;
+    }
+
 }
 
 extension Account : CustomStringConvertible {

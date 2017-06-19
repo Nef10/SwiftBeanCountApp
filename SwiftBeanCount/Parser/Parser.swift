@@ -30,8 +30,7 @@ class Parser {
 
         let lines = string.components(separatedBy: .newlines)
 
-        var tempPostings = [Posting]()
-        var tempTransactionMetaData : TransactionMetaData?
+        var openTransaction : Transaction?
 
         for (lineNumber, line) in lines.enumerated() {
 
@@ -41,26 +40,23 @@ class Parser {
             }
 
             // Posting
-            if let posting = PostingParser.parseFrom(line: line, for:ledger) {
-                if tempTransactionMetaData != nil {
-                    tempPostings.append(posting)
-                } else {
-                    ledger.errors.append("Invalid format in line \(lineNumber+1): Posting \(posting) without transaction")
-                }
-                continue
-            } else if let transactionMetaData = tempTransactionMetaData { // No posting, need to close previous transaction
-                if tempPostings.count > 0 {
-                    ledger.transactions.append(Transaction(metaData:transactionMetaData, postings:tempPostings))
-                    tempPostings = [Posting]()
-                    tempTransactionMetaData = nil
-                } else {
-                    ledger.errors.append("Invalid format in line \(lineNumber+1): previous Transaction \(transactionMetaData) without postings")
+            if let transaction = openTransaction {
+                if let posting = PostingParser.parseFrom(line: line, into: transaction, for: ledger) {
+                    transaction.postings.append(posting)
+                    continue
+                } else { // No posting, need to close previous transaction
+                    if transaction.postings.count > 0 {
+                        ledger.transactions.append(transaction)
+                        openTransaction = nil
+                    } else {
+                        ledger.errors.append("Invalid format in line \(lineNumber+1): previous Transaction \(transaction) without postings")
+                    }
                 }
             }
 
             // Transaction
             if let transactionMetaData = TransactionMetaDataParser.parseFrom(line: line) {
-                tempTransactionMetaData = transactionMetaData
+                openTransaction = Transaction(metaData: transactionMetaData)
                 continue
             }
 
@@ -72,13 +68,12 @@ class Parser {
 
         }
 
-        if let transactionMetaData = tempTransactionMetaData { // Need to close last transaction
-            if tempPostings.count > 0 {
-                ledger.transactions.append(Transaction(metaData:transactionMetaData, postings:tempPostings))
-                tempPostings = [Posting]()
-                tempTransactionMetaData = nil
+        if let transaction = openTransaction { // Need to close last transaction
+            if transaction.postings.count > 0 {
+                ledger.transactions.append(transaction)
+                openTransaction = nil
             } else {
-                ledger.errors.append("Invalid format in line \(lines.count): previous Transaction \(transactionMetaData) without postings")
+                ledger.errors.append("Invalid format in line \(lines.count): previous Transaction \(transaction) without postings")
             }
         }
 
