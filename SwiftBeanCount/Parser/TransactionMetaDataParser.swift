@@ -11,7 +11,7 @@ import Foundation
 struct TransactionMetaDataParser {
 
     static private let regex: NSRegularExpression = {
-        try! NSRegularExpression(pattern: "^([0-9]{4}-[0-9]{2}-[0-9]{2})\\s+([*!])\\s+(\"([^\"]*)\"\\s+)\"([^\"]*)\"\\s*((#([^\\s#]*)\\s*)*)(;.*)?$", options: [])
+        try! NSRegularExpression(pattern: "^\(DateParser.dateGroup)\\s+([*!])\\s+(\"([^\"]*)\"\\s+)\"([^\"]*)\"\\s*((#([^\\s#]*)\\s*)*)(;.*)?$", options: [])
     }()
 
     /// Parse TransactionMetaData from a line String

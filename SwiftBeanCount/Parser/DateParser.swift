@@ -10,6 +10,8 @@ import Foundation
 
 struct DateParser {
 
+    static let dateGroup = "([0-9]{4}-[0-9]{2}-[0-9]{2})"
+
     /// Parses an date string in the format yyyy-MM-dd
     /// Using another format might produce unexpected results
     ///

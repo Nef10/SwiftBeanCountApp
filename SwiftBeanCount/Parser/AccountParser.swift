@@ -11,7 +11,7 @@ import Foundation
 struct AccountParser {
 
     static private let regex: NSRegularExpression = {
-        try! NSRegularExpression(pattern: "^([0-9]{4}-[0-9]{2}-[0-9]{2})\\s+(open|close)\\s+([^\\s]+:[^\\s]+)(\\s+([^;\\s][^\\s]*))?\\s*(;.*)?$", options: [])
+        try! NSRegularExpression(pattern: "^\(DateParser.dateGroup)\\s+(open|close)\\s+\(Parser.accountGroup)(\\s+([^;\\s][^\\s]*))?\\s*(;.*)?$", options: [])
     }()
 
     /// Parse account openings and closings from a line String

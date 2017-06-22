@@ -10,8 +10,10 @@ import Foundation
 
 struct PostingParser {
 
+    static private let amountGroup = "([-+]?[0-9]+(,[0-9]{3})*(.[0-9]+)?)"
+
     static private let regex: NSRegularExpression = {
-        try! NSRegularExpression(pattern: "^\\s+([^\\s]+:[^\\s]+)\\s+([-+]?[0-9]+(,[0-9]{3})*(.[0-9]+)?)\\s+([^\\s]+)\\s*(;.*)?$", options: [])
+        try! NSRegularExpression(pattern: "^\\s+\(Parser.accountGroup)\\s+\(amountGroup)\\s+([^\\s]+)\\s*(;.*)?$", options: [])
     }()
 
     /// Parse a Posting from a line String

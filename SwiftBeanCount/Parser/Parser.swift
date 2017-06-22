@@ -10,6 +10,8 @@ import Foundation
 
 class Parser {
 
+    static let accountGroup = "([^\\s]+:[^\\s]+)"
+
     /// Parses a given file into an array of Transactions
     ///
     /// - Parameter contentOf: URL to parse Encoding has to be UTF-8
