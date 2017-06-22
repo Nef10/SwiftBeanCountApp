@@ -15,6 +15,8 @@ class AccountTests: XCTestCase {
     let date_2017_06_09 = Date(timeIntervalSince1970: 1496991600)
     let date_2017_06_10 = Date(timeIntervalSince1970: 1497078000)
 
+    let amount = Amount(number: Decimal(1), commodity: Commodity(symbol: "EUR"))
+
     func testDescription() {
         let name = "Assets:Cash"
         let accout = Account(name: name)
@@ -44,14 +46,14 @@ class AccountTests: XCTestCase {
     func testIsPostingValid_NotOpenPast() {
         let account = Account(name: "name")
         let transaction = Transaction(metaData: TransactionMetaData(date: Date(timeIntervalSince1970: 0), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction)
+        let posting = Posting(account: account, amount: Amount(number: Decimal(1), commodity: Commodity(symbol: "EUR")), transaction: transaction)
         XCTAssertFalse(account.isPostingValid(posting))
     }
 
     func testIsPostingValid_NotOpenPresent() {
         let account = Account(name: "name")
         let transaction = Transaction(metaData: TransactionMetaData(date: Date(), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction)
+        let posting = Posting(account: account, amount: Amount(number: Decimal(1), commodity: Commodity(symbol: "EUR")), transaction: transaction)
         XCTAssertFalse(account.isPostingValid(posting))
     }
 
@@ -60,11 +62,11 @@ class AccountTests: XCTestCase {
         account.opening = date_2017_06_09
 
         let transaction1 = Transaction(metaData: TransactionMetaData(date: Date(timeIntervalSince1970: 0), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting1 = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction1)
+        let posting1 = Posting(account: account, amount: Amount(number: Decimal(1), commodity: Commodity(symbol: "EUR")), transaction: transaction1)
         XCTAssertFalse(account.isPostingValid(posting1))
 
         let transaction2 = Transaction(metaData: TransactionMetaData(date: date_2017_06_08, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting2 = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction2)
+        let posting2 = Posting(account: account, amount: Amount(number: Decimal(1), commodity: Commodity(symbol: "EUR")), transaction: transaction2)
         XCTAssertFalse(account.isPostingValid(posting2))
     }
 
@@ -73,11 +75,11 @@ class AccountTests: XCTestCase {
         account.opening = date_2017_06_09
 
         let transaction1 = Transaction(metaData: TransactionMetaData(date: date_2017_06_09, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting1 = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction1)
+        let posting1 = Posting(account: account, amount: amount, transaction: transaction1)
         XCTAssert(account.isPostingValid(posting1))
 
         let transaction2 = Transaction(metaData: TransactionMetaData(date: Date(), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting2 = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction2)
+        let posting2 = Posting(account: account, amount: amount, transaction: transaction2)
         XCTAssert(account.isPostingValid(posting2))
     }
 
@@ -86,7 +88,7 @@ class AccountTests: XCTestCase {
         account.opening = date_2017_06_09
         account.closing = date_2017_06_09
         let transaction = Transaction(metaData: TransactionMetaData(date: date_2017_06_09, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction)
+        let posting = Posting(account: account, amount: amount, transaction: transaction)
         XCTAssert(account.isPostingValid(posting))
     }
 
@@ -95,7 +97,7 @@ class AccountTests: XCTestCase {
         account.opening = date_2017_06_09
         account.closing = date_2017_06_09
         let transaction = Transaction(metaData: TransactionMetaData(date: date_2017_06_10, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction)
+        let posting = Posting(account: account, amount: amount, transaction: transaction)
         XCTAssertFalse(account.isPostingValid(posting))
     }
 
@@ -104,30 +106,29 @@ class AccountTests: XCTestCase {
         account.opening = date_2017_06_08
 
         let transaction1 = Transaction(metaData: TransactionMetaData(date: date_2017_06_09, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting1 = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction1)
+        let posting1 = Posting(account: account, amount: amount, transaction: transaction1)
         XCTAssert(account.isPostingValid(posting1))
 
         let transaction2 = Transaction(metaData: TransactionMetaData(date: date_2017_06_09, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting2 = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "EUR"), transaction: transaction2)
+        let posting2 = Posting(account: account, amount: amount, transaction: transaction2)
         XCTAssert(account.isPostingValid(posting2))
     }
 
     func testIsPostingValid_CorrectCommodity() {
-        let commoditySymbol = "EUR"
         let account = Account(name: "name")
-        account.commodity = Commodity(symbol: commoditySymbol)
+        account.commodity = amount.commodity
         account.opening = date_2017_06_08
         let transaction = Transaction(metaData: TransactionMetaData(date: date_2017_06_09, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: commoditySymbol), transaction: transaction)
+        let posting = Posting(account: account, amount: amount, transaction: transaction)
         XCTAssert(account.isPostingValid(posting))
     }
 
     func testIsPostingValid_WrongCommodity() {
         let account = Account(name: "name")
-        account.commodity = Commodity(symbol: "EUR")
+        account.commodity = Commodity(symbol: "\(amount.commodity.symbol)1")
         account.opening = date_2017_06_08
         let transaction = Transaction(metaData: TransactionMetaData(date: date_2017_06_09, payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
-        let posting = Posting(account: account, amount: Decimal(1), commodity: Commodity(symbol: "CAD"), transaction: transaction)
+        let posting = Posting(account: account, amount: amount, transaction: transaction)
         XCTAssertFalse(account.isPostingValid(posting))
     }
 

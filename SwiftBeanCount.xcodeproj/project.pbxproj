@@ -31,6 +31,8 @@
 		F96BD4AA1EEDE136005026D6 /* CommodityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4A91EEDE136005026D6 /* CommodityTests.swift */; };
 		F96BD4AC1EEDE89C005026D6 /* AccountParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4AB1EEDE89C005026D6 /* AccountParser.swift */; };
 		F96BD4AE1EEFB7AB005026D6 /* AccountParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4AD1EEFB7AB005026D6 /* AccountParserTests.swift */; };
+		F9A9E7301EFB493100D682A1 /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E72F1EFB493100D682A1 /* Amount.swift */; };
+		F9A9E7321EFB4AC900D682A1 /* AmountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E7311EFB4AC900D682A1 /* AmountTests.swift */; };
 		F9DA5A251EEB8F990012FE63 /* Big.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9DA5A241EEB8F970012FE63 /* Big.beancount */; };
 		F9DA5A271EEB9C340012FE63 /* CommentsEndOfLine.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9DA5A261EEB9C2C0012FE63 /* CommentsEndOfLine.beancount */; };
 		F9ED3D961EE7E03D00F6C79E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */; };
@@ -93,6 +95,8 @@
 		F96BD4A91EEDE136005026D6 /* CommodityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommodityTests.swift; sourceTree = "<group>"; };
 		F96BD4AB1EEDE89C005026D6 /* AccountParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParser.swift; sourceTree = "<group>"; };
 		F96BD4AD1EEFB7AB005026D6 /* AccountParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParserTests.swift; sourceTree = "<group>"; };
+		F9A9E72F1EFB493100D682A1 /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
+		F9A9E7311EFB4AC900D682A1 /* AmountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTests.swift; sourceTree = "<group>"; };
 		F9DA5A241EEB8F970012FE63 /* Big.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = Big.beancount; sourceTree = "<group>"; };
 		F9DA5A261EEB9C2C0012FE63 /* CommentsEndOfLine.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = CommentsEndOfLine.beancount; sourceTree = "<group>"; };
 		F9ED3D921EE7E03D00F6C79E /* SwiftBeanCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +182,7 @@
 				F92846E71EF73EC50099F0F5 /* FlagTests.swift */,
 				F92846E91EF7492F0099F0F5 /* TransactionMetaDataTests.swift */,
 				F92846EB1EF74AEE0099F0F5 /* TransactionTests.swift */,
+				F9A9E7311EFB4AC900D682A1 /* AmountTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 				F9ED3DE01EE9346400F6C79E /* Commodity.swift */,
 				F954647B1EED03FE006EF284 /* Flag.swift */,
 				F96BD4A41EED1833005026D6 /* Tag.swift */,
+				F9A9E72F1EFB493100D682A1 /* Amount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 				F9ED3D961EE7E03D00F6C79E /* AppDelegate.swift in Sources */,
 				F96BD4AC1EEDE89C005026D6 /* AccountParser.swift in Sources */,
 				F9ED3DD81EE921ED00F6C79E /* Account.swift in Sources */,
+				F9A9E7301EFB493100D682A1 /* Amount.swift in Sources */,
 				F9ED3DC61EE90BAC00F6C79E /* Collection.swift in Sources */,
 				F9ED3DDA1EE9288900F6C79E /* TransactionMetaData.swift in Sources */,
 				F95464731EEC9E37006EF284 /* Ledger.swift in Sources */,
@@ -488,6 +495,7 @@
 				F9ED3DE31EEA5B8900F6C79E /* ParserTests.swift in Sources */,
 				F92846E11EF23CBB0099F0F5 /* PostingTests.swift in Sources */,
 				F954647A1EECA93E006EF284 /* CollectionTests.swift in Sources */,
+				F9A9E7321EFB4AC900D682A1 /* AmountTests.swift in Sources */,
 				F92846EA1EF7492F0099F0F5 /* TransactionMetaDataTests.swift in Sources */,
 				F92846EC1EF74AEE0099F0F5 /* TransactionTests.swift in Sources */,
 				F92846DF1EF237700099F0F5 /* TagTests.swift in Sources */,

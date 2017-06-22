@@ -13,64 +13,40 @@ class PostingTests: XCTestCase {
 
     let transaction = Transaction(metaData: TransactionMetaData(date: Date(), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
 
-    func testDescriptionInteger() {
-        let accountName = "Asset:Cash"
-        let commoditySymbol = "EUR"
-        let amount = 123
-        let account = Account(name: accountName)
-        let commodity = Commodity(symbol: commoditySymbol)
-        let posting = Posting(account: account, amount: Decimal(amount), commodity: commodity, transaction: transaction)
-
-        XCTAssertEqual(String(describing: posting), "  \(accountName) \(amount).00 \(commoditySymbol)")
-    }
-
-    func testDescriptionFloat() {
-        let accountName = "Asset:Cash"
-        let commoditySymbol = "EUR"
-        let account = Account(name: accountName)
-        let commodity = Commodity(symbol: commoditySymbol)
-        let posting = Posting(account: account, amount: Decimal(123.15), commodity: commodity, transaction: transaction)
-
-        XCTAssertEqual(String(describing: posting), "  \(accountName) 123.15 \(commoditySymbol)")
-    }
-
-    func testDescriptionSpecialCharacters() {
+    func testDescription() {
         let accountName = "Asset:💰"
-        let commoditySymbol = "💵"
-        let amount = 123
+        let amount = Amount(number: Decimal(1), commodity: Commodity(symbol: "💵"))
         let account = Account(name: accountName)
-        let commodity = Commodity(symbol: commoditySymbol)
-        let posting = Posting(account: account, amount: Decimal(amount), commodity: commodity, transaction: transaction)
+        let posting = Posting(account: account, amount: amount, transaction: transaction)
 
-        XCTAssertEqual(String(describing: posting), "  \(accountName) \(amount).00 \(commoditySymbol)")
+        XCTAssertEqual(String(describing: posting), "  \(accountName) \(String(describing: amount))")
     }
 
-    let accountName = "1"
-    let amountInteger = 1
     let commoditySymbol = "EUR"
+    let accountName = "Assets:Cash"
+    let amountInteger = 1
+    var amount1 : Amount?
+    var account1 : Account?
     var posting1 : Posting?
 
     override func setUp() {
-        posting1 = Posting(account: Account(name: accountName), amount: Decimal(amountInteger), commodity: Commodity(symbol: commoditySymbol), transaction: transaction)
+        amount1 = Amount(number: Decimal(amountInteger), commodity: Commodity(symbol: commoditySymbol))
+        account1 = Account(name: accountName)
+        posting1 = Posting(account: account1!, amount: amount1!, transaction: transaction)
     }
 
     func testEqual() {
-        let posting2 = Posting(account: Account(name: accountName), amount: Decimal(amountInteger), commodity: Commodity(symbol: commoditySymbol), transaction: transaction)
+        let posting2 = Posting(account: account1!, amount: amount1!, transaction: transaction)
         XCTAssertEqual(posting1, posting2)
     }
 
     func testEqualRespectsAccount() {
-        let posting2 = Posting(account: Account(name: "Asset:💰"), amount: Decimal(amountInteger), commodity: Commodity(symbol: commoditySymbol), transaction: transaction)
+        let posting2 = Posting(account: Account(name: "\(accountName):💰"), amount: amount1!, transaction: transaction)
         XCTAssertNotEqual(posting1, posting2)
     }
 
     func testEqualRespectsAmount() {
-        let posting2 = Posting(account: Account(name: accountName), amount: Decimal(10), commodity: Commodity(symbol: commoditySymbol), transaction: transaction)
-        XCTAssertNotEqual(posting1, posting2)
-    }
-
-    func testEqualRespectsCommodity() {
-        let posting2 = Posting(account: Account(name: accountName), amount: Decimal(amountInteger), commodity: Commodity(symbol: "💵"), transaction: transaction)
+        let posting2 = Posting(account: account1!, amount: Amount(number: Decimal(amountInteger), commodity: Commodity(symbol: "\(commoditySymbol)1")), transaction: transaction)
         XCTAssertNotEqual(posting1, posting2)
     }
 

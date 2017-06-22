@@ -26,7 +26,7 @@ struct PostingParser {
             let amount = self.parseAmountDecimalFrom(string: match[2])
             let account = ledger?.getAccountBy(name: match[1]) ?? Account(name: match[1])
             let commodity = ledger?.getCommodityBy(symbol: match[5]) ?? Commodity(symbol: match[5])
-            return Posting(account: account, amount: amount, commodity: commodity, transaction: transaction)
+            return Posting(account: account, amount: Amount(number: amount, commodity: commodity), transaction: transaction)
         }
         return nil
     }

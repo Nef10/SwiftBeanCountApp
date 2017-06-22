@@ -20,7 +20,7 @@ class Account {
     }
 
     func isPostingValid(_ posting : Posting) -> Bool {
-        return posting.account == self && self.allowsPosting(in: posting.commodity) && self.wasOpen(at: posting.transaction.metaData.date)
+        return posting.account == self && self.allowsPosting(in: posting.amount.commodity) && self.wasOpen(at: posting.transaction.metaData.date)
     }
 
     private func wasOpen(at date : Date) -> Bool {

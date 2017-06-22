@@ -54,7 +54,7 @@ class LedgerTests: XCTestCase {
         let accountName = "Assets:Cash"
         let transactionMetaData = TransactionMetaData(date: Date(timeIntervalSince1970: 1496991600), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: [])
         let transaction = Transaction(metaData: transactionMetaData)
-        let posting = Posting(account: Account(name: accountName), amount: Decimal(10), commodity: Commodity(symbol: "EUR"), transaction: transaction)
+        let posting = Posting(account: Account(name: accountName), amount: Amount(number: Decimal(10), commodity: Commodity(symbol: "EUR")), transaction: transaction)
         transaction.postings.append(posting)
         let ledger = Ledger()
 
