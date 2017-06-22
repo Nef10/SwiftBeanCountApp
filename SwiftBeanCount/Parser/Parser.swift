@@ -20,6 +20,16 @@ class Parser {
         return self.parse(string: text)
     }
 
+    private static func closeOpen(transaction openTransaction: Transaction?, inLedger ledger: Ledger, onLine line: Int) {
+        if let transaction = openTransaction { // Need to close last transaction
+            if transaction.postings.count > 0 {
+                ledger.transactions.append(transaction)
+            } else {
+                ledger.errors.append("Invalid format in line \(line): previous Transaction \(transaction) without postings")
+            }
+        }
+    }
+
     /// Parses a given String into an array of Transactions
     ///
     /// - Parameter string: String to parse
@@ -45,12 +55,8 @@ class Parser {
                     transaction.postings.append(posting)
                     continue
                 } else { // No posting, need to close previous transaction
-                    if transaction.postings.count > 0 {
-                        ledger.transactions.append(transaction)
-                        openTransaction = nil
-                    } else {
-                        ledger.errors.append("Invalid format in line \(lineNumber+1): previous Transaction \(transaction) without postings")
-                    }
+                    closeOpen(transaction: openTransaction, inLedger: ledger, onLine: lineNumber+1)
+                    openTransaction = nil
                 }
             }
 
@@ -68,14 +74,7 @@ class Parser {
 
         }
 
-        if let transaction = openTransaction { // Need to close last transaction
-            if transaction.postings.count > 0 {
-                ledger.transactions.append(transaction)
-                openTransaction = nil
-            } else {
-                ledger.errors.append("Invalid format in line \(lines.count): previous Transaction \(transaction) without postings")
-            }
-        }
+        closeOpen(transaction: openTransaction, inLedger: ledger, onLine: lines.count)
 
         return ledger
     }
