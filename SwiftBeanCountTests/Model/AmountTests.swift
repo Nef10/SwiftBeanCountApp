@@ -43,5 +43,11 @@ class AmountTests: XCTestCase {
         XCTAssertEqual(String(describing: amount), "125.50 \(String(describing: commodity))")
     }
 
+    func testDescriptionLongFloat() {
+        let commodity = Commodity(symbol: "💵")
+        let amount = Amount(number: Decimal(0.0009765625), commodity: commodity)
+
+        XCTAssertEqual(String(describing: amount), "0.0009765625 \(String(describing: commodity))")
+    }
 
 }

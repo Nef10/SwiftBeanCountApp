@@ -24,6 +24,7 @@ extension Amount : CustomStringConvertible {
         _formatter.numberStyle = .decimal
         _formatter.alwaysShowsDecimalSeparator = true
         _formatter.minimumFractionDigits = 2
+        _formatter.maximumFractionDigits = 100
         return _formatter
     }()
 

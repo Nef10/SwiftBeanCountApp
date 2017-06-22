@@ -50,7 +50,7 @@ struct PostingParser {
             amountString = beforeDot + afterDot
             exponent = afterDot.count
         }
-        return Decimal(sign: sign, exponent: -exponent, significand: Decimal(Int(amountString)!))
+        return Decimal(sign: sign, exponent: -exponent, significand: Decimal(UInt64(amountString)!))
     }
 
 }

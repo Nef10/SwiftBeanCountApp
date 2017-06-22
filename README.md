@@ -60,6 +60,7 @@ Todos for internal structure:
   - Errors for lines with unknown syntax
   - Emtpy window
   - Requires payee and narration field
+  - Only allows percision which without decimal point fits into UInt64
 
 ### What beancout supports but SwiftBeanCount does not
 
