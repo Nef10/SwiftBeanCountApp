@@ -26,6 +26,8 @@ class PostingParserTests: XCTestCase {
     let whitespacePostingString = "         Assets:Checking        1.23    EUR     "
     let endOfLineCommentPostingString = " Assets:Checking 1.23 EUR    ;gfdsg f gfds   "
     let specialCharacterPostingString = "  Assets:💰 1.00 💵"
+    let totalPricePostingString = "  Assets:💰 2.00 💵 @@ 2.00 EUR"
+    let unitPricePostingString = "  Assets:💰 2.00 💵 @ 1.00 EUR"
 
     func testBasic() {
         let posting = PostingParser.parseFrom(line: basicPostingString, into: transaction)!
@@ -61,6 +63,18 @@ class PostingParserTests: XCTestCase {
     func testEndOfLineCommentPostingString() {
         let posting = PostingParser.parseFrom(line: endOfLineCommentPostingString, into: transaction)!
         XCTAssertEqual(posting, basicPosting!)
+    }
+
+    func testTotalPrice() {
+        let posting = PostingParser.parseFrom(line: totalPricePostingString, into: transaction)!
+        XCTAssertEqual(posting.amount, Amount(number: Decimal(2), commodity: Commodity(symbol: "💵")))
+        XCTAssertEqual(posting.price, Amount(number: Decimal(1), commodity: Commodity(symbol: "EUR")))
+    }
+
+    func testUnitPrice() {
+        let posting = PostingParser.parseFrom(line: unitPricePostingString, into: transaction)!
+        XCTAssertEqual(posting.amount, Amount(number: Decimal(2), commodity: Commodity(symbol: "💵")))
+        XCTAssertEqual(posting.price, Amount(number: Decimal(1), commodity: Commodity(symbol: "EUR")))
     }
 
     func testPerformance() {

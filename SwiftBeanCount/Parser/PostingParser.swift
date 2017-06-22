@@ -10,10 +10,12 @@ import Foundation
 
 struct PostingParser {
 
-    static private let amountGroup = "([-+]?[0-9]+(,[0-9]{3})*(.[0-9]+)?)"
+    static private let decimalGroup = "([-+]?[0-9]+(,[0-9]{3})*(.[0-9]+)?)"
+    static private let commodityGroup = "([^\\s]+)"
+    static private let amountGroup = "\(decimalGroup)\\s+\(commodityGroup)"
 
     static private let regex: NSRegularExpression = {
-        try! NSRegularExpression(pattern: "^\\s+\(Parser.accountGroup)\\s+\(amountGroup)\\s+([^\\s]+)\\s*(;.*)?$", options: [])
+        try! NSRegularExpression(pattern: "^\\s+\(Parser.accountGroup)\\s+\(amountGroup)(\\s+(@@?)\\s+(\(amountGroup)))?\\s*(;.*)?$", options: [])
     }()
 
     /// Parse a Posting from a line String
@@ -26,7 +28,19 @@ struct PostingParser {
             let amount = self.parseAmountDecimalFrom(string: match[2])
             let account = ledger?.getAccountBy(name: match[1]) ?? Account(name: match[1])
             let commodity = ledger?.getCommodityBy(symbol: match[5]) ?? Commodity(symbol: match[5])
-            return Posting(account: account, amount: Amount(number: amount, commodity: commodity), transaction: transaction)
+            var price : Amount?
+            if !match[6].isEmpty {
+                let priceCommodity = ledger?.getCommodityBy(symbol: match[12]) ?? Commodity(symbol: match[12])
+                var priceAmountDecimal : Decimal?
+                if match[7] == "@" {
+                    priceAmountDecimal = self.parseAmountDecimalFrom(string: match[9])
+                } else if match[7] == "@@" {
+                    priceAmountDecimal = self.parseAmountDecimalFrom(string: match[9])
+                    priceAmountDecimal! /= amount
+                }
+                price = Amount(number: priceAmountDecimal!, commodity: priceCommodity)
+            }
+            return Posting(account: account, amount: Amount(number: amount, commodity: commodity), transaction: transaction, price: price)
         }
         return nil
     }

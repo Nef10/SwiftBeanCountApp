@@ -22,6 +22,16 @@ class PostingTests: XCTestCase {
         XCTAssertEqual(String(describing: posting), "  \(accountName) \(String(describing: amount))")
     }
 
+    func testDescriptionPrice() {
+        let accountName = "Asset:💰"
+        let amount = Amount(number: Decimal(1), commodity: Commodity(symbol: "💵"))
+        let price = Amount(number: Decimal(1.555), commodity: Commodity(symbol: "EUR"))
+        let account = Account(name: accountName)
+        let posting = Posting(account: account, amount: amount, transaction: transaction, price: price)
+
+        XCTAssertEqual(String(describing: posting), "  \(accountName) \(String(describing: amount)) @ \(price)")
+    }
+
     let commoditySymbol = "EUR"
     let accountName = "Assets:Cash"
     let amountInteger = 1

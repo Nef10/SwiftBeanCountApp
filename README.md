@@ -25,9 +25,9 @@ This project is in an early alpha stage, not even all parsing is working. Functi
 Todos for parsing:
 
   - Parse balance checks
-  - Parse price and cost in postings
+  - Parse cost in postings
   - Support tagstacks
-  - Parse Events
+  - Parse events
   - Parse prices
   - Parse commodity definitions
   - Parse notes
