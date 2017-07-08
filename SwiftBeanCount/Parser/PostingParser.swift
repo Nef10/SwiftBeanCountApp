@@ -25,27 +25,28 @@ struct PostingParser {
     static func parseFrom(line: String, into transaction: Transaction, for ledger: Ledger? = nil) -> Posting? {
         let postingMatches = line.matchingStrings(regex: self.regex)
         if let match = postingMatches[safe: 0] {
-            let amount = self.parseAmountDecimalFrom(string: match[2])
+            let (amount, decimalDigits) = self.parseAmountDecimalFrom(string: match[2])
             let account = ledger?.getAccountBy(name: match[1]) ?? Account(name: match[1])
             let commodity = ledger?.getCommodityBy(symbol: match[5]) ?? Commodity(symbol: match[5])
             var price : Amount?
             if !match[6].isEmpty {
                 let priceCommodity = ledger?.getCommodityBy(symbol: match[12]) ?? Commodity(symbol: match[12])
-                var priceAmountDecimal : Decimal?
+                var priceAmount : Decimal
+                var priceDecimalDigits : Int
                 if match[7] == "@" {
-                    priceAmountDecimal = self.parseAmountDecimalFrom(string: match[9])
-                } else if match[7] == "@@" {
-                    priceAmountDecimal = self.parseAmountDecimalFrom(string: match[9])
-                    priceAmountDecimal! /= amount
+                    (priceAmount, priceDecimalDigits) = self.parseAmountDecimalFrom(string: match[9])
+                } else { // match[7] == "@@"
+                    (priceAmount, priceDecimalDigits) = self.parseAmountDecimalFrom(string: match[9])
+                    priceAmount /= amount
                 }
-                price = Amount(number: priceAmountDecimal!, commodity: priceCommodity)
+                price = Amount(number: priceAmount, commodity: priceCommodity, decimalDigits: priceDecimalDigits)
             }
-            return Posting(account: account, amount: Amount(number: amount, commodity: commodity), transaction: transaction, price: price)
+            return Posting(account: account, amount: Amount(number: amount, commodity: commodity, decimalDigits: decimalDigits), transaction: transaction, price: price)
         }
         return nil
     }
 
-    static private func parseAmountDecimalFrom(string: String) -> Decimal {
+    static private func parseAmountDecimalFrom(string: String) -> (Decimal, Int) {
         var amountString = string
         var sign = FloatingPointSign.plus
         while let index = amountString.index(of: ",") {
@@ -64,7 +65,7 @@ struct PostingParser {
             amountString = beforeDot + afterDot
             exponent = afterDot.count
         }
-        return Decimal(sign: sign, exponent: -exponent, significand: Decimal(UInt64(amountString)!))
+        return (Decimal(sign: sign, exponent: -exponent, significand: Decimal(UInt64(amountString)!)), exponent)
     }
 
 }

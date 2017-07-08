@@ -34,16 +34,13 @@ Todos for parsing:
   - Parse metadata
   - Parse custom (and ignore)
   - Better error messages
-  - Amount interpolation
+  - Amount interpolation?
   - Includes
 
 Todos for checks:
 
-  - Check transaction balance
-  - Check account balance amount and account within account opening
+  - Check account balance amount
   - Check account closing balance in zero
-  - Check posting within account opening
-  - Check commodity in account
   - Check accounts are in the main accounts
   - Inventory booking
 

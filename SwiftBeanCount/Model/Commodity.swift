@@ -10,6 +10,8 @@ import Foundation
 
 class Commodity {
 
+    static let noCommodity = Commodity(symbol: "");
+
     let symbol : String
 
     init(symbol : String) {
@@ -32,4 +34,10 @@ extension Commodity : Comparable {
         return lhs.symbol == rhs.symbol
     }
 
+}
+
+extension Commodity : Hashable {
+    var hashValue: Int {
+        return symbol.hashValue
+    }
 }
