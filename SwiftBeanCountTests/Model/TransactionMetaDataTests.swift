@@ -6,19 +6,20 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class TransactionMetaDataTests: XCTestCase {
 
     let payee = "Payee"
     let narration = "Narration"
-    let flag = Flag.Complete
-    let date = Date(timeIntervalSince1970: 1496905200)
+    let flag = Flag.complete
+    let date = Date(timeIntervalSince1970: 1_496_905_200)
     let dateString = "2017-06-08"
-    var transactionMetaData : TransactionMetaData?
+    var transactionMetaData: TransactionMetaData?
 
     override func setUp() {
+        super.setUp()
         transactionMetaData = TransactionMetaData(date: date, payee: payee, narration: narration, flag: flag, tags: [])
     }
 
@@ -43,7 +44,8 @@ class TransactionMetaDataTests: XCTestCase {
         let tag1 = Tag(name: "tag1")
         let tag2 = Tag(name: "tag2")
         let transactionMetaData = TransactionMetaData(date: date, payee: payee, narration: narration, flag: flag, tags: [tag1, tag2])
-        XCTAssertEqual(String(describing: transactionMetaData), "\(dateString) \(String(describing: flag)) \"\(payee)\" \"\(narration)\" \(String(describing: tag1)) \(String(describing: tag2))")
+        XCTAssertEqual(String(describing: transactionMetaData),
+                       "\(dateString) \(String(describing: flag)) \"\(payee)\" \"\(narration)\" \(String(describing: tag1)) \(String(describing: tag2))")
     }
 
     func testEqual() {
@@ -76,7 +78,7 @@ class TransactionMetaDataTests: XCTestCase {
 
     func testEqualRespectsTags() {
         let tag1 = Tag(name: "tag1")
-        let transactionMetaData1 = TransactionMetaData(date: date, payee: payee, narration: narration, flag: Flag.Incomplete, tags: [tag1])
+        let transactionMetaData1 = TransactionMetaData(date: date, payee: payee, narration: narration, flag: Flag.incomplete, tags: [tag1])
         XCTAssertNotEqual(transactionMetaData, transactionMetaData1)
     }
 

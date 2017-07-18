@@ -10,9 +10,9 @@ import Foundation
 
 class Tag {
 
-    let name : String
+    let name: String
 
-    init(name : String) {
+    init(name: String) {
         self.name = name
     }
 
@@ -24,11 +24,11 @@ extension Tag : CustomStringConvertible {
 
 extension Tag : Comparable {
 
-    static func <(lhs: Tag, rhs: Tag) -> Bool {
+    static func < (lhs: Tag, rhs: Tag) -> Bool {
         return lhs.name < rhs.name
     }
 
-    static func ==(lhs: Tag, rhs: Tag) -> Bool {
+    static func == (lhs: Tag, rhs: Tag) -> Bool {
         return lhs.name == rhs.name
     }
 

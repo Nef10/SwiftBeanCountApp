@@ -17,14 +17,14 @@ class Parser {
     /// - Parameter contentOf: URL to parse Encoding has to be UTF-8
     /// - Returns: Array of parsed Transactions
     /// - Throws: Exceptions from opening the file
-    static func parse(contentOf path: URL) throws -> Ledger  {
+    static func parse(contentOf path: URL) throws -> Ledger {
         let text = try String(contentsOf:path)
         return self.parse(string: text)
     }
 
     private static func closeOpen(transaction openTransaction: Transaction?, inLedger ledger: Ledger, onLine line: Int) {
         if let transaction = openTransaction { // Need to close last transaction
-            if transaction.postings.count > 0 {
+            if !transaction.postings.isEmpty {
                 ledger.transactions.append(transaction)
             } else {
                 ledger.errors.append("Invalid format in line \(line): previous Transaction \(transaction) without postings")
@@ -42,7 +42,7 @@ class Parser {
 
         let lines = string.components(separatedBy: .newlines)
 
-        var openTransaction : Transaction?
+        var openTransaction: Transaction?
 
         for (lineNumber, line) in lines.enumerated() {
 
@@ -57,7 +57,7 @@ class Parser {
                     transaction.postings.append(posting)
                     continue
                 } else { // No posting, need to close previous transaction
-                    closeOpen(transaction: openTransaction, inLedger: ledger, onLine: lineNumber+1)
+                    closeOpen(transaction: openTransaction, inLedger: ledger, onLine: lineNumber + 1)
                     openTransaction = nil
                 }
             }
@@ -72,7 +72,7 @@ class Parser {
                 continue
             }
 
-            ledger.errors.append("Invalid format in line \(lineNumber+1): \(line)")
+            ledger.errors.append("Invalid format in line \(lineNumber + 1): \(line)")
 
         }
 

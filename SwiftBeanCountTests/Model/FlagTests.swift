@@ -6,15 +6,15 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class FlagTests: XCTestCase {
 
     func testDescription() {
-        let complete = Flag.Complete
+        let complete = Flag.complete
         XCTAssertEqual(String(describing: complete), "*")
-        let incomplete = Flag.Incomplete
+        let incomplete = Flag.incomplete
         XCTAssertEqual(String(describing: incomplete), "!")
     }
 

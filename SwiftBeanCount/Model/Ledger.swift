@@ -17,9 +17,9 @@ class Ledger {
     private var account = [String: Account]()
     private var tag = [String: Tag]()
 
-    var commodities : [Commodity] { return Array(commodity.values) }
-    var accounts : [Account] { return Array(account.values) }
-    var tags : [Tag] { return Array(tag.values) }
+    var commodities: [Commodity] { return Array(commodity.values) }
+    var accounts: [Account] { return Array(account.values) }
+    var tags: [Tag] { return Array(tag.values) }
 
     /// Gets Commodity object for the Commodity with the given string
     /// This function ensures that there is exactly one object per Commodity
@@ -66,7 +66,7 @@ extension Ledger : CustomStringConvertible {
     var description: String {
         var string = ""
         string.append(self.transactions.map({ String(describing: $0) }).joined(separator: "\n"))
-        if !string.isEmpty && self.accounts.count > 0 {
+        if !string.isEmpty && !self.accounts.isEmpty {
             string.append("\n")
         }
         string.append(self.accounts.map({ String(describing: $0) }).joined(separator: "\n"))
@@ -77,7 +77,7 @@ extension Ledger : CustomStringConvertible {
 extension Ledger : Equatable {
 
     /// erros are not taken into account
-    static func ==(lhs: Ledger, rhs: Ledger) -> Bool {
+    static func == (lhs: Ledger, rhs: Ledger) -> Bool {
         return lhs.account == rhs.account && rhs.commodity == lhs.commodity && rhs.tag == lhs.tag && rhs.transactions == lhs.transactions
     }
 

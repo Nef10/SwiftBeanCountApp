@@ -10,11 +10,11 @@ import Foundation
 
 class Commodity {
 
-    static let noCommodity = Commodity(symbol: "");
+    static let noCommodity = Commodity(symbol: "")
 
-    let symbol : String
+    let symbol: String
 
-    init(symbol : String) {
+    init(symbol: String) {
         self.symbol = symbol
     }
 
@@ -26,11 +26,11 @@ extension Commodity : CustomStringConvertible {
 
 extension Commodity : Comparable {
 
-    static func <(lhs: Commodity, rhs: Commodity) -> Bool {
+    static func < (lhs: Commodity, rhs: Commodity) -> Bool {
         return lhs.symbol < rhs.symbol
     }
 
-    static func ==(lhs: Commodity, rhs: Commodity) -> Bool {
+    static func == (lhs: Commodity, rhs: Commodity) -> Bool {
         return lhs.symbol == rhs.symbol
     }
 

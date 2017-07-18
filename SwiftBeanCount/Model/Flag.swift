@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum Flag : String {
-    case Complete = "*"
-    case Incomplete = "!"
+enum Flag: String {
+    case complete = "*"
+    case incomplete = "!"
 }
 
 extension Flag : CustomStringConvertible {

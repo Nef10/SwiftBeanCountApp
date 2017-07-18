@@ -10,12 +10,12 @@ import Foundation
 
 struct Posting {
 
-    let account : Account
-    let amount : Amount
-    unowned let transaction : Transaction
-    let price : Amount?
+    let account: Account
+    let amount: Amount
+    unowned let transaction: Transaction
+    let price: Amount?
 
-    init(account : Account, amount : Amount, transaction : Transaction, price : Amount? = nil) {
+    init(account: Account, amount: Amount, transaction: Transaction, price: Amount? = nil) {
         self.account = account
         self.amount = amount
         self.transaction = transaction
@@ -35,7 +35,7 @@ extension Posting : CustomStringConvertible {
 }
 
 extension Posting : Equatable {
-    static func ==(lhs: Posting, rhs: Posting) -> Bool {
+    static func == (lhs: Posting, rhs: Posting) -> Bool {
         return lhs.account == rhs.account && lhs.amount == rhs.amount && lhs.price == rhs.price
     }
 }

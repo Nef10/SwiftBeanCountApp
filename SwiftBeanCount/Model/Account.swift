@@ -10,34 +10,34 @@ import Foundation
 
 class Account {
 
-    let name : String
-    var commodity : Commodity?
-    var opening : Date?
-    var closing : Date?
+    let name: String
+    var commodity: Commodity?
+    var opening: Date?
+    var closing: Date?
 
-    init(name : String) {
+    init(name: String) {
         self.name = name
     }
 
-    func isPostingValid(_ posting : Posting) -> Bool {
+    func isPostingValid(_ posting: Posting) -> Bool {
         return posting.account == self && self.allowsPosting(in: posting.amount.commodity) && self.wasOpen(at: posting.transaction.metaData.date)
     }
 
-    private func wasOpen(at date : Date) -> Bool {
+    private func wasOpen(at date: Date) -> Bool {
         if let opening = self.opening, opening <= date {
             if let closing = self.closing {
                 return closing >= date
             }
             return true
         }
-        return false;
+        return false
     }
 
-    private func allowsPosting(in commodity : Commodity) -> Bool {
+    private func allowsPosting(in commodity: Commodity) -> Bool {
         if let ownCommodity = self.commodity {
             return ownCommodity == commodity
         }
-        return true;
+        return true
     }
 
 }
@@ -68,7 +68,7 @@ extension Account : CustomStringConvertible {
 
 extension Account : Equatable {
 
-    static func ==(lhs: Account, rhs: Account) -> Bool {
+    static func == (lhs: Account, rhs: Account) -> Bool {
         return rhs.name == lhs.name && rhs.commodity == lhs.commodity && rhs.opening == lhs.opening && rhs.closing == lhs.closing
     }
 

@@ -11,6 +11,7 @@ import Foundation
 struct AccountParser {
 
     static private let regex: NSRegularExpression = {
+        // swiftlint:disable:next force_try
         try! NSRegularExpression(pattern: "^\(DateParser.dateGroup)\\s+(open|close)\\s+\(Parser.accountGroup)(\\s+([^;\\s][^\\s]*))?\\s*(;.*)?$", options: [])
     }()
 

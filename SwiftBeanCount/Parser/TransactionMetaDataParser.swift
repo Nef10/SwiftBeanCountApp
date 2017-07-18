@@ -11,6 +11,7 @@ import Foundation
 struct TransactionMetaDataParser {
 
     static private let regex: NSRegularExpression = {
+        // swiftlint:disable:next force_try
         try! NSRegularExpression(pattern: "^\(DateParser.dateGroup)\\s+([*!])\\s+(\"([^\"]*)\"\\s+)\"([^\"]*)\"\\s*((#([^\\s#]*)\\s*)*)(;.*)?$", options: [])
     }()
 
@@ -22,7 +23,7 @@ struct TransactionMetaDataParser {
         let transactionMatches = line.matchingStrings(regex: self.regex)
         if let match = transactionMatches[safe: 0] {
             let tagStrings = match[6].components(separatedBy: .whitespaces)
-            let tags = tagStrings.filter({ $0.count > 0 }).map { (tag) -> Tag in
+            let tags = tagStrings.filter({ !$0.isEmpty }).map { (tag) -> Tag in
                 let tagName = String(tag.dropFirst())
                 return ledger?.getTagBy(name: tagName) ?? Tag(name: tagName)
             }

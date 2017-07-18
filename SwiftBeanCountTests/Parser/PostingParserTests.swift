@@ -6,17 +6,19 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class PostingParserTests: XCTestCase {
 
-    let transaction = Transaction(metaData: TransactionMetaData(date: Date(), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
+    let transaction = Transaction(metaData: TransactionMetaData(date: Date(), payee: "Payee", narration: "Narration", flag: Flag.complete, tags: []))
 
-    var basicPosting : Posting?
+    var basicPosting: Posting?
 
     override func setUp() {
-        basicPosting = { Posting(account: Account(name:"Assets:Checking"), amount: Amount(number: Decimal(1.23), commodity: Commodity(symbol: "EUR"), decimalDigits: 2), transaction: transaction) }()
+        super.setUp()
+        basicPosting = Posting(account: Account(name:"Assets:Checking"),
+                               amount: Amount(number: Decimal(1.23), commodity: Commodity(symbol: "EUR"), decimalDigits: 2), transaction: transaction)
     }
 
     let basicPostingString = "  Assets:Checking 1.23 EUR"
@@ -85,7 +87,7 @@ class PostingParserTests: XCTestCase {
 
     func testPerformance() {
         self.measure {
-            for _ in 0...1000 {
+            for _ in 0...1_000 {
                 _ = PostingParser.parseFrom(line: basicPostingString, into: transaction)!
                 _ = PostingParser.parseFrom(line: whitespacePostingString, into: transaction)!
                 _ = PostingParser.parseFrom(line: endOfLineCommentPostingString, into: transaction)!
@@ -95,4 +97,3 @@ class PostingParserTests: XCTestCase {
     }
 
 }
-

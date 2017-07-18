@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class TransactionMetaDataParserTests: XCTestCase {
 
@@ -38,8 +38,8 @@ class TransactionMetaDataParserTests: XCTestCase {
         let transactionMetaData = TransactionMetaDataParser.parseFrom(line: specialCharacterTransactionMetaDataString)!
         XCTAssertEqual(transactionMetaData.narration, "🎉😊💵Test⚅℃⁒♾")
         XCTAssertEqual(transactionMetaData.payee, "öøuß´@🇩🇪🇨🇦💵")
-        XCTAssertEqual(transactionMetaData.flag, Flag.Complete)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1496991600))
+        XCTAssertEqual(transactionMetaData.flag, Flag.complete)
+        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
         XCTAssertEqual(transactionMetaData.tags.count, 1)
         XCTAssertEqual(transactionMetaData.tags[0].name, "🇨🇦")
         XCTAssertEqual(String(describing: transactionMetaData), specialCharacterTransactionMetaDataString)
@@ -49,8 +49,8 @@ class TransactionMetaDataParserTests: XCTestCase {
         let transactionMetaData = TransactionMetaDataParser.parseFrom(line: incompleteTransactionMetaDataString)!
         XCTAssertEqual(transactionMetaData.narration, "Narration")
         XCTAssertEqual(transactionMetaData.payee, "Payee")
-        XCTAssertEqual(transactionMetaData.flag, Flag.Incomplete)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1496991600))
+        XCTAssertEqual(transactionMetaData.flag, Flag.incomplete)
+        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
         XCTAssertEqual(transactionMetaData.tags.count, 0)
         XCTAssertEqual(String(describing: transactionMetaData), incompleteTransactionMetaDataString)
     }
@@ -59,8 +59,8 @@ class TransactionMetaDataParserTests: XCTestCase {
         let transactionMetaData = TransactionMetaDataParser.parseFrom(line: tagsTransactionMetaDataString)!
         XCTAssertEqual(transactionMetaData.narration, "Narration")
         XCTAssertEqual(transactionMetaData.payee, "Payee")
-        XCTAssertEqual(transactionMetaData.flag, Flag.Complete)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1496991600))
+        XCTAssertEqual(transactionMetaData.flag, Flag.complete)
+        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
         XCTAssertEqual(transactionMetaData.tags.count, 2)
         XCTAssertEqual(transactionMetaData.tags[0].name, "1")
         XCTAssertEqual(transactionMetaData.tags[1].name, "two")
@@ -73,7 +73,7 @@ class TransactionMetaDataParserTests: XCTestCase {
 
     func testPerformance() {
         self.measure {
-            for _ in 0...1000 {
+            for _ in 0...1_000 {
                 _ = TransactionMetaDataParser.parseFrom(line: basicTransactionMetaDataString)!
                 _ = TransactionMetaDataParser.parseFrom(line: whitespaceTransactionMetaDataString)!
                 _ = TransactionMetaDataParser.parseFrom(line: endOfLineCommentTransactionMetaDataString)!
@@ -87,9 +87,9 @@ class TransactionMetaDataParserTests: XCTestCase {
     private func assertBasicTransactionMetaData(_ transactionMetaData: TransactionMetaData) {
         XCTAssertEqual(transactionMetaData.narration, "Narration")
         XCTAssertEqual(transactionMetaData.payee, "Payee")
-        XCTAssertEqual(transactionMetaData.flag, Flag.Complete)
+        XCTAssertEqual(transactionMetaData.flag, Flag.complete)
         XCTAssertEqual(transactionMetaData.tags.count, 0)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1496991600))
+        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
         XCTAssertEqual(String(describing: transactionMetaData), basicTransactionMetaDataString)
     }
 

@@ -31,12 +31,12 @@ extension MultiCurrencyAmount : MultiCurrencyAmountRepresentable {
 }
 
 extension MultiCurrencyAmount : Equatable {
-    static func ==(lhs: MultiCurrencyAmount, rhs: MultiCurrencyAmount) -> Bool {
+    static func == (lhs: MultiCurrencyAmount, rhs: MultiCurrencyAmount) -> Bool {
         return lhs.amounts == rhs.amounts && lhs.decimalDigits == rhs.decimalDigits
     }
 }
 
-func +(left: MultiCurrencyAmountRepresentable, right: MultiCurrencyAmountRepresentable) -> MultiCurrencyAmount {
+func + (left: MultiCurrencyAmountRepresentable, right: MultiCurrencyAmountRepresentable) -> MultiCurrencyAmount {
     var result = left.multiAccountAmount.amounts
     var decimalDigits = left.multiAccountAmount.decimalDigits
     for (commodity, decimal) in right.multiAccountAmount.amounts {
@@ -46,4 +46,9 @@ func +(left: MultiCurrencyAmountRepresentable, right: MultiCurrencyAmountReprese
         decimalDigits[commodity] = max((decimalDigits[commodity] ?? 0), digits)
     }
     return MultiCurrencyAmount(amounts: result, decimalDigits: decimalDigits)
+}
+
+func += (left: inout MultiCurrencyAmount, right: MultiCurrencyAmountRepresentable) {
+    // swiftlint:disable:next shorthand_operator
+    left = left + right
 }

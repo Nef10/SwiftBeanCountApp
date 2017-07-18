@@ -17,7 +17,7 @@ struct DateParser {
     ///
     /// - Parameter string: date string
     /// - Returns: Date if the string could be parsed, otherwise nil
-    static func parseFrom(string dateString : String) -> Date? {
+    static func parseFrom(string dateString: String) -> Date? {
         var dateComponents = DateComponents()
         dateComponents.year = Int(String(dateString.prefix(4)))
         dateComponents.month = Int(String(String(dateString.suffix(5)).prefix(2)))
@@ -27,7 +27,7 @@ struct DateParser {
         if dateComponents.isValidDate(in: Calendar.current) {
             return Calendar.current.date(from: dateComponents)
         }
-        return nil;
+        return nil
     }
 
 }

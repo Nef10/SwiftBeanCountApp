@@ -15,6 +15,7 @@ struct PostingParser {
     static private let amountGroup = "\(decimalGroup)\\s+\(commodityGroup)"
 
     static private let regex: NSRegularExpression = {
+        // swiftlint:disable:next force_try
         try! NSRegularExpression(pattern: "^\\s+\(Parser.accountGroup)\\s+\(amountGroup)(\\s+(@@?)\\s+(\(amountGroup)))?\\s*(;.*)?$", options: [])
     }()
 
@@ -28,11 +29,11 @@ struct PostingParser {
             let (amount, decimalDigits) = self.parseAmountDecimalFrom(string: match[2])
             let account = ledger?.getAccountBy(name: match[1]) ?? Account(name: match[1])
             let commodity = ledger?.getCommodityBy(symbol: match[5]) ?? Commodity(symbol: match[5])
-            var price : Amount?
+            var price: Amount?
             if !match[6].isEmpty {
                 let priceCommodity = ledger?.getCommodityBy(symbol: match[12]) ?? Commodity(symbol: match[12])
-                var priceAmount : Decimal
-                var priceDecimalDigits : Int
+                var priceAmount: Decimal
+                var priceDecimalDigits: Int
                 if match[7] == "@" {
                     (priceAmount, priceDecimalDigits) = self.parseAmountDecimalFrom(string: match[9])
                 } else { // match[7] == "@@"

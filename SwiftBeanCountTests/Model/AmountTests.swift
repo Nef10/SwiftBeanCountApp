@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class AmountTests: XCTestCase {
 
@@ -53,7 +53,7 @@ class AmountTests: XCTestCase {
 
     func testDescriptionLongFloat() {
         let commodity = Commodity(symbol: "💵")
-        let amount = Amount(number: Decimal(0.0009765625), commodity: commodity, decimalDigits: 10)
+        let amount = Amount(number: Decimal(0.000_976_562_5), commodity: commodity, decimalDigits: 10)
 
         XCTAssertEqual(String(describing: amount), "0.0009765625 \(String(describing: commodity))")
     }
@@ -62,16 +62,16 @@ class AmountTests: XCTestCase {
         let decimal = Decimal(10)
         let commodity = Commodity(symbol: "EUR")
         let amount = Amount(number: decimal, commodity: commodity)
-        XCTAssertEqual(amount.multiAccountAmount.amounts, [commodity : decimal])
-        XCTAssertEqual(amount.multiAccountAmount.decimalDigits, [commodity : 0])
+        XCTAssertEqual(amount.multiAccountAmount.amounts, [commodity: decimal])
+        XCTAssertEqual(amount.multiAccountAmount.decimalDigits, [commodity: 0])
     }
 
     func testMultiCurrencyAmountDecimalDigits() {
         let decimal = Decimal(10.25)
         let commodity = Commodity(symbol: "EUR")
         let amount = Amount(number: decimal, commodity: commodity, decimalDigits: 2)
-        XCTAssertEqual(amount.multiAccountAmount.amounts, [commodity : decimal])
-        XCTAssertEqual(amount.multiAccountAmount.decimalDigits, [commodity : 2])
+        XCTAssertEqual(amount.multiAccountAmount.amounts, [commodity: decimal])
+        XCTAssertEqual(amount.multiAccountAmount.decimalDigits, [commodity: 2])
     }
 
 }

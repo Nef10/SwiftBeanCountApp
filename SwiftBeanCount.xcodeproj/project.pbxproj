@@ -33,6 +33,7 @@
 		F96BD4AA1EEDE136005026D6 /* CommodityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4A91EEDE136005026D6 /* CommodityTests.swift */; };
 		F96BD4AC1EEDE89C005026D6 /* AccountParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4AB1EEDE89C005026D6 /* AccountParser.swift */; };
 		F96BD4AE1EEFB7AB005026D6 /* AccountParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4AD1EEFB7AB005026D6 /* AccountParserTests.swift */; };
+		F997463C1F1DC90C00FCD6E7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */; };
 		F9A9E7301EFB493100D682A1 /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E72F1EFB493100D682A1 /* Amount.swift */; };
 		F9A9E7321EFB4AC900D682A1 /* AmountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E7311EFB4AC900D682A1 /* AmountTests.swift */; };
 		F9DA5A251EEB8F990012FE63 /* Big.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9DA5A241EEB8F970012FE63 /* Big.beancount */; };
@@ -99,6 +100,7 @@
 		F96BD4A91EEDE136005026D6 /* CommodityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommodityTests.swift; sourceTree = "<group>"; };
 		F96BD4AB1EEDE89C005026D6 /* AccountParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParser.swift; sourceTree = "<group>"; };
 		F96BD4AD1EEFB7AB005026D6 /* AccountParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParserTests.swift; sourceTree = "<group>"; };
+		F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F9A9E72F1EFB493100D682A1 /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
 		F9A9E7311EFB4AC900D682A1 /* AmountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTests.swift; sourceTree = "<group>"; };
 		F9DA5A241EEB8F970012FE63 /* Big.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = Big.beancount; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				F9ED3DA71EE7E03D00F6C79E /* SwiftBeanCountTests */,
 				F9ED3DB21EE7E03D00F6C79E /* SwiftBeanCountUITests */,
 				F9ED3D931EE7E03D00F6C79E /* Products */,
+				F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */,
 				F92846E21EF24EA70099F0F5 /* README.md */,
 			);
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9ED3DB81EE7E03D00F6C79E /* Build configuration list for PBXNativeTarget "SwiftBeanCount" */;
 			buildPhases = (
+				F997463A1F1DC81A00FCD6E7 /* SwiftLint */,
 				F9ED3D8E1EE7E03D00F6C79E /* Sources */,
 				F9ED3DC11EE7E04C00F6C79E /* Increment Build Number */,
 				F9ED3D8F1EE7E03D00F6C79E /* Frameworks */,
@@ -387,6 +391,7 @@
 				TargetAttributes = {
 					F9ED3D911EE7E03D00F6C79E = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
 					};
 					F9ED3DA31EE7E03D00F6C79E = {
 						CreatedOnToolsVersion = 9.0;
@@ -423,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F997463C1F1DC90C00FCD6E7 /* .swiftlint.yml in Resources */,
 				F9ED3D9A1EE7E03D00F6C79E /* Assets.xcassets in Resources */,
 				F9ED3D9D1EE7E03D00F6C79E /* Main.storyboard in Resources */,
 			);
@@ -452,6 +458,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		F997463A1F1DC81A00FCD6E7 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		F9ED3DC11EE7E04C00F6C79E /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -699,12 +719,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/Resources/SwiftBeanCount.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = D99VYUJN25;
 				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -714,12 +737,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/Resources/SwiftBeanCount.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = D99VYUJN25;
 				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

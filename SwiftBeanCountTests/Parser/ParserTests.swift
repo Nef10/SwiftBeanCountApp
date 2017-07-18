@@ -6,50 +6,50 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class ParserTests: XCTestCase {
 
-    enum TestFile : String {
-        case Minimal = "Minimal"
-        case PostingWithoutTransaction = "PostingWithoutTransaction"
-        case TransactionWithoutPosting = "TransactionWithoutPosting"
-        case Comments = "Comments"
-        case CommentsEndOfLine = "CommentsEndOfLine"
-        case Whitespace = "Whitespace"
-        case Big = "Big"
+    enum TestFile: String {
+        case minimal = "Minimal"
+        case postingWithoutTransaction = "PostingWithoutTransaction"
+        case transactionWithoutPosting = "TransactionWithoutPosting"
+        case comments = "Comments"
+        case commentsEndOfLine = "CommentsEndOfLine"
+        case whitespace = "Whitespace"
+        case big = "Big"
 
-        static let withoutError = [Minimal, Comments, CommentsEndOfLine, Whitespace, Big]
+        static let withoutError = [minimal, comments, commentsEndOfLine, whitespace, big]
 
     }
 
     func testMinimal() {
-        ensureMinimal(testFile: .Minimal)
+        ensureMinimal(testFile: .minimal)
     }
 
     func testWhitespace() {
-        ensureMinimal(testFile: .Whitespace)
+        ensureMinimal(testFile: .whitespace)
     }
 
     func testPostingWithoutTransaction() {
-        let ledger = ensureEmpty(testFile: .PostingWithoutTransaction)
+        let ledger = ensureEmpty(testFile: .postingWithoutTransaction)
         XCTAssertEqual(ledger.errors.count, 1)
     }
 
     func testTransactionWithoutPosting() {
-        let ledger = ensureEmpty(testFile: .TransactionWithoutPosting)
+        let ledger = ensureEmpty(testFile: .transactionWithoutPosting)
         XCTAssertEqual(ledger.errors.count, 1)
         XCTAssertEqual(ledger.errors[0], "Invalid format in line 2: previous Transaction 2017-06-08 * \"Payee\" \"Narration\" without postings")
     }
 
     func testComments() {
-        let ledger = ensureEmpty(testFile: .Comments)
+        let ledger = ensureEmpty(testFile: .comments)
         XCTAssertEqual(ledger.errors.count, 0)
     }
 
     func testCommentsEndOfLine() {
-        ensureMinimal(testFile: .CommentsEndOfLine)
+        ensureMinimal(testFile: .commentsEndOfLine)
     }
 
     func testRoundTrip() {
@@ -67,7 +67,7 @@ class ParserTests: XCTestCase {
     func testPerformance() {
         self.measure {
             do {
-                _ = try Parser.parse(contentOf: urlFor(testFile: .Big))
+                _ = try Parser.parse(contentOf: urlFor(testFile: .big))
             } catch let error {
                 XCTFail(String(describing: error))
             }
@@ -76,11 +76,11 @@ class ParserTests: XCTestCase {
 
     //  Helper
 
-    private func urlFor(testFile : TestFile) -> URL {
+    private func urlFor(testFile: TestFile) -> URL {
         return NSURL.fileURL(withPath: Bundle(for: type(of: self)).path(forResource: testFile.rawValue, ofType: "beancount")!)
     }
 
-    private func ensureEmpty(testFile : TestFile) -> Ledger {
+    private func ensureEmpty(testFile: TestFile) -> Ledger {
         do {
             let ledger = try Parser.parse(contentOf: urlFor(testFile: testFile))
             XCTAssertEqual(ledger.transactions.count, 0)
@@ -91,7 +91,7 @@ class ParserTests: XCTestCase {
         return Ledger()
     }
 
-    private func ensureMinimal(testFile : TestFile) -> Void {
+    private func ensureMinimal(testFile: TestFile) {
         do {
             let ledger = try Parser.parse(contentOf: urlFor(testFile: testFile))
             XCTAssertEqual(ledger.transactions.count, 1)
@@ -102,11 +102,11 @@ class ParserTests: XCTestCase {
             XCTAssertEqual(transaction.postings.count, 2)
             XCTAssertEqual(transaction.metaData.payee, "Payee")
             XCTAssertEqual(transaction.metaData.narration, "Narration")
-            XCTAssertEqual(transaction.metaData.date, Date(timeIntervalSince1970: 1496905200))
-            let posting1 = transaction.postings.first(where: {$0.amount.number == Decimal(-1)})!
+            XCTAssertEqual(transaction.metaData.date, Date(timeIntervalSince1970: 1_496_905_200))
+            let posting1 = transaction.postings.first(where: { $0.amount.number == Decimal(-1) })!
             XCTAssert(posting1.account === ledger.getAccountBy(name: "Equity:OpeningBalance"))
             XCTAssert(posting1.amount.commodity === ledger.getCommodityBy(symbol: "EUR"))
-            let posting2 = transaction.postings.first(where: {$0.amount.number == Decimal(1)})!
+            let posting2 = transaction.postings.first(where: { $0.amount.number == Decimal(1) })!
             XCTAssert(posting2.account === ledger.getAccountBy(name: "Assets:Checking"))
             XCTAssert(posting2.amount.commodity === ledger.getCommodityBy(symbol: "EUR"))
         } catch let error {

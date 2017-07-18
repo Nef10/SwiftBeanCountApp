@@ -10,16 +10,16 @@ import Foundation
 
 struct TransactionMetaData {
 
-    let date : Date
-    let payee : String
-    let narration : String
-    let flag : Flag
-    let tags : [Tag]
+    let date: Date
+    let payee: String
+    let narration: String
+    let flag: Flag
+    let tags: [Tag]
 
 }
 
 extension TransactionMetaData : CustomStringConvertible {
-    
+
     var description: String {
         var tagString =  ""
         tags.forEach({ tagString += " \(String(describing: $0))" })
@@ -37,7 +37,7 @@ extension TransactionMetaData : CustomStringConvertible {
 }
 
 extension TransactionMetaData : Equatable {
-    static func ==(lhs: TransactionMetaData, rhs: TransactionMetaData) -> Bool {
+    static func == (lhs: TransactionMetaData, rhs: TransactionMetaData) -> Bool {
         return lhs.date == rhs.date && lhs.payee == rhs.payee && lhs.narration == rhs.narration && lhs.flag == rhs.flag && lhs.tags == rhs.tags
     }
 }

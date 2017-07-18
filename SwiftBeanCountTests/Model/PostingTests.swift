@@ -6,12 +6,12 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class PostingTests: XCTestCase {
 
-    let transaction = Transaction(metaData: TransactionMetaData(date: Date(), payee: "Payee", narration: "Narration", flag: Flag.Complete, tags: []))
+    let transaction = Transaction(metaData: TransactionMetaData(date: Date(), payee: "Payee", narration: "Narration", flag: Flag.complete, tags: []))
 
     func testDescription() {
         let accountName = "Asset:💰"
@@ -35,11 +35,12 @@ class PostingTests: XCTestCase {
     let commoditySymbol = "EUR"
     let accountName = "Assets:Cash"
     let amountInteger = 1
-    var amount1 : Amount?
-    var account1 : Account?
-    var posting1 : Posting?
+    var amount1: Amount?
+    var account1: Account?
+    var posting1: Posting?
 
     override func setUp() {
+        super.setUp()
         amount1 = Amount(number: Decimal(amountInteger), commodity: Commodity(symbol: commoditySymbol))
         account1 = Account(name: accountName)
         posting1 = Posting(account: account1!, amount: amount1!, transaction: transaction)
@@ -56,7 +57,8 @@ class PostingTests: XCTestCase {
     }
 
     func testEqualRespectsAmount() {
-        let posting2 = Posting(account: account1!, amount: Amount(number: Decimal(amountInteger), commodity: Commodity(symbol: "\(commoditySymbol)1")), transaction: transaction)
+        let posting2 = Posting(account: account1!, amount: Amount(number: Decimal(amountInteger),
+                                                                  commodity: Commodity(symbol: "\(commoditySymbol)1")), transaction: transaction)
         XCTAssertNotEqual(posting1, posting2)
     }
 

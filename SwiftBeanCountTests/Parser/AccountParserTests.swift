@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class AccountParserTests: XCTestCase {
 
@@ -52,7 +52,7 @@ class AccountParserTests: XCTestCase {
 
     func testPerformance() {
         self.measure {
-            for _ in 0...1000 {
+            for _ in 0...1_000 {
                 let basicLedger = Ledger()
                 _ = AccountParser.parseFrom(line: basicOpeningString, for: basicLedger)
                 _ = AccountParser.parseFrom(line: basicClosingString, for: basicLedger)
@@ -73,17 +73,17 @@ class AccountParserTests: XCTestCase {
     }
 
     // Helper
-    private func testWith(openingString: String, closingString : String, commodity: Commodity?) {
+    private func testWith(openingString: String, closingString: String, commodity: Commodity?) {
         let ledger = Ledger()
 
         XCTAssert(AccountParser.parseFrom(line: openingString, for: ledger))
-        XCTAssertEqual(ledger.accounts[0].opening!, Date(timeIntervalSince1970: 1496991600))
+        XCTAssertEqual(ledger.accounts[0].opening!, Date(timeIntervalSince1970: 1_496_991_600))
         XCTAssertEqual(ledger.accounts[0].closing, nil)
         XCTAssertEqual(ledger.accounts[0].commodity, commodity)
 
         XCTAssert(AccountParser.parseFrom(line: closingString, for: ledger))
-        XCTAssertEqual(ledger.accounts[0].opening!, Date(timeIntervalSince1970: 1496991600))
-        XCTAssertEqual(ledger.accounts[0].closing!, Date(timeIntervalSince1970: 1496991600))
+        XCTAssertEqual(ledger.accounts[0].opening!, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(ledger.accounts[0].closing!, Date(timeIntervalSince1970: 1_496_991_600))
     }
 
 }

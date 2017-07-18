@@ -10,16 +10,16 @@ import Foundation
 
 class Transaction {
 
-    let metaData : TransactionMetaData
-    var postings : [Posting]
+    let metaData: TransactionMetaData
+    var postings: [Posting]
 
-    init(metaData : TransactionMetaData, postings : [Posting] = []) {
-        self.metaData = metaData;
-        self.postings = postings;
+    init(metaData: TransactionMetaData, postings: [Posting] = []) {
+        self.metaData = metaData
+        self.postings = postings
     }
 
     func isValid() -> Bool {
-        guard !postings.isEmpty else  {
+        guard !postings.isEmpty else {
             return false
         }
         guard isBalanced() else {
@@ -46,18 +46,18 @@ class Transaction {
         var amount = MultiCurrencyAmount()
         for posting in postings {
             if let price = posting.price {
-                let postingAmount = MultiCurrencyAmount(amounts: [price.commodity : price.number * posting.amount.number],
-                                                        decimalDigits: [posting.amount.commodity : posting.amount.decimalDigits])
-                amount = amount + postingAmount
+                let postingAmount = MultiCurrencyAmount(amounts: [price.commodity: price.number * posting.amount.number],
+                                                        decimalDigits: [posting.amount.commodity: posting.amount.decimalDigits])
+                amount += postingAmount
             } else {
-                amount = amount + posting.amount
+                amount += posting.amount
             }
         }
         for (commodity, decimal) in amount.amounts {
             let decimalDigits = amount.decimalDigits[commodity] ?? 0
             var tolerance = Decimal()
             if decimalDigits != 0 {
-                tolerance = Decimal(sign: FloatingPointSign.plus, exponent: -(decimalDigits+1), significand: Decimal(5))
+                tolerance = Decimal(sign: FloatingPointSign.plus, exponent: -(decimalDigits + 1), significand: Decimal(5))
             }
             if decimal > tolerance || decimal < -tolerance {
                 return false
@@ -77,7 +77,7 @@ extension Transaction : CustomStringConvertible {
 }
 
 extension Transaction : Equatable {
-    static func ==(lhs: Transaction, rhs: Transaction) -> Bool {
+    static func == (lhs: Transaction, rhs: Transaction) -> Bool {
         return lhs.metaData == rhs.metaData && lhs.postings == rhs.postings
     }
 }

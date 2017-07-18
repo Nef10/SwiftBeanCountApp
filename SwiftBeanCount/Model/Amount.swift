@@ -9,9 +9,9 @@
 import Foundation
 
 struct Amount {
-    let number : Decimal
-    let commodity : Commodity
-    let decimalDigits : Int
+    let number: Decimal
+    let commodity: Commodity
+    let decimalDigits: Int
 
     init(number: Decimal, commodity: Commodity, decimalDigits: Int = 0) {
         self.number = number
@@ -22,11 +22,11 @@ struct Amount {
 
 extension Amount : CustomStringConvertible {
 
-    var description : String { return "\(amountString) \(commodity)" }
+    var description: String { return "\(amountString) \(commodity)" }
 
-    private var amountString : String { return type(of: self).numberFormatter(fractionDigits: decimalDigits).string(from:number as NSDecimalNumber)! }
+    private var amountString: String { return type(of: self).numberFormatter(fractionDigits: decimalDigits).string(from:number as NSDecimalNumber)! }
 
-    static private let numberFormatter : NumberFormatter = {
+    static private let numberFormatter: NumberFormatter = {
         let _formatter = NumberFormatter()
         _formatter.numberStyle = .decimal
         _formatter.minimumFractionDigits = 2
@@ -45,12 +45,12 @@ extension Amount : CustomStringConvertible {
 
 extension Amount : MultiCurrencyAmountRepresentable {
     var multiAccountAmount: MultiCurrencyAmount {
-        return MultiCurrencyAmount(amounts: [commodity : number], decimalDigits: [commodity : decimalDigits])
+        return MultiCurrencyAmount(amounts: [commodity: number], decimalDigits: [commodity: decimalDigits])
     }
 }
 
 extension Amount : Equatable {
-    static func ==(lhs: Amount, rhs: Amount) -> Bool {
+    static func == (lhs: Amount, rhs: Amount) -> Bool {
         return lhs.number == rhs.number && lhs.commodity == rhs.commodity && lhs.decimalDigits == rhs.decimalDigits
     }
 }

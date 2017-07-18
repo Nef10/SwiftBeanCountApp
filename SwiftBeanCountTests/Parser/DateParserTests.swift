@@ -6,14 +6,14 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import XCTest
 @testable import SwiftBeanCount
+import XCTest
 
 class DateParserTests: XCTestCase {
 
     func testNormalParsing() {
         let date = DateParser.parseFrom(string: "2017-06-09")
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 1496991600))
+        XCTAssertEqual(date, Date(timeIntervalSince1970: 1_496_991_600))
     }
 
     func testInvalidDate() {
