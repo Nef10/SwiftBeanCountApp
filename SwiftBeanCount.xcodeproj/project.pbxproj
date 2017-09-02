@@ -112,7 +112,6 @@
 		F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9ED3D9C1EE7E03D00F6C79E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9ED3D9E1EE7E03D00F6C79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9ED3D9F1EE7E03D00F6C79E /* SwiftBeanCount.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftBeanCount.entitlements; sourceTree = "<group>"; };
 		F9ED3DA41EE7E03D00F6C79E /* SwiftBeanCountTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ED3DAA1EE7E03D00F6C79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9ED3DAF1EE7E03D00F6C79E /* SwiftBeanCountUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,7 +282,6 @@
 			children = (
 				F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */,
 				F9ED3D9E1EE7E03D00F6C79E /* Info.plist */,
-				F9ED3D9F1EE7E03D00F6C79E /* SwiftBeanCount.entitlements */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -398,6 +396,7 @@
 					};
 					F9ED3DA31EE7E03D00F6C79E = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
 						TestTargetID = F9ED3D911EE7E03D00F6C79E;
 					};
 					F9ED3DAE1EE7E03D00F6C79E = {
@@ -614,7 +613,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -688,7 +687,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -722,11 +721,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/Resources/SwiftBeanCount.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D99VYUJN25;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
@@ -740,11 +739,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCount/Resources/SwiftBeanCount.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D99VYUJN25;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
@@ -759,12 +758,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D99VYUJN25;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCount.app/Contents/MacOS/SwiftBeanCount";
 			};
@@ -775,12 +777,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D99VYUJN25;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCount.app/Contents/MacOS/SwiftBeanCount";
 			};
@@ -790,8 +795,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D99VYUJN25;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountUITests;
@@ -805,8 +811,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D99VYUJN25;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountUITests;
