@@ -77,13 +77,13 @@ class AccountParserTests: XCTestCase {
         let ledger = Ledger()
 
         XCTAssert(AccountParser.parseFrom(line: openingString, for: ledger))
-        XCTAssertEqual(ledger.accounts[0].opening!, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(ledger.accounts[0].opening!, TestUtils.date20170609)
         XCTAssertEqual(ledger.accounts[0].closing, nil)
         XCTAssertEqual(ledger.accounts[0].commodity, commodity)
 
         XCTAssert(AccountParser.parseFrom(line: closingString, for: ledger))
-        XCTAssertEqual(ledger.accounts[0].opening!, Date(timeIntervalSince1970: 1_496_991_600))
-        XCTAssertEqual(ledger.accounts[0].closing!, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(ledger.accounts[0].opening!, TestUtils.date20170609)
+        XCTAssertEqual(ledger.accounts[0].closing!, TestUtils.date20170609)
     }
 
 }

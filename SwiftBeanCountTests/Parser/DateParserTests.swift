@@ -13,7 +13,7 @@ class DateParserTests: XCTestCase {
 
     func testNormalParsing() {
         let date = DateParser.parseFrom(string: "2017-06-09")
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(date, TestUtils.date20170609)
     }
 
     func testInvalidDate() {

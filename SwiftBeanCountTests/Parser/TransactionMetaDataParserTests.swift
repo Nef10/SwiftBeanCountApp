@@ -39,7 +39,7 @@ class TransactionMetaDataParserTests: XCTestCase {
         XCTAssertEqual(transactionMetaData.narration, "🎉😊💵Test⚅℃⁒♾")
         XCTAssertEqual(transactionMetaData.payee, "öøuß´@🇩🇪🇨🇦💵")
         XCTAssertEqual(transactionMetaData.flag, Flag.complete)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(transactionMetaData.date, TestUtils.date20170609)
         XCTAssertEqual(transactionMetaData.tags.count, 1)
         XCTAssertEqual(transactionMetaData.tags[0].name, "🇨🇦")
         XCTAssertEqual(String(describing: transactionMetaData), specialCharacterTransactionMetaDataString)
@@ -50,7 +50,7 @@ class TransactionMetaDataParserTests: XCTestCase {
         XCTAssertEqual(transactionMetaData.narration, "Narration")
         XCTAssertEqual(transactionMetaData.payee, "Payee")
         XCTAssertEqual(transactionMetaData.flag, Flag.incomplete)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(transactionMetaData.date, TestUtils.date20170609)
         XCTAssertEqual(transactionMetaData.tags.count, 0)
         XCTAssertEqual(String(describing: transactionMetaData), incompleteTransactionMetaDataString)
     }
@@ -60,7 +60,7 @@ class TransactionMetaDataParserTests: XCTestCase {
         XCTAssertEqual(transactionMetaData.narration, "Narration")
         XCTAssertEqual(transactionMetaData.payee, "Payee")
         XCTAssertEqual(transactionMetaData.flag, Flag.complete)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(transactionMetaData.date, TestUtils.date20170609)
         XCTAssertEqual(transactionMetaData.tags.count, 2)
         XCTAssertEqual(transactionMetaData.tags[0].name, "1")
         XCTAssertEqual(transactionMetaData.tags[1].name, "two")
@@ -89,7 +89,7 @@ class TransactionMetaDataParserTests: XCTestCase {
         XCTAssertEqual(transactionMetaData.payee, "Payee")
         XCTAssertEqual(transactionMetaData.flag, Flag.complete)
         XCTAssertEqual(transactionMetaData.tags.count, 0)
-        XCTAssertEqual(transactionMetaData.date, Date(timeIntervalSince1970: 1_496_991_600))
+        XCTAssertEqual(transactionMetaData.date, TestUtils.date20170609)
         XCTAssertEqual(String(describing: transactionMetaData), basicTransactionMetaDataString)
     }
 
