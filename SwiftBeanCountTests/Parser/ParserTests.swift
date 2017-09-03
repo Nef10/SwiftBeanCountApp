@@ -102,7 +102,7 @@ class ParserTests: XCTestCase {
             XCTAssertEqual(transaction.postings.count, 2)
             XCTAssertEqual(transaction.metaData.payee, "Payee")
             XCTAssertEqual(transaction.metaData.narration, "Narration")
-            XCTAssertEqual(transaction.metaData.date, Date(timeIntervalSince1970: 1_496_905_200))
+            XCTAssertEqual(transaction.metaData.date, TestUtils.date20170608)
             let posting1 = transaction.postings.first(where: { $0.amount.number == Decimal(-1) })!
             XCTAssert(posting1.account === ledger.getAccountBy(name: "Equity:OpeningBalance"))
             XCTAssert(posting1.amount.commodity === ledger.getCommodityBy(symbol: "EUR"))

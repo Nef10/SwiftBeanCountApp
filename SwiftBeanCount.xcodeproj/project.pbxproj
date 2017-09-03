@@ -36,6 +36,7 @@
 		F997463C1F1DC90C00FCD6E7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */; };
 		F9A9E7301EFB493100D682A1 /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E72F1EFB493100D682A1 /* Amount.swift */; };
 		F9A9E7321EFB4AC900D682A1 /* AmountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E7311EFB4AC900D682A1 /* AmountTests.swift */; };
+		F9C68D8A1F5B9F6E002EF783 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C68D891F5B9F6E002EF783 /* TestUtils.swift */; };
 		F9DA5A251EEB8F990012FE63 /* Big.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9DA5A241EEB8F970012FE63 /* Big.beancount */; };
 		F9DA5A271EEB9C340012FE63 /* CommentsEndOfLine.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9DA5A261EEB9C2C0012FE63 /* CommentsEndOfLine.beancount */; };
 		F9ED3D961EE7E03D00F6C79E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */; };
@@ -103,6 +104,7 @@
 		F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F9A9E72F1EFB493100D682A1 /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
 		F9A9E7311EFB4AC900D682A1 /* AmountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTests.swift; sourceTree = "<group>"; };
+		F9C68D891F5B9F6E002EF783 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		F9DA5A241EEB8F970012FE63 /* Big.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = Big.beancount; sourceTree = "<group>"; };
 		F9DA5A261EEB9C2C0012FE63 /* CommentsEndOfLine.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = CommentsEndOfLine.beancount; sourceTree = "<group>"; };
 		F9ED3D921EE7E03D00F6C79E /* SwiftBeanCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,6 +238,7 @@
 				F92FC4E41EEAFC970049F799 /* Parser */,
 				F95464761EECA918006EF284 /* Extensions */,
 				F9ED3DE41EEA5D2D00F6C79E /* Resources */,
+				F9C68D891F5B9F6E002EF783 /* TestUtils.swift */,
 			);
 			path = SwiftBeanCountTests;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				F92846E61EF5E21D0099F0F5 /* DateParserTests.swift in Sources */,
 				F92FC4E31EEAFC8E0049F799 /* TransactionMetaDataParserTests.swift in Sources */,
 				F96BD4A81EEDDC76005026D6 /* AccountTests.swift in Sources */,
+				F9C68D8A1F5B9F6E002EF783 /* TestUtils.swift in Sources */,
 				F95464751EECA5F9006EF284 /* LedgerTests.swift in Sources */,
 				F94601511EEBA31B004F2326 /* PostingParserTests.swift in Sources */,
 				F96BD4AA1EEDE136005026D6 /* CommodityTests.swift in Sources */,
