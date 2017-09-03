@@ -11,7 +11,7 @@ platform :ios do
 
   desc "Run all the tests"
   lane :test do
-    scan()
+    scan(scheme: "SwiftBeanCount")
   end
 
   after_all do |lane|

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftBeanCountModel
 
 struct TransactionMetaDataParser {
 
