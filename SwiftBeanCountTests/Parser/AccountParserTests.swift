@@ -7,6 +7,7 @@
 //
 
 @testable import SwiftBeanCount
+import SwiftBeanCountModel
 import XCTest
 
 class AccountParserTests: XCTestCase {

@@ -1,0 +1,3 @@
+[submodule "SwiftBeanCountModel"]
+	path = SwiftBeanCountModel
+	url = git@github.com:Nef10/SwiftBeanCountModel.git
