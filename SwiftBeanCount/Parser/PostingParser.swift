@@ -61,9 +61,9 @@ struct PostingParser {
         }
         var exponent = 0
         if let range = amountString.index(of: ".") {
-            let beforeDot = amountString.substring(to: range)
-            let afterDot = amountString.substring(from: amountString.index(range, offsetBy: 1))
-            amountString = beforeDot + afterDot
+            let beforeDot = amountString[..<range]
+            let afterDot = amountString[amountString.index(range, offsetBy: 1)...]
+            amountString = String(beforeDot + afterDot)
             exponent = afterDot.count
         }
         return (Decimal(sign: sign, exponent: -exponent, significand: Decimal(UInt64(amountString)!)), exponent)
