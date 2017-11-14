@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import SwiftBeanCountModel
+import SwiftBeanCountParser
 
 class ViewController: NSViewController {
 
