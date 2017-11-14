@@ -31,6 +31,7 @@ class PostingParserTests: XCTestCase {
     let positivePostingString = "  Assets:Checking +1.23 EUR"
     let separatorPostingString = "  Assets:Checking -1,000.23 EUR"
     let whitespacePostingString = "         Assets:Checking        1.23    EUR     "
+    let invalidAccountPostingString = "  Invalid:Checking 1.23 EUR"
     let endOfLineCommentPostingString = " Assets:Checking 1.23 EUR    ;gfdsg f gfds   "
     let specialCharacterPostingString = "  Assets:💰 1.00 💵"
     let totalPricePostingString = "  Assets:💰 2.00 💵 @@ 2.0 EUR"
@@ -70,6 +71,10 @@ class PostingParserTests: XCTestCase {
         let posting = PostingParser.parseFrom(line: specialCharacterPostingString, into: transaction, for: Ledger())!
         XCTAssertEqual(posting.account, Account(name: "Assets:💰", accountType: .asset))
         XCTAssertEqual(posting.amount, Amount(number: Decimal(1), commodity: Commodity(symbol: "💵"), decimalDigits: 2))
+    }
+
+    func testInvalidAccount() {
+        XCTAssertNil(PostingParser.parseFrom(line: invalidAccountPostingString, into: transaction, for: Ledger()))
     }
 
     func testEndOfLineCommentPostingString() {
