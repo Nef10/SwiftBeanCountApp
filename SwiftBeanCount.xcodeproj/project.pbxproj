@@ -7,58 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F92846E41EF5E12B0099F0F5 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92846E31EF5E12B0099F0F5 /* DateParser.swift */; };
-		F92846E61EF5E21D0099F0F5 /* DateParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92846E51EF5E21D0099F0F5 /* DateParserTests.swift */; };
-		F92FC4D51EEA612C0049F799 /* Minimal.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9ED3DE51EEA5E8100F6C79E /* Minimal.beancount */; };
-		F92FC4D81EEA6B070049F799 /* PostingWithoutTransaction.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F92FC4D61EEA6AB20049F799 /* PostingWithoutTransaction.beancount */; };
-		F92FC4D91EEA6B090049F799 /* TransactionWithoutPosting.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F92FC4D71EEA6AB20049F799 /* TransactionWithoutPosting.beancount */; };
-		F92FC4DB1EEA6CD30049F799 /* Comments.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F92FC4DA1EEA6C900049F799 /* Comments.beancount */; };
-		F92FC4DD1EEA6FBB0049F799 /* Whitespace.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F92FC4DC1EEA6FB70049F799 /* Whitespace.beancount */; };
-		F92FC4E31EEAFC8E0049F799 /* TransactionMetaDataParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92FC4E21EEAFC8E0049F799 /* TransactionMetaDataParserTests.swift */; };
-		F94601511EEBA31B004F2326 /* PostingParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94601501EEBA31B004F2326 /* PostingParserTests.swift */; };
-		F95464781EECA92B006EF284 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95464771EECA92B006EF284 /* StringTests.swift */; };
-		F954647A1EECA93E006EF284 /* CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95464791EECA93E006EF284 /* CollectionTests.swift */; };
-		F96BD4AC1EEDE89C005026D6 /* AccountParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4AB1EEDE89C005026D6 /* AccountParser.swift */; };
-		F96BD4AE1EEFB7AB005026D6 /* AccountParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BD4AD1EEFB7AB005026D6 /* AccountParserTests.swift */; };
-		F997463C1F1DC90C00FCD6E7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */; };
-		F9C68D8A1F5B9F6E002EF783 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C68D891F5B9F6E002EF783 /* TestUtils.swift */; };
-		F9DA5A251EEB8F990012FE63 /* Big.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9DA5A241EEB8F970012FE63 /* Big.beancount */; };
-		F9DA5A271EEB9C340012FE63 /* CommentsEndOfLine.beancount in Resources */ = {isa = PBXBuildFile; fileRef = F9DA5A261EEB9C2C0012FE63 /* CommentsEndOfLine.beancount */; };
+		F98A49321FBAB766000F9BC6 /* SwiftBeanCountModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BDC3C91FBAB6CB00393578 /* SwiftBeanCountModel.framework */; };
+		F98A49351FBAB7B4000F9BC6 /* SwiftBeanCountModel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F9BDC3C91FBAB6CB00393578 /* SwiftBeanCountModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F98A49371FBAB7CE000F9BC6 /* SwiftBeanCountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98A49361FBAB7CE000F9BC6 /* SwiftBeanCountTest.swift */; };
+		F98A493D1FBAB883000F9BC6 /* SwiftBeanCountParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F98A49381FBAB853000F9BC6 /* SwiftBeanCountParser.framework */; };
+		F98A49401FBAB8A1000F9BC6 /* SwiftBeanCountParser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F98A49381FBAB853000F9BC6 /* SwiftBeanCountParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F98A49421FBAB8B1000F9BC6 /* SwiftBeanCountParser.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F98A49391FBAB853000F9BC6 /* SwiftBeanCountParser.framework.dSYM */; };
+		F98A49431FBAB8C6000F9BC6 /* SwiftBeanCountParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F98A49381FBAB853000F9BC6 /* SwiftBeanCountParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9BDC3CB1FBAB6CB00393578 /* SwiftBeanCountModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9BDC3C91FBAB6CB00393578 /* SwiftBeanCountModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9BDC3CE1FBAB6F100393578 /* SwiftBeanCountModel.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F9BDC3CC1FBAB6DA00393578 /* SwiftBeanCountModel.framework.dSYM */; };
 		F9ED3D961EE7E03D00F6C79E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */; };
 		F9ED3D9A1EE7E03D00F6C79E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */; };
 		F9ED3D9D1EE7E03D00F6C79E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9ED3D9B1EE7E03D00F6C79E /* Main.storyboard */; };
 		F9ED3DB41EE7E03D00F6C79E /* SwiftBeanCountUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DB31EE7E03D00F6C79E /* SwiftBeanCountUITests.swift */; };
-		F9ED3DC31EE90B7D00F6C79E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DC21EE90B7D00F6C79E /* String.swift */; };
-		F9ED3DC61EE90BAC00F6C79E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DC51EE90BAC00F6C79E /* Collection.swift */; };
-		F9ED3DCD1EE90DF600F6C79E /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DCC1EE90DF600F6C79E /* Parser.swift */; };
 		F9ED3DD41EE91CC700F6C79E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DD11EE9163300F6C79E /* ViewController.swift */; };
-		F9ED3DDD1EE930CF00F6C79E /* PostingParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DDC1EE930CF00F6C79E /* PostingParser.swift */; };
-		F9ED3DDF1EE9317500F6C79E /* TransactionMetaDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DDE1EE9317500F6C79E /* TransactionMetaDataParser.swift */; };
-		F9ED3DE31EEA5B8900F6C79E /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED3DE21EEA5B8900F6C79E /* ParserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F9661AED1F5BB2F80092EC7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F9661AE81F5BB2F80092EC7E /* SwiftBeanCountModel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F991CD0F1F5534C000EE31E5;
-			remoteInfo = SwiftBeanCountModel;
-		};
-		F9661AEF1F5BB2F80092EC7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F9661AE81F5BB2F80092EC7E /* SwiftBeanCountModel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F991CD181F5534C000EE31E5;
-			remoteInfo = SwiftBeanCountModelTests;
-		};
-		F9661AF11F5BB3050092EC7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F9661AE81F5BB2F80092EC7E /* SwiftBeanCountModel.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F991CD0E1F5534C000EE31E5;
-			remoteInfo = SwiftBeanCountModel;
-		};
 		F9ED3DA51EE7E03D00F6C79E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F9ED3D8A1EE7E03D00F6C79E /* Project object */;
@@ -76,12 +41,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		F98A49341FBAB7AE000F9BC6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F98A49351FBAB7B4000F9BC6 /* SwiftBeanCountModel.framework in CopyFiles */,
+				F98A49401FBAB8A1000F9BC6 /* SwiftBeanCountParser.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9BDC3CD1FBAB6E600393578 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				F9BDC3CE1FBAB6F100393578 /* SwiftBeanCountModel.framework.dSYM in CopyFiles */,
+				F98A49421FBAB8B1000F9BC6 /* SwiftBeanCountParser.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F9DCE44E1F5BAD2A0036B88B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F98A49431FBAB8C6000F9BC6 /* SwiftBeanCountParser.framework in Embed Frameworks */,
+				F9BDC3CB1FBAB6CB00393578 /* SwiftBeanCountModel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,23 +79,11 @@
 
 /* Begin PBXFileReference section */
 		F92846E21EF24EA70099F0F5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F92846E31EF5E12B0099F0F5 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
-		F92846E51EF5E21D0099F0F5 /* DateParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
-		F92FC4D61EEA6AB20049F799 /* PostingWithoutTransaction.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = PostingWithoutTransaction.beancount; sourceTree = "<group>"; };
-		F92FC4D71EEA6AB20049F799 /* TransactionWithoutPosting.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = TransactionWithoutPosting.beancount; sourceTree = "<group>"; };
-		F92FC4DA1EEA6C900049F799 /* Comments.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = Comments.beancount; sourceTree = "<group>"; };
-		F92FC4DC1EEA6FB70049F799 /* Whitespace.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = Whitespace.beancount; sourceTree = "<group>"; };
-		F92FC4E21EEAFC8E0049F799 /* TransactionMetaDataParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMetaDataParserTests.swift; sourceTree = "<group>"; };
-		F94601501EEBA31B004F2326 /* PostingParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingParserTests.swift; sourceTree = "<group>"; };
-		F95464771EECA92B006EF284 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
-		F95464791EECA93E006EF284 /* CollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
-		F9661AE81F5BB2F80092EC7E /* SwiftBeanCountModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftBeanCountModel.xcodeproj; path = SwiftBeanCountModel/SwiftBeanCountModel.xcodeproj; sourceTree = "<group>"; };
-		F96BD4AB1EEDE89C005026D6 /* AccountParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParser.swift; sourceTree = "<group>"; };
-		F96BD4AD1EEFB7AB005026D6 /* AccountParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParserTests.swift; sourceTree = "<group>"; };
-		F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
-		F9C68D891F5B9F6E002EF783 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
-		F9DA5A241EEB8F970012FE63 /* Big.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = Big.beancount; sourceTree = "<group>"; };
-		F9DA5A261EEB9C2C0012FE63 /* CommentsEndOfLine.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = CommentsEndOfLine.beancount; sourceTree = "<group>"; };
+		F98A49361FBAB7CE000F9BC6 /* SwiftBeanCountTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountTest.swift; sourceTree = "<group>"; };
+		F98A49381FBAB853000F9BC6 /* SwiftBeanCountParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountParser.framework; path = Carthage/Build/Mac/SwiftBeanCountParser.framework; sourceTree = SOURCE_ROOT; };
+		F98A49391FBAB853000F9BC6 /* SwiftBeanCountParser.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountParser.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountParser.framework.dSYM; sourceTree = SOURCE_ROOT; };
+		F9BDC3C91FBAB6CB00393578 /* SwiftBeanCountModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountModel.framework; path = Carthage/Build/Mac/SwiftBeanCountModel.framework; sourceTree = SOURCE_ROOT; };
+		F9BDC3CC1FBAB6DA00393578 /* SwiftBeanCountModel.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountModel.framework.dSYM; path = ../Carthage/Build/Mac/SwiftBeanCountModel.framework.dSYM; sourceTree = "<group>"; };
 		F9ED3D921EE7E03D00F6C79E /* SwiftBeanCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9ED3D991EE7E03D00F6C79E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,14 +94,7 @@
 		F9ED3DAF1EE7E03D00F6C79E /* SwiftBeanCountUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ED3DB31EE7E03D00F6C79E /* SwiftBeanCountUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountUITests.swift; sourceTree = "<group>"; };
 		F9ED3DB51EE7E03D00F6C79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9ED3DC21EE90B7D00F6C79E /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		F9ED3DC51EE90BAC00F6C79E /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		F9ED3DCC1EE90DF600F6C79E /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		F9ED3DD11EE9163300F6C79E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F9ED3DDC1EE930CF00F6C79E /* PostingParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingParser.swift; sourceTree = "<group>"; };
-		F9ED3DDE1EE9317500F6C79E /* TransactionMetaDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMetaDataParser.swift; sourceTree = "<group>"; };
-		F9ED3DE21EEA5B8900F6C79E /* ParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
-		F9ED3DE51EEA5E8100F6C79E /* Minimal.beancount */ = {isa = PBXFileReference; lastKnownFileType = text; path = Minimal.beancount; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F98A493D1FBAB883000F9BC6 /* SwiftBeanCountParser.framework in Frameworks */,
+				F98A49321FBAB766000F9BC6 /* SwiftBeanCountModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,45 +124,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F92FC4E41EEAFC970049F799 /* Parser */ = {
+		F9BDC3CF1FBAB6F900393578 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F9ED3DE21EEA5B8900F6C79E /* ParserTests.swift */,
-				F92FC4E21EEAFC8E0049F799 /* TransactionMetaDataParserTests.swift */,
-				F94601501EEBA31B004F2326 /* PostingParserTests.swift */,
-				F96BD4AD1EEFB7AB005026D6 /* AccountParserTests.swift */,
-				F92846E51EF5E21D0099F0F5 /* DateParserTests.swift */,
+				F98A49381FBAB853000F9BC6 /* SwiftBeanCountParser.framework */,
+				F98A49391FBAB853000F9BC6 /* SwiftBeanCountParser.framework.dSYM */,
+				F9BDC3C91FBAB6CB00393578 /* SwiftBeanCountModel.framework */,
+				F9BDC3CC1FBAB6DA00393578 /* SwiftBeanCountModel.framework.dSYM */,
 			);
-			path = Parser;
-			sourceTree = "<group>";
-		};
-		F95464761EECA918006EF284 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F95464771EECA92B006EF284 /* StringTests.swift */,
-				F95464791EECA93E006EF284 /* CollectionTests.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		F9661AE91F5BB2F80092EC7E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F9661AEE1F5BB2F80092EC7E /* SwiftBeanCountModel.framework */,
-				F9661AF01F5BB2F80092EC7E /* SwiftBeanCountModelTests.xctest */,
-			);
-			name = Products;
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		F9ED3D891EE7E03D00F6C79E = {
 			isa = PBXGroup;
 			children = (
-				F9661AE81F5BB2F80092EC7E /* SwiftBeanCountModel.xcodeproj */,
 				F9ED3D941EE7E03D00F6C79E /* SwiftBeanCount */,
 				F9ED3DA71EE7E03D00F6C79E /* SwiftBeanCountTests */,
 				F9ED3DB21EE7E03D00F6C79E /* SwiftBeanCountUITests */,
+				F9BDC3CF1FBAB6F900393578 /* Frameworks */,
 				F9ED3D931EE7E03D00F6C79E /* Products */,
-				F997463B1F1DC90C00FCD6E7 /* .swiftlint.yml */,
 				F92846E21EF24EA70099F0F5 /* README.md */,
 			);
 			sourceTree = "<group>";
@@ -209,9 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */,
-				F9ED3DDB1EE928A200F6C79E /* Parser */,
 				F9ED3DD01EE9160400F6C79E /* Views */,
-				F9ED3DC41EE90B8400F6C79E /* Extensions */,
 				F9ED3DCB1EE90DCD00F6C79E /* Resources */,
 			);
 			path = SwiftBeanCount;
@@ -220,10 +170,8 @@
 		F9ED3DA71EE7E03D00F6C79E /* SwiftBeanCountTests */ = {
 			isa = PBXGroup;
 			children = (
-				F92FC4E41EEAFC970049F799 /* Parser */,
-				F95464761EECA918006EF284 /* Extensions */,
+				F98A49361FBAB7CE000F9BC6 /* SwiftBeanCountTest.swift */,
 				F9ED3DE41EEA5D2D00F6C79E /* Resources */,
-				F9C68D891F5B9F6E002EF783 /* TestUtils.swift */,
 			);
 			path = SwiftBeanCountTests;
 			sourceTree = "<group>";
@@ -235,15 +183,6 @@
 				F9ED3DB51EE7E03D00F6C79E /* Info.plist */,
 			);
 			path = SwiftBeanCountUITests;
-			sourceTree = "<group>";
-		};
-		F9ED3DC41EE90B8400F6C79E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F9ED3DC21EE90B7D00F6C79E /* String.swift */,
-				F9ED3DC51EE90BAC00F6C79E /* Collection.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F9ED3DCB1EE90DCD00F6C79E /* Resources */ = {
@@ -264,28 +203,9 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F9ED3DDB1EE928A200F6C79E /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				F9ED3DCC1EE90DF600F6C79E /* Parser.swift */,
-				F9ED3DDC1EE930CF00F6C79E /* PostingParser.swift */,
-				F9ED3DDE1EE9317500F6C79E /* TransactionMetaDataParser.swift */,
-				F96BD4AB1EEDE89C005026D6 /* AccountParser.swift */,
-				F92846E31EF5E12B0099F0F5 /* DateParser.swift */,
-			);
-			path = Parser;
-			sourceTree = "<group>";
-		};
 		F9ED3DE41EEA5D2D00F6C79E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F9DA5A241EEB8F970012FE63 /* Big.beancount */,
-				F9ED3DE51EEA5E8100F6C79E /* Minimal.beancount */,
-				F92FC4DC1EEA6FB70049F799 /* Whitespace.beancount */,
-				F92FC4DA1EEA6C900049F799 /* Comments.beancount */,
-				F9DA5A261EEB9C2C0012FE63 /* CommentsEndOfLine.beancount */,
-				F92FC4D61EEA6AB20049F799 /* PostingWithoutTransaction.beancount */,
-				F92FC4D71EEA6AB20049F799 /* TransactionWithoutPosting.beancount */,
 				F9ED3DAA1EE7E03D00F6C79E /* Info.plist */,
 			);
 			path = Resources;
@@ -304,11 +224,11 @@
 				F9ED3D8F1EE7E03D00F6C79E /* Frameworks */,
 				F9ED3D901EE7E03D00F6C79E /* Resources */,
 				F9DCE44E1F5BAD2A0036B88B /* Embed Frameworks */,
+				F9BDC3CD1FBAB6E600393578 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F9661AF21F5BB3050092EC7E /* PBXTargetDependency */,
 			);
 			name = SwiftBeanCount;
 			productName = SwiftBeanCount;
@@ -322,6 +242,7 @@
 				F9ED3DA01EE7E03D00F6C79E /* Sources */,
 				F9ED3DA11EE7E03D00F6C79E /* Frameworks */,
 				F9ED3DA21EE7E03D00F6C79E /* Resources */,
+				F98A49341FBAB7AE000F9BC6 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -367,6 +288,7 @@
 					};
 					F9ED3DA31EE7E03D00F6C79E = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = F9ED3D911EE7E03D00F6C79E;
 					};
@@ -387,12 +309,6 @@
 			mainGroup = F9ED3D891EE7E03D00F6C79E;
 			productRefGroup = F9ED3D931EE7E03D00F6C79E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F9661AE91F5BB2F80092EC7E /* Products */;
-					ProjectRef = F9661AE81F5BB2F80092EC7E /* SwiftBeanCountModel.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F9ED3D911EE7E03D00F6C79E /* SwiftBeanCount */,
@@ -402,29 +318,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		F9661AEE1F5BB2F80092EC7E /* SwiftBeanCountModel.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftBeanCountModel.framework;
-			remoteRef = F9661AED1F5BB2F80092EC7E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F9661AF01F5BB2F80092EC7E /* SwiftBeanCountModelTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SwiftBeanCountModelTests.xctest;
-			remoteRef = F9661AEF1F5BB2F80092EC7E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		F9ED3D901EE7E03D00F6C79E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F997463C1F1DC90C00FCD6E7 /* .swiftlint.yml in Resources */,
 				F9ED3D9A1EE7E03D00F6C79E /* Assets.xcassets in Resources */,
 				F9ED3D9D1EE7E03D00F6C79E /* Main.storyboard in Resources */,
 			);
@@ -434,13 +332,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9DA5A251EEB8F990012FE63 /* Big.beancount in Resources */,
-				F92FC4DD1EEA6FBB0049F799 /* Whitespace.beancount in Resources */,
-				F92FC4D81EEA6B070049F799 /* PostingWithoutTransaction.beancount in Resources */,
-				F92FC4D51EEA612C0049F799 /* Minimal.beancount in Resources */,
-				F9DA5A271EEB9C340012FE63 /* CommentsEndOfLine.beancount in Resources */,
-				F92FC4DB1EEA6CD30049F799 /* Comments.beancount in Resources */,
-				F92FC4D91EEA6B090049F799 /* TransactionWithoutPosting.beancount in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,14 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9ED3DD41EE91CC700F6C79E /* ViewController.swift in Sources */,
-				F9ED3DDD1EE930CF00F6C79E /* PostingParser.swift in Sources */,
-				F9ED3DDF1EE9317500F6C79E /* TransactionMetaDataParser.swift in Sources */,
-				F92846E41EF5E12B0099F0F5 /* DateParser.swift in Sources */,
-				F9ED3DC31EE90B7D00F6C79E /* String.swift in Sources */,
-				F9ED3DCD1EE90DF600F6C79E /* Parser.swift in Sources */,
 				F9ED3D961EE7E03D00F6C79E /* AppDelegate.swift in Sources */,
-				F96BD4AC1EEDE89C005026D6 /* AccountParser.swift in Sources */,
-				F9ED3DC61EE90BAC00F6C79E /* Collection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,14 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9ED3DE31EEA5B8900F6C79E /* ParserTests.swift in Sources */,
-				F954647A1EECA93E006EF284 /* CollectionTests.swift in Sources */,
-				F96BD4AE1EEFB7AB005026D6 /* AccountParserTests.swift in Sources */,
-				F95464781EECA92B006EF284 /* StringTests.swift in Sources */,
-				F92846E61EF5E21D0099F0F5 /* DateParserTests.swift in Sources */,
-				F92FC4E31EEAFC8E0049F799 /* TransactionMetaDataParserTests.swift in Sources */,
-				F9C68D8A1F5B9F6E002EF783 /* TestUtils.swift in Sources */,
-				F94601511EEBA31B004F2326 /* PostingParserTests.swift in Sources */,
+				F98A49371FBAB7CE000F9BC6 /* SwiftBeanCountTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,11 +404,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F9661AF21F5BB3050092EC7E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftBeanCountModel;
-			targetProxy = F9661AF11F5BB3050092EC7E /* PBXContainerItemProxy */;
-		};
 		F9ED3DA61EE7E03D00F6C79E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F9ED3D911EE7E03D00F6C79E /* SwiftBeanCount */;
@@ -705,6 +577,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
@@ -723,6 +599,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftBeanCount/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
@@ -737,15 +617,21 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftBeanCountTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCount.app/Contents/MacOS/SwiftBeanCount";
 			};
@@ -756,12 +642,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftBeanCountTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -777,8 +668,12 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftBeanCountUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -793,8 +688,12 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftBeanCountUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
