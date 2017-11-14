@@ -18,8 +18,11 @@ class PostingParserTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        basicPosting = Posting(account: Account(name:"Assets:Checking"),
-                               amount: Amount(number: Decimal(1.23), commodity: Commodity(symbol: "EUR"), decimalDigits: 2), transaction: transaction)
+        basicPosting = Posting(account: Account(name: "Assets:Checking"),
+                               amount: Amount(number: Decimal(1.23),
+                                              commodity: Commodity(symbol: "EUR"),
+                                              decimalDigits: 2),
+                               transaction: transaction)
     }
 
     let basicPostingString = "  Assets:Checking 1.23 EUR"

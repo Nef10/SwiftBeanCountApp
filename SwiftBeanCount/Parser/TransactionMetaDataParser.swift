@@ -24,12 +24,12 @@ struct TransactionMetaDataParser {
         let transactionMatches = line.matchingStrings(regex: self.regex)
         if let match = transactionMatches[safe: 0] {
             let tagStrings = match[6].components(separatedBy: .whitespaces)
-            let tags = tagStrings.filter({ !$0.isEmpty }).map { (tag) -> Tag in
+            let tags = tagStrings.filter { !$0.isEmpty }.map { tag -> Tag in
                 let tagName = String(tag.dropFirst())
                 return ledger?.getTagBy(name: tagName) ?? Tag(name: tagName)
             }
             if let date = DateParser.parseFrom(string: match[1]) {
-                return TransactionMetaData(date:date, payee:match[4], narration:match[5], flag:Flag(rawValue:match[2])!, tags: tags)
+                return TransactionMetaData(date: date, payee: match[4], narration: match[5], flag: Flag(rawValue: match[2])!, tags: tags)
             }
         }
         return nil

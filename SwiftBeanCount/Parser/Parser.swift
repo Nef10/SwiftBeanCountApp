@@ -19,7 +19,7 @@ class Parser {
     /// - Returns: Array of parsed Transactions
     /// - Throws: Exceptions from opening the file
     static func parse(contentOf path: URL) throws -> Ledger {
-        let text = try String(contentsOf:path)
+        let text = try String(contentsOf: path)
         return self.parse(string: text)
     }
 
