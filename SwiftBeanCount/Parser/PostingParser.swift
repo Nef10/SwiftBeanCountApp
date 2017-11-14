@@ -24,28 +24,30 @@ struct PostingParser {
     ///
     /// - Parameter line: String of one line
     /// - Returns: a Posting or nil if the line does not contain a valid Posting
-    static func parseFrom(line: String, into transaction: Transaction, for ledger: Ledger? = nil) -> Posting? {
+    static func parseFrom(line: String, into transaction: Transaction, for ledger: Ledger) -> Posting? {
         let postingMatches = line.matchingStrings(regex: self.regex)
-        if let match = postingMatches[safe: 0] {
-            let (amount, decimalDigits) = self.parseAmountDecimalFrom(string: match[2])
-            let account = ledger?.getAccountBy(name: match[1]) ?? Account(name: match[1])
-            let commodity = ledger?.getCommodityBy(symbol: match[5]) ?? Commodity(symbol: match[5])
-            var price: Amount?
-            if !match[6].isEmpty {
-                let priceCommodity = ledger?.getCommodityBy(symbol: match[12]) ?? Commodity(symbol: match[12])
-                var priceAmount: Decimal
-                var priceDecimalDigits: Int
-                if match[7] == "@" {
-                    (priceAmount, priceDecimalDigits) = self.parseAmountDecimalFrom(string: match[9])
-                } else { // match[7] == "@@"
-                    (priceAmount, priceDecimalDigits) = self.parseAmountDecimalFrom(string: match[9])
-                    priceAmount /= amount
-                }
-                price = Amount(number: priceAmount, commodity: priceCommodity, decimalDigits: priceDecimalDigits)
-            }
-            return Posting(account: account, amount: Amount(number: amount, commodity: commodity, decimalDigits: decimalDigits), transaction: transaction, price: price)
+        guard let match = postingMatches[safe: 0] else {
+            return nil
         }
-        return nil
+        let (amount, decimalDigits) = self.parseAmountDecimalFrom(string: match[2])
+        guard let account = ledger.getAccountBy(name: match[1]) else {
+            return nil
+        }
+        let commodity = ledger.getCommodityBy(symbol: match[5])
+        var price: Amount?
+        if !match[6].isEmpty {
+            let priceCommodity = ledger.getCommodityBy(symbol: match[12])
+            var priceAmount: Decimal
+            var priceDecimalDigits: Int
+            if match[7] == "@" {
+                (priceAmount, priceDecimalDigits) = self.parseAmountDecimalFrom(string: match[9])
+            } else { // match[7] == "@@"
+                (priceAmount, priceDecimalDigits) = self.parseAmountDecimalFrom(string: match[9])
+                priceAmount /= amount
+            }
+            price = Amount(number: priceAmount, commodity: priceCommodity, decimalDigits: priceDecimalDigits)
+        }
+        return Posting(account: account, amount: Amount(number: amount, commodity: commodity, decimalDigits: decimalDigits), transaction: transaction, price: price)
     }
 
     static private func parseAmountDecimalFrom(string: String) -> (Decimal, Int) {
