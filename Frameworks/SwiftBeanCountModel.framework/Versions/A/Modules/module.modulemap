@@ -1,4 +1,0 @@
-framework module SwiftBeanCountModel {
-    header "SwiftBeanCountModel-Swift.h"
-    requires objc
-}
