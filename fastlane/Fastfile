@@ -5,7 +5,7 @@ platform :mac do
 
   before_all do
     unless ENV["CI"]
-      ensure_git_status_clean
+      #ensure_git_status_clean
     end
   end
 
