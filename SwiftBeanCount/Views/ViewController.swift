@@ -19,13 +19,10 @@ class ViewController: NSViewController {
             let path = dir.appendingPathComponent("Steffen.beancount")
             do {
                 let start = Date.timeIntervalSinceReferenceDate
-                let ledger = try Parser.parse(contentOf: path)
+                let ledger = try SwiftBeanCountParser.Parser.parse(contentOf: path)
                 let end = Date.timeIntervalSinceReferenceDate
                 for error in ledger.errors {
                     print(error)
-                }
-                for commodity in ledger.commodities {
-                    print(String(describing: commodity))
                 }
                 print(String(format: "Parsing time: %.3f sec", end - start))
                 print("\(ledger.transactions.count) Transactions")
@@ -36,7 +33,7 @@ class ViewController: NSViewController {
                 print("\(ledger.commodities.count) Commodities")
                 print("\(ledger.errors.count) Errors")
 
-                print(String(describing: Array(Set(ledger.transactions.map { $0.metaData.payee })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }))
+          //      print(String(describing: Array(Set(ledger.transactions.map { $0.metaData.payee })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }))
             } catch let error {
                 print(error)
             }

@@ -128,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				F98A49381FBAB853000F9BC6 /* SwiftBeanCountParser.framework */,
+				F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */,
 				F98A49391FBAB853000F9BC6 /* SwiftBeanCountParser.framework.dSYM */,
 				F9BDC3C91FBAB6CB00393578 /* SwiftBeanCountModel.framework */,
 				F9BDC3CC1FBAB6DA00393578 /* SwiftBeanCountModel.framework.dSYM */,
@@ -160,7 +161,6 @@
 		F9ED3D941EE7E03D00F6C79E /* SwiftBeanCount */ = {
 			isa = PBXGroup;
 			children = (
-				F9ED3D951EE7E03D00F6C79E /* AppDelegate.swift */,
 				F9ED3DD01EE9160400F6C79E /* Views */,
 				F9ED3DCB1EE90DCD00F6C79E /* Resources */,
 			);
@@ -279,16 +279,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Steffen Kötte";
 				TargetAttributes = {
 					F9ED3D911EE7E03D00F6C79E = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
 					F9ED3DA31EE7E03D00F6C79E = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						TestTargetID = F9ED3D911EE7E03D00F6C79E;
 					};
@@ -448,6 +449,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -456,6 +458,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -522,6 +525,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -530,6 +534,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -586,7 +591,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -608,7 +613,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -632,7 +637,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCount.app/Contents/MacOS/SwiftBeanCount";
 			};
 			name = Debug;
@@ -656,7 +661,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCount.app/Contents/MacOS/SwiftBeanCount";
 			};
 			name = Release;
