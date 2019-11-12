@@ -12,33 +12,35 @@ import SwiftBeanCountParser
 
 class ViewController: NSViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        if let dir = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first {
-            let path = dir.appendingPathComponent("Steffen.beancount")
-            do {
-                let start = Date.timeIntervalSinceReferenceDate
-                let ledger = try SwiftBeanCountParser.Parser.parse(contentOf: path)
-                let end = Date.timeIntervalSinceReferenceDate
-                for error in ledger.errors {
-                    print(error)
+    override func viewDidAppear() {
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseDirectories = false
+        openPanel.allowsMultipleSelection = false
+        openPanel.allowedFileTypes = ["beancount"]
+        openPanel.begin { response in
+            if response == .OK {
+                if let path = openPanel.url {
+                    do {
+                        let start = Date.timeIntervalSinceReferenceDate
+                        let ledger = try SwiftBeanCountParser.Parser.parse(contentOf: path)
+                        let end = Date.timeIntervalSinceReferenceDate
+                        for error in ledger.errors {
+                            print(error)
+                        }
+                        print(String(format: "Parsing time: %.3f sec", end - start))
+                        print("\(ledger.transactions.count) Transactions")
+                        print("\(ledger.accounts.count) Accounts")
+                        print("\(ledger.accounts.filter { $0.opening != nil }.count) Account openings")
+                        print("\(ledger.accounts.filter { $0.closing != nil }.count) Account closings")
+                        print("\(ledger.tags.count) Tags")
+                        print("\(ledger.commodities.count) Commodities")
+                        print("\(ledger.errors.count) Errors")
+                    } catch let error {
+                        print(error)
+                    }
                 }
-                print(String(format: "Parsing time: %.3f sec", end - start))
-                print("\(ledger.transactions.count) Transactions")
-                print("\(ledger.accounts.count) Accounts")
-                print("\(ledger.accounts.filter { $0.opening != nil }.count) Account openings")
-                print("\(ledger.accounts.filter { $0.closing != nil }.count) Account closings")
-                print("\(ledger.tags.count) Tags")
-                print("\(ledger.commodities.count) Commodities")
-                print("\(ledger.errors.count) Errors")
-
-          //      print(String(describing: Array(Set(ledger.transactions.map { $0.metaData.payee })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }))
-            } catch let error {
-                print(error)
             }
         }
-
     }
 
 }
