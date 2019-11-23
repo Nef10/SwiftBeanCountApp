@@ -35,7 +35,7 @@ class ViewController: NSViewController {
                         print("\(ledger.tags.count) Tags")
                         print("\(ledger.commodities.count) Commodities")
                         print("\(ledger.errors.count) Errors")
-                    } catch let error {
+                    } catch {
                         print(error)
                     }
                 }
