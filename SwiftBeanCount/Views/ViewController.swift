@@ -20,27 +20,43 @@ class ViewController: NSViewController {
         openPanel.begin { response in
             if response == .OK {
                 if let path = openPanel.url {
-                    do {
-                        let start = Date.timeIntervalSinceReferenceDate
-                        let ledger = try SwiftBeanCountParser.Parser.parse(contentOf: path)
-                        let end = Date.timeIntervalSinceReferenceDate
-                        for error in ledger.errors {
-                            print(error)
-                        }
-                        print(String(format: "Parsing time: %.3f sec", end - start))
-                        print("\(ledger.transactions.count) Transactions")
-                        print("\(ledger.accounts.count) Accounts")
-                        print("\(ledger.accounts.filter { $0.opening != nil }.count) Account openings")
-                        print("\(ledger.accounts.filter { $0.closing != nil }.count) Account closings")
-                        print("\(ledger.tags.count) Tags")
-                        print("\(ledger.commodities.count) Commodities")
-                        print("\(ledger.errors.count) Errors")
-                    } catch {
-                        print(error)
+                    guard let ledger = self.parseLedger(url: path) else {
+                        return
                     }
+                    self.printLedgerStats(ledger: ledger)
                 }
             }
         }
+    }
+
+    private func parseLedger(url: URL) -> Ledger? {
+        do {
+            let start = Date.timeIntervalSinceReferenceDate
+            let ledger = try SwiftBeanCountParser.Parser.parse(contentOf: url)
+            let end = Date.timeIntervalSinceReferenceDate
+            print(String(format: "Parsing time: %.3f sec", end - start))
+            return ledger
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
+    private func printLedgerStats(ledger: Ledger) {
+        for error in ledger.errors {
+            print(error)
+        }
+        print("\(ledger.transactions.count) Transactions")
+        print("\(ledger.accounts.count) Accounts")
+        print("\(ledger.accounts.filter { $0.opening != nil }.count) Account openings")
+        print("\(ledger.accounts.filter { $0.closing != nil }.count) Account closings")
+        print("\(ledger.tags.count) Tags")
+        print("\(ledger.commodities.count) Commodities")
+        print("\(ledger.events.count) Events")
+        print("\(ledger.custom.count) Customs")
+        print("\(ledger.option.count) Options")
+        print("\(ledger.plugins.count) Plugins")
+        print("\(ledger.errors.count) Errors")
     }
 
 }
