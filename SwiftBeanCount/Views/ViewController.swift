@@ -43,7 +43,12 @@ class ViewController: NSViewController {
     }
 
     private func printLedgerStats(ledger: Ledger) {
-        for error in ledger.errors {
+        let start = Date.timeIntervalSinceReferenceDate
+        let errors = ledger.errors
+        let end = Date.timeIntervalSinceReferenceDate
+        print(String(format: "Validation time: %.3f sec", end - start))
+
+        for error in errors {
             print(error)
         }
         print("\(ledger.transactions.count) Transactions")
