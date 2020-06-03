@@ -15,8 +15,6 @@ jobs:
     - name: Select Xcode version
       run: sudo xcode-select -s /Applications/Xcode_11.5.app/
     - uses: actions/checkout@master
-    - name: Add SSH fingerprints of SPM dependencies # See https://github.com/webfactory/ssh-agent/issues/4#issuecomment-537038816
-      run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
     - name: Tests
       uses: sersoft-gmbh/xcodebuild-action@v1
       with:
