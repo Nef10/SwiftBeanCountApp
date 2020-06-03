@@ -13,14 +13,14 @@
 		F94EED0824861A3300F5E707 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0724861A3300F5E707 /* Preview Assets.xcassets */; };
 		F94EED0B24861A3300F5E707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0924861A3300F5E707 /* Main.storyboard */; };
 		F94EED1724861A3300F5E707 /* SwiftBeanCountAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED1624861A3300F5E707 /* SwiftBeanCountAppUITests.swift */; };
-		F94EED2324861B1E00F5E707 /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F94EED2224861B1E00F5E707 /* SwiftBeanCountModel */; };
-		F94EED2624861B5E00F5E707 /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F94EED2524861B5E00F5E707 /* SwiftBeanCountParser */; };
 		F94EED2A24861C6F00F5E707 /* FileSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2924861C6F00F5E707 /* FileSelectorView.swift */; };
 		F94EED2C2486220800F5E707 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2B2486220800F5E707 /* MainView.swift */; };
 		F94EED2E2486262D00F5E707 /* LedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2D2486262D00F5E707 /* LedgerView.swift */; };
 		F94EED302486278200F5E707 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2F2486278200F5E707 /* ErrorView.swift */; };
 		F94EED32248627F300F5E707 /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED31248627F300F5E707 /* AccountsView.swift */; };
 		F94EED352486280B00F5E707 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED342486280B00F5E707 /* TransactionsView.swift */; };
+		F97A10302487709A006226A3 /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F97A102F2487709A006226A3 /* SwiftBeanCountModel */; };
+		F97A1033248770B1006226A3 /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F97A1032248770B1006226A3 /* SwiftBeanCountParser */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F94EED2324861B1E00F5E707 /* SwiftBeanCountModel in Frameworks */,
-				F94EED2624861B5E00F5E707 /* SwiftBeanCountParser in Frameworks */,
+				F97A10302487709A006226A3 /* SwiftBeanCountModel in Frameworks */,
+				F97A1033248770B1006226A3 /* SwiftBeanCountParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,8 +170,8 @@
 			);
 			name = SwiftBeanCountApp;
 			packageProductDependencies = (
-				F94EED2224861B1E00F5E707 /* SwiftBeanCountModel */,
-				F94EED2524861B5E00F5E707 /* SwiftBeanCountParser */,
+				F97A102F2487709A006226A3 /* SwiftBeanCountModel */,
+				F97A1032248770B1006226A3 /* SwiftBeanCountParser */,
 			);
 			productName = SwiftBeanCountApp;
 			productReference = F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */;
@@ -224,8 +224,8 @@
 			);
 			mainGroup = F94EECF424861A3000F5E707;
 			packageReferences = (
-				F94EED2124861B1E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
-				F94EED2424861B5E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
+				F97A102E2487709A006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
+				F97A1031248770B1006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
 			);
 			productRefGroup = F94EECFE24861A3000F5E707 /* Products */;
 			projectDirPath = "";
@@ -556,17 +556,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F94EED2124861B1E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
+		F97A102E2487709A006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:Nef10/SwiftBeanCountModel.git";
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountModel.git";
 			requirement = {
 				kind = exactVersion;
 				version = 0.1.0;
 			};
 		};
-		F94EED2424861B5E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */ = {
+		F97A1031248770B1006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:Nef10/SwiftBeanCountParser.git";
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountParser.git";
 			requirement = {
 				kind = exactVersion;
 				version = 0.1.0;
@@ -575,14 +575,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F94EED2224861B1E00F5E707 /* SwiftBeanCountModel */ = {
+		F97A102F2487709A006226A3 /* SwiftBeanCountModel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F94EED2124861B1E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
+			package = F97A102E2487709A006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
 			productName = SwiftBeanCountModel;
 		};
-		F94EED2524861B5E00F5E707 /* SwiftBeanCountParser */ = {
+		F97A1032248770B1006226A3 /* SwiftBeanCountParser */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F94EED2424861B5E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
+			package = F97A1031248770B1006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
 			productName = SwiftBeanCountParser;
 		};
 /* End XCSwiftPackageProductDependency section */
