@@ -14,4 +14,4 @@ As this is a very early alpha, currently the application only displays errors fo
 
 ## Usage
 
-Currently there is no distributed version of the app, so please clone/downlaod the repository and build the app yourself.
+Currently there is no distributed version of the app, so please clone/download the repository and build the app yourself.
