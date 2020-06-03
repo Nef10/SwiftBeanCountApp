@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F94EED0124861A3000F5E707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED0024861A3000F5E707 /* AppDelegate.swift */; };
+		F94EED0324861A3000F5E707 /* OpenLedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED0224861A3000F5E707 /* OpenLedgerView.swift */; };
+		F94EED0524861A3300F5E707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0424861A3300F5E707 /* Assets.xcassets */; };
+		F94EED0824861A3300F5E707 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0724861A3300F5E707 /* Preview Assets.xcassets */; };
+		F94EED0B24861A3300F5E707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0924861A3300F5E707 /* Main.storyboard */; };
+		F94EED1724861A3300F5E707 /* SwiftBeanCountAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED1624861A3300F5E707 /* SwiftBeanCountAppUITests.swift */; };
+		F94EED2324861B1E00F5E707 /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F94EED2224861B1E00F5E707 /* SwiftBeanCountModel */; };
+		F94EED2624861B5E00F5E707 /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F94EED2524861B5E00F5E707 /* SwiftBeanCountParser */; };
+		F94EED2A24861C6F00F5E707 /* FileSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2924861C6F00F5E707 /* FileSelectorView.swift */; };
+		F94EED2C2486220800F5E707 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2B2486220800F5E707 /* MainView.swift */; };
+		F94EED2E2486262D00F5E707 /* LedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2D2486262D00F5E707 /* LedgerView.swift */; };
+		F94EED302486278200F5E707 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2F2486278200F5E707 /* ErrorView.swift */; };
+		F94EED32248627F300F5E707 /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED31248627F300F5E707 /* AccountsView.swift */; };
+		F94EED352486280B00F5E707 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED342486280B00F5E707 /* TransactionsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F94EED1324861A3300F5E707 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F94EECF524861A3000F5E707 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F94EECFC24861A3000F5E707;
+			remoteInfo = SwiftBeanCountApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F94EED0024861A3000F5E707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F94EED0224861A3000F5E707 /* OpenLedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLedgerView.swift; sourceTree = "<group>"; };
+		F94EED0424861A3300F5E707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F94EED0724861A3300F5E707 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F94EED0A24861A3300F5E707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F94EED0C24861A3300F5E707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F94EED0D24861A3300F5E707 /* SwiftBeanCountApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftBeanCountApp.entitlements; sourceTree = "<group>"; };
+		F94EED1224861A3300F5E707 /* SwiftBeanCountAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F94EED1624861A3300F5E707 /* SwiftBeanCountAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountAppUITests.swift; sourceTree = "<group>"; };
+		F94EED1824861A3300F5E707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F94EED2924861C6F00F5E707 /* FileSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSelectorView.swift; sourceTree = "<group>"; };
+		F94EED2B2486220800F5E707 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F94EED2D2486262D00F5E707 /* LedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerView.swift; sourceTree = "<group>"; };
+		F94EED2F2486278200F5E707 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		F94EED31248627F300F5E707 /* AccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsView.swift; sourceTree = "<group>"; };
+		F94EED342486280B00F5E707 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F94EECFA24861A3000F5E707 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F94EED2324861B1E00F5E707 /* SwiftBeanCountModel in Frameworks */,
+				F94EED2624861B5E00F5E707 /* SwiftBeanCountParser in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F94EED0F24861A3300F5E707 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F94EECF424861A3000F5E707 = {
+			isa = PBXGroup;
+			children = (
+				F94EECFF24861A3000F5E707 /* SwiftBeanCountApp */,
+				F94EED1524861A3300F5E707 /* SwiftBeanCountAppUITests */,
+				F94EECFE24861A3000F5E707 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F94EECFE24861A3000F5E707 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */,
+				F94EED1224861A3300F5E707 /* SwiftBeanCountAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F94EECFF24861A3000F5E707 /* SwiftBeanCountApp */ = {
+			isa = PBXGroup;
+			children = (
+				F94EED2724861C2100F5E707 /* Views */,
+				F94EED2824861C2E00F5E707 /* SupportingFiles */,
+			);
+			path = SwiftBeanCountApp;
+			sourceTree = "<group>";
+		};
+		F94EED0624861A3300F5E707 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F94EED0724861A3300F5E707 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F94EED1524861A3300F5E707 /* SwiftBeanCountAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F94EED1624861A3300F5E707 /* SwiftBeanCountAppUITests.swift */,
+				F94EED1824861A3300F5E707 /* Info.plist */,
+			);
+			path = SwiftBeanCountAppUITests;
+			sourceTree = "<group>";
+		};
+		F94EED2724861C2100F5E707 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F94EED362486281700F5E707 /* LedgerViews */,
+				F94EED2B2486220800F5E707 /* MainView.swift */,
+				F94EED2D2486262D00F5E707 /* LedgerView.swift */,
+				F94EED0224861A3000F5E707 /* OpenLedgerView.swift */,
+				F94EED2924861C6F00F5E707 /* FileSelectorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F94EED2824861C2E00F5E707 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				F94EED0024861A3000F5E707 /* AppDelegate.swift */,
+				F94EED0424861A3300F5E707 /* Assets.xcassets */,
+				F94EED0924861A3300F5E707 /* Main.storyboard */,
+				F94EED0C24861A3300F5E707 /* Info.plist */,
+				F94EED0D24861A3300F5E707 /* SwiftBeanCountApp.entitlements */,
+				F94EED0624861A3300F5E707 /* Preview Content */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		F94EED362486281700F5E707 /* LedgerViews */ = {
+			isa = PBXGroup;
+			children = (
+				F94EED31248627F300F5E707 /* AccountsView.swift */,
+				F94EED342486280B00F5E707 /* TransactionsView.swift */,
+				F94EED2F2486278200F5E707 /* ErrorView.swift */,
+			);
+			path = LedgerViews;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F94EECFC24861A3000F5E707 /* SwiftBeanCountApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F94EED1B24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountApp" */;
+			buildPhases = (
+				F918F9812487346600F13CBC /* SwiftLint */,
+				F94EECF924861A3000F5E707 /* Sources */,
+				F94EECFA24861A3000F5E707 /* Frameworks */,
+				F94EECFB24861A3000F5E707 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftBeanCountApp;
+			packageProductDependencies = (
+				F94EED2224861B1E00F5E707 /* SwiftBeanCountModel */,
+				F94EED2524861B5E00F5E707 /* SwiftBeanCountParser */,
+			);
+			productName = SwiftBeanCountApp;
+			productReference = F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F94EED1124861A3300F5E707 /* SwiftBeanCountAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F94EED1E24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountAppUITests" */;
+			buildPhases = (
+				F94EED0E24861A3300F5E707 /* Sources */,
+				F94EED0F24861A3300F5E707 /* Frameworks */,
+				F94EED1024861A3300F5E707 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F94EED1424861A3300F5E707 /* PBXTargetDependency */,
+			);
+			name = SwiftBeanCountAppUITests;
+			productName = SwiftBeanCountAppUITests;
+			productReference = F94EED1224861A3300F5E707 /* SwiftBeanCountAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F94EECF524861A3000F5E707 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Steffen Kötte";
+				TargetAttributes = {
+					F94EECFC24861A3000F5E707 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					F94EED1124861A3300F5E707 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = F94EECFC24861A3000F5E707;
+					};
+				};
+			};
+			buildConfigurationList = F94EECF824861A3000F5E707 /* Build configuration list for PBXProject "SwiftBeanCountApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F94EECF424861A3000F5E707;
+			packageReferences = (
+				F94EED2124861B1E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
+				F94EED2424861B5E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
+			);
+			productRefGroup = F94EECFE24861A3000F5E707 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F94EECFC24861A3000F5E707 /* SwiftBeanCountApp */,
+				F94EED1124861A3300F5E707 /* SwiftBeanCountAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F94EECFB24861A3000F5E707 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F94EED0B24861A3300F5E707 /* Main.storyboard in Resources */,
+				F94EED0824861A3300F5E707 /* Preview Assets.xcassets in Resources */,
+				F94EED0524861A3300F5E707 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F94EED1024861A3300F5E707 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F918F9812487346600F13CBC /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftlint --strict\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F94EECF924861A3000F5E707 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F94EED0324861A3000F5E707 /* OpenLedgerView.swift in Sources */,
+				F94EED302486278200F5E707 /* ErrorView.swift in Sources */,
+				F94EED2C2486220800F5E707 /* MainView.swift in Sources */,
+				F94EED2A24861C6F00F5E707 /* FileSelectorView.swift in Sources */,
+				F94EED32248627F300F5E707 /* AccountsView.swift in Sources */,
+				F94EED352486280B00F5E707 /* TransactionsView.swift in Sources */,
+				F94EED2E2486262D00F5E707 /* LedgerView.swift in Sources */,
+				F94EED0124861A3000F5E707 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F94EED0E24861A3300F5E707 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F94EED1724861A3300F5E707 /* SwiftBeanCountAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F94EED1424861A3300F5E707 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F94EECFC24861A3000F5E707 /* SwiftBeanCountApp */;
+			targetProxy = F94EED1324861A3300F5E707 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F94EED0924861A3300F5E707 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F94EED0A24861A3300F5E707 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F94EED1924861A3300F5E707 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F94EED1A24861A3300F5E707 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		F94EED1C24861A3300F5E707 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SupportingFiles/SwiftBeanCountApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftBeanCountApp/SupportingFiles/Preview Content\"";
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SwiftBeanCountApp/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F94EED1D24861A3300F5E707 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SupportingFiles/SwiftBeanCountApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftBeanCountApp/SupportingFiles/Preview Content\"";
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SwiftBeanCountApp/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F94EED1F24861A3300F5E707 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				INFOPLIST_FILE = SwiftBeanCountAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SwiftBeanCountApp;
+			};
+			name = Debug;
+		};
+		F94EED2024861A3300F5E707 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				INFOPLIST_FILE = SwiftBeanCountAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SwiftBeanCountApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F94EECF824861A3000F5E707 /* Build configuration list for PBXProject "SwiftBeanCountApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F94EED1924861A3300F5E707 /* Debug */,
+				F94EED1A24861A3300F5E707 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F94EED1B24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F94EED1C24861A3300F5E707 /* Debug */,
+				F94EED1D24861A3300F5E707 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F94EED1E24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F94EED1F24861A3300F5E707 /* Debug */,
+				F94EED2024861A3300F5E707 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F94EED2124861B1E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Nef10/SwiftBeanCountModel.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
+		F94EED2424861B5E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Nef10/SwiftBeanCountParser.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F94EED2224861B1E00F5E707 /* SwiftBeanCountModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F94EED2124861B1E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
+			productName = SwiftBeanCountModel;
+		};
+		F94EED2524861B5E00F5E707 /* SwiftBeanCountParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F94EED2424861B5E00F5E707 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
+			productName = SwiftBeanCountParser;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F94EECF524861A3000F5E707 /* Project object */;
+}

@@ -1,73 +1,17 @@
-#  SwiftBeanCount
+# SwiftBeanCountApp
+
+[![CI Status](https://github.com/Nef10/SwiftBeanCountApp/workflows/CI/badge.svg?event=push)](https://github.com/Nef10/SwiftBeanCountApp/actions?query=workflow%3A%22CI%22) [![License: MIT](https://img.shields.io/github/license/Nef10/SwiftBeanCountApp)](https://github.com/Nef10/SwiftBeanCountApp/blob/master/LICENSE) [![Latest version](https://img.shields.io/github/v/release/Nef10/SwiftBeanCountApp?label=SemVer&sort=semver)](https://github.com/Nef10/SwiftBeanCountApp/releases) ![platforms supported: macOS ](https://img.shields.io/badge/platform-linux%20%7C%20macOS-blue)
+
+### ***This project is part for SwiftBeanCount, please check out the main documentation [here](https://github.com/Nef10/SwiftBeanCount).***
 
 ## What
 
-This project is a double-entry accounting software written in Swift 4. It is inspired by [beancount](http://furius.ca/beancount/) and therefore reads/writes [plain text accounting](http://plaintextaccounting.org) files.
+This is the macOS application of SwiftBeanCount. It offers a graphical user interface to explore your ledger.
 
-## Why
+## Functionality
 
-I do this project in my spare time for different reasons:
+As this is a very early alpha, currently the application only displays errors found in your ledger.
 
-  - Learn Swift
-  - Learn native MacOS developement
-  - Practice TDD
+## Usage
 
-## Status
-
-This project is in an early alpha stage, not even all parsing is working. Functionality working:
-
-  - Parse transactions with data, flag, payee, narration and optional tags
-  - Parse postings with account, amount and commodity
-  - Parse account openings with optional commodity
-  - Parse account closings
-  - Parse comments and ignore them
-
-Todos for parsing:
-
-  - Parse balance checks
-  - Parse cost in postings
-  - Support tagstacks
-  - Parse events
-  - Parse prices
-  - Parse commodity definitions
-  - Parse notes
-  - Parse metadata
-  - Parse custom (and ignore)
-  - Better error messages
-  - Amount interpolation?
-  - Includes
-
-Todos for checks:
-
-  - Check account balance amount
-  - Check account closing balance in zero
-  - Check accounts are in the main accounts
-  - Inventory booking
-
-Todos for internal structure:
-
-  - Reflect account hierarchy + five main accounts
-
-## Comparasion to beancout (of the features SwiftBeanCount currently implements)
-
-### What SwiftBeanCount supports but beancount does not
-
-  - Full unicode support
-  - Commodities with more than 24 characters
-  - Errors for lines with unknown syntax
-  - Emtpy window
-  - Requires payee and narration field
-  - Only allows percision which without decimal point fits into UInt64
-
-### What beancout supports but SwiftBeanCount does not
-
-  - Fast parsing
-  - Date with slashes instead of dashes
-  - "txn" instead of * as ok flag
-  - Flags on Postings
-  - An optional pipe between payee and narration
-  - Links
-  - Pad
-  - Documents
-  - Queries
-  - Command line tools
+Currently there is no distributed version of the app, so please clone/downlaod the repository and build the app yourself.
