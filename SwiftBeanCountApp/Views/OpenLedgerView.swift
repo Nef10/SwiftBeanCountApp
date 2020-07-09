@@ -47,7 +47,7 @@ struct OpenLedgerView: View {
                 }).disabled(ledgerURL == nil)
             }
         }.sheet(isPresented: $loadingLedger) {
-            Text("Loading ledger...").frame(width: 200, height: 50)
+            ProgressView("Loading ledger").progressViewStyle(LinearProgressViewStyle()).padding()
         }
         .padding()
         .frame(width: 300, height: 125)

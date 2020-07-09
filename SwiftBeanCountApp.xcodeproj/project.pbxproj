@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9300A4D2499AAD8003E3611 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9300A4C2499AAD8003E3611 /* TransactionView.swift */; };
 		F94EED0124861A3000F5E707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED0024861A3000F5E707 /* AppDelegate.swift */; };
 		F94EED0324861A3000F5E707 /* OpenLedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED0224861A3000F5E707 /* OpenLedgerView.swift */; };
 		F94EED0524861A3300F5E707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0424861A3300F5E707 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F9300A4C2499AAD8003E3611 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F94EED0024861A3000F5E707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F94EED0224861A3000F5E707 /* OpenLedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLedgerView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F9300A4B2499AAC7003E3611 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F9300A4C2499AAD8003E3611 /* TransactionView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		F94EECF424861A3000F5E707 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +155,7 @@
 		F94EED362486281700F5E707 /* LedgerViews */ = {
 			isa = PBXGroup;
 			children = (
+				F9300A4B2499AAC7003E3611 /* SubViews */,
 				F94EED31248627F300F5E707 /* AccountsView.swift */,
 				F94EED342486280B00F5E707 /* TransactionsView.swift */,
 				F94EED2F2486278200F5E707 /* ErrorView.swift */,
@@ -291,6 +302,7 @@
 				F94EED352486280B00F5E707 /* TransactionsView.swift in Sources */,
 				F94EED2E2486262D00F5E707 /* LedgerView.swift in Sources */,
 				F94EED0124861A3000F5E707 /* AppDelegate.swift in Sources */,
+				F9300A4D2499AAD8003E3611 /* TransactionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,7 +575,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountModel.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.0;
+				version = 0.1.2;
 			};
 		};
 		F97A1031248770B1006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */ = {
@@ -571,7 +583,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountParser.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.0;
+				version = 0.1.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
