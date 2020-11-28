@@ -9,12 +9,6 @@
 import SwiftBeanCountModel
 import SwiftUI
 
-struct AccountsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountsView(Ledger())
-    }
-}
-
 struct AccountsView: View {
 
     private let ledger: Ledger
@@ -25,5 +19,11 @@ struct AccountsView: View {
 
     init(_ ledger: Ledger) {
         self.ledger = ledger
+    }
+}
+
+struct AccountsView_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountsView(Ledger())
     }
 }

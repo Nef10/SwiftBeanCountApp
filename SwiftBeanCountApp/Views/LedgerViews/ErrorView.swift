@@ -9,12 +9,6 @@
 import SwiftBeanCountModel
 import SwiftUI
 
-struct ErrorView_Previews: PreviewProvider {
-    static var previews: some View {
-        ErrorView(Ledger())
-    }
-}
-
 struct ErrorView: View {
 
     private let ledger: Ledger
@@ -54,5 +48,11 @@ struct ErrorView: View {
 
     init(_ ledger: Ledger) {
         self.ledger = ledger
+    }
+}
+
+struct ErrorView_Previews: PreviewProvider {
+    static var previews: some View {
+        ErrorView(Ledger())
     }
 }

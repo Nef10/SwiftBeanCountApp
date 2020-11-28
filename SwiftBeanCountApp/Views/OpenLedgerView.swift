@@ -10,13 +10,6 @@ import SwiftBeanCountModel
 import SwiftBeanCountParser
 import SwiftUI
 
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        OpenLedgerView(ledger: .constant(nil)) {
-        }
-    }
-}
-
 struct OpenLedgerView: View {
 
     private let completion: () -> Void
@@ -78,5 +71,12 @@ struct OpenLedgerView: View {
 
     private func cancel() {
         completion()
+    }
+}
+
+struct OpenLedgerView_Previews: PreviewProvider {
+    static var previews: some View {
+        OpenLedgerView(ledger: .constant(nil)) {
+        }
     }
 }
