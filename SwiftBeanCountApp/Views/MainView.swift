@@ -9,12 +9,6 @@
 import SwiftBeanCountModel
 import SwiftUI
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}
-
 struct MainView: View {
 
     @State private var ledger: Ledger?
@@ -49,5 +43,11 @@ struct MainView: View {
 
     private func closeOpenView() {
         displayOpenView = false
+    }
+}
+
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
     }
 }

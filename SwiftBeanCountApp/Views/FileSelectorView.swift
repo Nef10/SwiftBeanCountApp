@@ -8,12 +8,6 @@
 
 import SwiftUI
 
-struct FileSelectorView_Previews: PreviewProvider {
-    static var previews: some View {
-        FileSelectorView(allowedFileTypes: ["beancount"], url: .constant(nil))
-    }
-}
-
 struct FileSelectorView: View {
 
     private let allowedFileTypes: [String]
@@ -48,5 +42,11 @@ struct FileSelectorView: View {
                 self.url = openPanel.url
             }
         }
+    }
+}
+
+struct FileSelectorView_Previews: PreviewProvider {
+    static var previews: some View {
+        FileSelectorView(allowedFileTypes: ["beancount"], url: .constant(nil))
     }
 }
