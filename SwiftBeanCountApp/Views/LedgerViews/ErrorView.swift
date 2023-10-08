@@ -33,14 +33,14 @@ struct ErrorView: View {
                 }
             }
         }.onAppear {
-            guard self.loading else {
+            guard loading else {
                 return
             }
             DispatchQueue.global(qos: .userInitiated).async {
-                let errors = self.ledger.errors
+                let errors = ledger.errors
                 DispatchQueue.main.async {
                     self.errors = errors
-                    self.loading = false
+                    loading = false
                 }
             }
         }

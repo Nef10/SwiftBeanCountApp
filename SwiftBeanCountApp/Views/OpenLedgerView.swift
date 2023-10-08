@@ -23,18 +23,18 @@ struct OpenLedgerView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .firstTextBaseline) {
                 Text("Ledger:")
-                FileSelectorView(allowedFileTypes: ["beancount"], url: self.$ledgerURL)
+                FileSelectorView(allowedFileTypes: ["beancount"], url: $ledgerURL)
             }
             Spacer()
             HStack {
                 Spacer()
                 Button(action: {
-                    self.cancel()
+                    cancel()
                 }, label: {
                     Text("Cancel")
                 })
                 Button(action: {
-                    self.loadLedger()
+                    loadLedger()
                 }, label: {
                     Text("Open")
                 }).disabled(ledgerURL == nil)
@@ -52,19 +52,19 @@ struct OpenLedgerView: View {
     }
 
     private func loadLedger() {
-        guard let ledgerURL = ledgerURL else {
+        guard let ledgerURL else {
             return
         }
         loadingLedger = true
         DispatchQueue.global(qos: .userInitiated).async {
             do {
-                self.ledger = try Parser.parse(contentOf: ledgerURL)
+                ledger = try Parser.parse(contentOf: ledgerURL)
             } catch {
                 print(error)
             }
             DispatchQueue.main.async {
-                self.loadingLedger = false
-                self.completion()
+                loadingLedger = false
+                completion()
             }
         }
     }
