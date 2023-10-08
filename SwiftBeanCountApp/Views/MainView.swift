@@ -21,17 +21,17 @@ struct MainView: View {
             } else {
                 Text("No ledger loaded.")
                 Button(action: {
-                    self.showOpenView()
+                    showOpenView()
                 }, label: {
                     Text("Open ledger")
                 })
             }
         }.onAppear {
-            self.showOpenView()
+            showOpenView()
         }
         .sheet(isPresented: $displayOpenView) {
-            OpenLedgerView(ledger: self.$ledger) {
-                self.closeOpenView()
+            OpenLedgerView(ledger: $ledger) {
+                closeOpenView()
             }
         }
         .frame(width: 500, height: 500)
