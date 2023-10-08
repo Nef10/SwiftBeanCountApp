@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -260,6 +260,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		F918F9812487346600F13CBC /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -274,7 +275,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CI\" != true ] ; then\n  swiftlint --strict\nfi\n";
+			shellScript = "if [ \"$CI\" != true ] ; then\n    if test -d \"/opt/homebrew/bin/\"; then\n      PATH=\"/opt/homebrew/bin/:${PATH}\"\n    fi\n\n    export PATH\n\n    if which swiftlint >/dev/null; then\n      swiftlint --strict\n    else\n      echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
