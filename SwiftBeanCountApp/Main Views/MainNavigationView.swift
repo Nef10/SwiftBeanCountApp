@@ -21,7 +21,7 @@ import SwiftUI
 /// (not applicable to tab view).
 struct MainNavigationView: View {
 
-    @EnvironmentObject var ledger: LedgerManager 
+    @EnvironmentObject var ledger: LedgerManager
     @Environment(\.horizontalSizeClass)
     private var horizontalSizeClass
 
