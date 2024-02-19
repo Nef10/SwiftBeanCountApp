@@ -3,338 +3,229 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F94EED0124861A3000F5E707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED0024861A3000F5E707 /* AppDelegate.swift */; };
-		F94EED0324861A3000F5E707 /* OpenLedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED0224861A3000F5E707 /* OpenLedgerView.swift */; };
-		F94EED0524861A3300F5E707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0424861A3300F5E707 /* Assets.xcassets */; };
-		F94EED0824861A3300F5E707 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0724861A3300F5E707 /* Preview Assets.xcassets */; };
-		F94EED0B24861A3300F5E707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94EED0924861A3300F5E707 /* Main.storyboard */; };
-		F94EED1724861A3300F5E707 /* SwiftBeanCountAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED1624861A3300F5E707 /* SwiftBeanCountAppUITests.swift */; };
-		F94EED2A24861C6F00F5E707 /* FileSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2924861C6F00F5E707 /* FileSelectorView.swift */; };
-		F94EED2C2486220800F5E707 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2B2486220800F5E707 /* MainView.swift */; };
-		F94EED2E2486262D00F5E707 /* LedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2D2486262D00F5E707 /* LedgerView.swift */; };
-		F94EED302486278200F5E707 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED2F2486278200F5E707 /* ErrorView.swift */; };
-		F94EED32248627F300F5E707 /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED31248627F300F5E707 /* AccountsView.swift */; };
-		F94EED352486280B00F5E707 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94EED342486280B00F5E707 /* TransactionsView.swift */; };
-		F97A10302487709A006226A3 /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F97A102F2487709A006226A3 /* SwiftBeanCountModel */; };
-		F97A1033248770B1006226A3 /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F97A1032248770B1006226A3 /* SwiftBeanCountParser */; };
+		F95DEA732B81443A0070E8EC /* SwiftBeanCountApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA722B81443A0070E8EC /* SwiftBeanCountApp.swift */; };
+		F95DEA752B81443A0070E8EC /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA742B81443A0070E8EC /* MainNavigationView.swift */; };
+		F95DEA772B81443B0070E8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F95DEA762B81443B0070E8EC /* Assets.xcassets */; };
+		F95DEA842B81B9D40070E8EC /* LedgerSelectionWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA832B81B9D40070E8EC /* LedgerSelectionWrapperView.swift */; };
+		F95DEA872B81BC120070E8EC /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F95DEA862B81BC120070E8EC /* SwiftBeanCountParser */; };
+		F95DEA8A2B81BC1D0070E8EC /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F95DEA892B81BC1D0070E8EC /* SwiftBeanCountModel */; };
+		F95DEA8F2B81D4100070E8EC /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */; };
+		F95DEA962B81EFBF0070E8EC /* ChangeLedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */; };
+		F95DEA992B81F2D00070E8EC /* ContentViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA982B81F2D00070E8EC /* ContentViews.swift */; };
+		F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */; };
+		F95DEAA12B834C810070E8EC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA02B834C810070E8EC /* Logger.swift */; };
+		F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F94EED1324861A3300F5E707 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F94EECF524861A3000F5E707 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F94EECFC24861A3000F5E707;
-			remoteInfo = SwiftBeanCountApp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F94EED0024861A3000F5E707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F94EED0224861A3000F5E707 /* OpenLedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLedgerView.swift; sourceTree = "<group>"; };
-		F94EED0424861A3300F5E707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F94EED0724861A3300F5E707 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F94EED0A24861A3300F5E707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F94EED0C24861A3300F5E707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F94EED0D24861A3300F5E707 /* SwiftBeanCountApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftBeanCountApp.entitlements; sourceTree = "<group>"; };
-		F94EED1224861A3300F5E707 /* SwiftBeanCountAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F94EED1624861A3300F5E707 /* SwiftBeanCountAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountAppUITests.swift; sourceTree = "<group>"; };
-		F94EED1824861A3300F5E707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F94EED2924861C6F00F5E707 /* FileSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSelectorView.swift; sourceTree = "<group>"; };
-		F94EED2B2486220800F5E707 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		F94EED2D2486262D00F5E707 /* LedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerView.swift; sourceTree = "<group>"; };
-		F94EED2F2486278200F5E707 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		F94EED31248627F300F5E707 /* AccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsView.swift; sourceTree = "<group>"; };
-		F94EED342486280B00F5E707 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F95DEA722B81443A0070E8EC /* SwiftBeanCountApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountApp.swift; sourceTree = "<group>"; };
+		F95DEA742B81443A0070E8EC /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
+		F95DEA762B81443B0070E8EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F95DEA782B81443B0070E8EC /* SwiftBeanCountApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftBeanCountApp.entitlements; sourceTree = "<group>"; };
+		F95DEA832B81B9D40070E8EC /* LedgerSelectionWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerSelectionWrapperView.swift; sourceTree = "<group>"; };
+		F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		F95DEA922B81DF120070E8EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLedgerView.swift; sourceTree = "<group>"; };
+		F95DEA982B81F2D00070E8EC /* ContentViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViews.swift; sourceTree = "<group>"; };
+		F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerManager.swift; sourceTree = "<group>"; };
+		F95DEAA02B834C810070E8EC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLedgerOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F94EECFA24861A3000F5E707 /* Frameworks */ = {
+		F95DEA6C2B81443A0070E8EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F97A10302487709A006226A3 /* SwiftBeanCountModel in Frameworks */,
-				F97A1033248770B1006226A3 /* SwiftBeanCountParser in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F94EED0F24861A3300F5E707 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F95DEA8A2B81BC1D0070E8EC /* SwiftBeanCountModel in Frameworks */,
+				F95DEA872B81BC120070E8EC /* SwiftBeanCountParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F94EECF424861A3000F5E707 = {
+		F95DEA662B81443A0070E8EC = {
 			isa = PBXGroup;
 			children = (
-				F94EECFF24861A3000F5E707 /* SwiftBeanCountApp */,
-				F94EED1524861A3300F5E707 /* SwiftBeanCountAppUITests */,
-				F94EECFE24861A3000F5E707 /* Products */,
+				F95DEA712B81443A0070E8EC /* SwiftBeanCountApp */,
+				F95DEA702B81443A0070E8EC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F94EECFE24861A3000F5E707 /* Products */ = {
+		F95DEA702B81443A0070E8EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */,
-				F94EED1224861A3300F5E707 /* SwiftBeanCountAppUITests.xctest */,
+				F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F94EECFF24861A3000F5E707 /* SwiftBeanCountApp */ = {
+		F95DEA712B81443A0070E8EC /* SwiftBeanCountApp */ = {
 			isa = PBXGroup;
 			children = (
-				F94EED2724861C2100F5E707 /* Views */,
-				F94EED2824861C2E00F5E707 /* SupportingFiles */,
+				F95DEA722B81443A0070E8EC /* SwiftBeanCountApp.swift */,
+				F95DEA922B81DF120070E8EC /* Info.plist */,
+				F95DEA762B81443B0070E8EC /* Assets.xcassets */,
+				F95DEA782B81443B0070E8EC /* SwiftBeanCountApp.entitlements */,
+				F95DEA942B81EF880070E8EC /* Main Views */,
+				F95DEA932B81EF780070E8EC /* LedgerManagement */,
+				F95DEA972B81F2B50070E8EC /* Tabs */,
+				F95DEA9F2B834C6D0070E8EC /* Helper */,
 			);
 			path = SwiftBeanCountApp;
 			sourceTree = "<group>";
 		};
-		F94EED0624861A3300F5E707 /* Preview Content */ = {
+		F95DEA932B81EF780070E8EC /* LedgerManagement */ = {
 			isa = PBXGroup;
 			children = (
-				F94EED0724861A3300F5E707 /* Preview Assets.xcassets */,
+				F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */,
+				F95DEA832B81B9D40070E8EC /* LedgerSelectionWrapperView.swift */,
+				F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */,
+				F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */,
 			);
-			path = "Preview Content";
+			path = LedgerManagement;
 			sourceTree = "<group>";
 		};
-		F94EED1524861A3300F5E707 /* SwiftBeanCountAppUITests */ = {
+		F95DEA942B81EF880070E8EC /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
-				F94EED1624861A3300F5E707 /* SwiftBeanCountAppUITests.swift */,
-				F94EED1824861A3300F5E707 /* Info.plist */,
+				F95DEA742B81443A0070E8EC /* MainNavigationView.swift */,
+				F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */,
 			);
-			path = SwiftBeanCountAppUITests;
+			path = "Main Views";
 			sourceTree = "<group>";
 		};
-		F94EED2724861C2100F5E707 /* Views */ = {
+		F95DEA972B81F2B50070E8EC /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				F94EED362486281700F5E707 /* LedgerViews */,
-				F94EED2B2486220800F5E707 /* MainView.swift */,
-				F94EED2D2486262D00F5E707 /* LedgerView.swift */,
-				F94EED0224861A3000F5E707 /* OpenLedgerView.swift */,
-				F94EED2924861C6F00F5E707 /* FileSelectorView.swift */,
+				F95DEA982B81F2D00070E8EC /* ContentViews.swift */,
 			);
-			path = Views;
+			path = Tabs;
 			sourceTree = "<group>";
 		};
-		F94EED2824861C2E00F5E707 /* SupportingFiles */ = {
+		F95DEA9F2B834C6D0070E8EC /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				F94EED0024861A3000F5E707 /* AppDelegate.swift */,
-				F94EED0424861A3300F5E707 /* Assets.xcassets */,
-				F94EED0924861A3300F5E707 /* Main.storyboard */,
-				F94EED0C24861A3300F5E707 /* Info.plist */,
-				F94EED0D24861A3300F5E707 /* SwiftBeanCountApp.entitlements */,
-				F94EED0624861A3300F5E707 /* Preview Content */,
+				F95DEAA02B834C810070E8EC /* Logger.swift */,
 			);
-			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		F94EED362486281700F5E707 /* LedgerViews */ = {
-			isa = PBXGroup;
-			children = (
-				F94EED31248627F300F5E707 /* AccountsView.swift */,
-				F94EED342486280B00F5E707 /* TransactionsView.swift */,
-				F94EED2F2486278200F5E707 /* ErrorView.swift */,
-			);
-			path = LedgerViews;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F94EECFC24861A3000F5E707 /* SwiftBeanCountApp */ = {
+		F95DEA6E2B81443A0070E8EC /* SwiftBeanCountApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F94EED1B24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountApp" */;
+			buildConfigurationList = F95DEA7E2B81443B0070E8EC /* Build configuration list for PBXNativeTarget "SwiftBeanCountApp" */;
 			buildPhases = (
-				F918F9812487346600F13CBC /* SwiftLint */,
-				F94EECF924861A3000F5E707 /* Sources */,
-				F94EECFA24861A3000F5E707 /* Frameworks */,
-				F94EECFB24861A3000F5E707 /* Resources */,
+				F95DEA6B2B81443A0070E8EC /* Sources */,
+				F95DEA6C2B81443A0070E8EC /* Frameworks */,
+				F95DEA6D2B81443A0070E8EC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F95DEA9E2B834A490070E8EC /* PBXTargetDependency */,
 			);
 			name = SwiftBeanCountApp;
 			packageProductDependencies = (
-				F97A102F2487709A006226A3 /* SwiftBeanCountModel */,
-				F97A1032248770B1006226A3 /* SwiftBeanCountParser */,
+				F95DEA862B81BC120070E8EC /* SwiftBeanCountParser */,
+				F95DEA892B81BC1D0070E8EC /* SwiftBeanCountModel */,
 			);
 			productName = SwiftBeanCountApp;
-			productReference = F94EECFD24861A3000F5E707 /* SwiftBeanCountApp.app */;
+			productReference = F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */;
 			productType = "com.apple.product-type.application";
-		};
-		F94EED1124861A3300F5E707 /* SwiftBeanCountAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F94EED1E24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountAppUITests" */;
-			buildPhases = (
-				F94EED0E24861A3300F5E707 /* Sources */,
-				F94EED0F24861A3300F5E707 /* Frameworks */,
-				F94EED1024861A3300F5E707 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F94EED1424861A3300F5E707 /* PBXTargetDependency */,
-			);
-			name = SwiftBeanCountAppUITests;
-			productName = SwiftBeanCountAppUITests;
-			productReference = F94EED1224861A3300F5E707 /* SwiftBeanCountAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F94EECF524861A3000F5E707 /* Project object */ = {
+		F95DEA672B81443A0070E8EC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1500;
-				ORGANIZATIONNAME = "Steffen Kötte";
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					F94EECFC24861A3000F5E707 = {
-						CreatedOnToolsVersion = 11.5;
-					};
-					F94EED1124861A3300F5E707 = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = F94EECFC24861A3000F5E707;
+					F95DEA6E2B81443A0070E8EC = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
-			buildConfigurationList = F94EECF824861A3000F5E707 /* Build configuration list for PBXProject "SwiftBeanCountApp" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = F95DEA6A2B81443A0070E8EC /* Build configuration list for PBXProject "SwiftBeanCountApp" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = F94EECF424861A3000F5E707;
+			mainGroup = F95DEA662B81443A0070E8EC;
 			packageReferences = (
-				F97A102E2487709A006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
-				F97A1031248770B1006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
+				F95DEA852B81BC120070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
+				F95DEA882B81BC1D0070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
+				F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
-			productRefGroup = F94EECFE24861A3000F5E707 /* Products */;
+			productRefGroup = F95DEA702B81443A0070E8EC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F94EECFC24861A3000F5E707 /* SwiftBeanCountApp */,
-				F94EED1124861A3300F5E707 /* SwiftBeanCountAppUITests */,
+				F95DEA6E2B81443A0070E8EC /* SwiftBeanCountApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F94EECFB24861A3000F5E707 /* Resources */ = {
+		F95DEA6D2B81443A0070E8EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F94EED0B24861A3300F5E707 /* Main.storyboard in Resources */,
-				F94EED0824861A3300F5E707 /* Preview Assets.xcassets in Resources */,
-				F94EED0524861A3300F5E707 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F94EED1024861A3300F5E707 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F95DEA772B81443B0070E8EC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		F918F9812487346600F13CBC /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CI\" != true ] ; then\n    if test -d \"/opt/homebrew/bin/\"; then\n      PATH=\"/opt/homebrew/bin/:${PATH}\"\n    fi\n\n    export PATH\n\n    if which swiftlint >/dev/null; then\n      swiftlint --strict\n    else\n      echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    fi\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		F94EECF924861A3000F5E707 /* Sources */ = {
+		F95DEA6B2B81443A0070E8EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F94EED0324861A3000F5E707 /* OpenLedgerView.swift in Sources */,
-				F94EED302486278200F5E707 /* ErrorView.swift in Sources */,
-				F94EED2C2486220800F5E707 /* MainView.swift in Sources */,
-				F94EED2A24861C6F00F5E707 /* FileSelectorView.swift in Sources */,
-				F94EED32248627F300F5E707 /* AccountsView.swift in Sources */,
-				F94EED352486280B00F5E707 /* TransactionsView.swift in Sources */,
-				F94EED2E2486262D00F5E707 /* LedgerView.swift in Sources */,
-				F94EED0124861A3000F5E707 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F94EED0E24861A3300F5E707 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F94EED1724861A3300F5E707 /* SwiftBeanCountAppUITests.swift in Sources */,
+				F95DEA8F2B81D4100070E8EC /* WelcomeView.swift in Sources */,
+				F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */,
+				F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */,
+				F95DEA962B81EFBF0070E8EC /* ChangeLedgerView.swift in Sources */,
+				F95DEA992B81F2D00070E8EC /* ContentViews.swift in Sources */,
+				F95DEA842B81B9D40070E8EC /* LedgerSelectionWrapperView.swift in Sources */,
+				F95DEA752B81443A0070E8EC /* MainNavigationView.swift in Sources */,
+				F95DEA732B81443A0070E8EC /* SwiftBeanCountApp.swift in Sources */,
+				F95DEAA12B834C810070E8EC /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F94EED1424861A3300F5E707 /* PBXTargetDependency */ = {
+		F95DEA9E2B834A490070E8EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F94EECFC24861A3000F5E707 /* SwiftBeanCountApp */;
-			targetProxy = F94EED1324861A3300F5E707 /* PBXContainerItemProxy */;
+			productRef = F95DEA9D2B834A490070E8EC /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		F94EED0924861A3300F5E707 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F94EED0A24861A3300F5E707 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		F94EED1924861A3300F5E707 /* Debug */ = {
+		F95DEA7C2B81443B0070E8EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -361,12 +252,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -380,25 +270,23 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		F94EED1A24861A3300F5E707 /* Release */ = {
+		F95DEA7D2B81443B0070E8EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -425,12 +313,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -438,133 +325,118 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
-		F94EED1C24861A3300F5E707 /* Debug */ = {
+		F95DEA7F2B81443B0070E8EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SupportingFiles/SwiftBeanCountApp.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftBeanCountApp/SupportingFiles/Preview Content\"";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SwiftBeanCountApp.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = SwiftBeanCountApp/SupportingFiles/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftBeanCountApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftBeanCount;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwiftBeanCount;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		F94EED1D24861A3300F5E707 /* Release */ = {
+		F95DEA802B81443B0070E8EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SupportingFiles/SwiftBeanCountApp.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftBeanCountApp/SupportingFiles/Preview Content\"";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SwiftBeanCountApp.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = SwiftBeanCountApp/SupportingFiles/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftBeanCountApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftBeanCount;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwiftBeanCount;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		F94EED1F24861A3300F5E707 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftBeanCountAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftBeanCountApp;
-			};
-			name = Debug;
-		};
-		F94EED2024861A3300F5E707 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftBeanCountAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftBeanCountApp;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F94EECF824861A3000F5E707 /* Build configuration list for PBXProject "SwiftBeanCountApp" */ = {
+		F95DEA6A2B81443A0070E8EC /* Build configuration list for PBXProject "SwiftBeanCountApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F94EED1924861A3300F5E707 /* Debug */,
-				F94EED1A24861A3300F5E707 /* Release */,
+				F95DEA7C2B81443B0070E8EC /* Debug */,
+				F95DEA7D2B81443B0070E8EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F94EED1B24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountApp" */ = {
+		F95DEA7E2B81443B0070E8EC /* Build configuration list for PBXNativeTarget "SwiftBeanCountApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F94EED1C24861A3300F5E707 /* Debug */,
-				F94EED1D24861A3300F5E707 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F94EED1E24861A3300F5E707 /* Build configuration list for PBXNativeTarget "SwiftBeanCountAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F94EED1F24861A3300F5E707 /* Debug */,
-				F94EED2024861A3300F5E707 /* Release */,
+				F95DEA7F2B81443B0070E8EC /* Debug */,
+				F95DEA802B81443B0070E8EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -572,36 +444,49 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F97A102E2487709A006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
+		F95DEA852B81BC120070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Nef10/SwiftBeanCountModel.git";
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountParser";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.0;
+				version = 0.1.8;
 			};
 		};
-		F97A1031248770B1006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */ = {
+		F95DEA882B81BC1D0070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Nef10/SwiftBeanCountParser.git";
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountModel";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.0;
+				version = 0.1.6;
+			};
+		};
+		F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = exactVersion;
+				version = 0.54.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F97A102F2487709A006226A3 /* SwiftBeanCountModel */ = {
+		F95DEA862B81BC120070E8EC /* SwiftBeanCountParser */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F97A102E2487709A006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
+			package = F95DEA852B81BC120070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
+			productName = SwiftBeanCountParser;
+		};
+		F95DEA892B81BC1D0070E8EC /* SwiftBeanCountModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F95DEA882B81BC1D0070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
 			productName = SwiftBeanCountModel;
 		};
-		F97A1032248770B1006226A3 /* SwiftBeanCountParser */ = {
+		F95DEA9D2B834A490070E8EC /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F97A1031248770B1006226A3 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
-			productName = SwiftBeanCountParser;
+			package = F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = F94EECF524861A3000F5E707 /* Project object */;
+	rootObject = F95DEA672B81443A0070E8EC /* Project object */;
 }

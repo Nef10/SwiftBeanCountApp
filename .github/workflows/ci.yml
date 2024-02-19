@@ -10,23 +10,31 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-latest
+    name: Build
+    strategy:
+      matrix:
+        platform:  ['macOS', 'iOS']
+    runs-on: macOS-14
     steps:
     - uses: actions/checkout@v4
-    - name: Tests
+    - name: Build
       uses: sersoft-gmbh/xcodebuild-action@v3
       with:
         project: SwiftBeanCountApp.xcodeproj
         scheme: SwiftBeanCountApp
-        destination: platform=macOS
-        action: test
+        destination: platform=${{ matrix.platform }}
+        action: build
+        build-settings: -skipPackagePluginValidation -skipMacroValidation
   swiftlint:
     name: SwiftLint
-    runs-on: ubuntu-latest
+    runs-on: macOS-14
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Run SwiftLint --strict
-        uses: norio-nomura/action-swiftlint@3.2.1
-        with:
-          args: --strict
+      - name: Install SwiftLint
+        run: |
+          curl -L https://github.com/realm/SwiftLint/releases/download/0.54.0/portable_swiftlint.zip -o swiftlint.zip
+          unzip swiftlint.zip -d swiftlint
+          ./swiftlint/swiftlint --version
+      - name: Run SwiftLint
+        run: ./swiftlint/swiftlint --strict --reporter github-actions-logging
