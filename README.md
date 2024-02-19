@@ -1,16 +1,16 @@
 # SwiftBeanCountApp
 
-[![CI Status](https://github.com/Nef10/SwiftBeanCountApp/workflows/CI/badge.svg?event=push)](https://github.com/Nef10/SwiftBeanCountApp/actions?query=workflow%3A%22CI%22) [![License: MIT](https://img.shields.io/github/license/Nef10/SwiftBeanCountApp)](https://github.com/Nef10/SwiftBeanCountApp/blob/main/LICENSE) [![Latest version](https://img.shields.io/github/v/release/Nef10/SwiftBeanCountApp?label=SemVer&sort=semver)](https://github.com/Nef10/SwiftBeanCountApp/releases) ![platforms supported: macOS ](https://img.shields.io/badge/platform-macOS-blue)
+[![CI Status](https://github.com/Nef10/SwiftBeanCountApp/workflows/CI/badge.svg?event=push)](https://github.com/Nef10/SwiftBeanCountApp/actions?query=workflow%3A%22CI%22) [![License: MIT](https://img.shields.io/github/license/Nef10/SwiftBeanCountApp)](https://github.com/Nef10/SwiftBeanCountApp/blob/main/LICENSE) [![Latest version](https://img.shields.io/github/v/release/Nef10/SwiftBeanCountApp?label=SemVer&sort=semver)](https://github.com/Nef10/SwiftBeanCountApp/releases) ![platforms supported: macOS | iOS ](https://img.shields.io/badge/platform-macOS%20%7C%20iOS-blue)
 
 ### ***This project is part for SwiftBeanCount, please check out the main documentation [here](https://github.com/Nef10/SwiftBeanCount).***
 
 ## What
 
-This is the macOS application of SwiftBeanCount. It offers a graphical user interface to explore your ledger.
+This is the macOS and iOS application of SwiftBeanCount. It offers a graphical user interface to explore and interact with your ledger.
 
 ## Functionality
 
-As this is a very early alpha, currently the application only displays errors found in your ledger.
+The app is under development - please check back later...
 
 ## Usage
 
