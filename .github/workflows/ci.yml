@@ -10,11 +10,9 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: macOS-14
     steps:
     - uses: actions/checkout@v4
-    - name: Install Swift
-      uses: swift-actions/setup-swift@v1.26.0
     - name: Tests
       uses: sersoft-gmbh/xcodebuild-action@v3
       with:
