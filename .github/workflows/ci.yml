@@ -9,7 +9,7 @@ on:
     - main
 
 jobs:
-  build:
+  build-mac:
     runs-on: macOS-14
     steps:
     - uses: actions/checkout@v4
@@ -19,7 +19,18 @@ jobs:
         project: SwiftBeanCountApp.xcodeproj
         scheme: SwiftBeanCountApp
         destination: platform=macOS
-        action: test
+        action: build
+  build-ios:
+    runs-on: macOS-14
+    steps:
+    - uses: actions/checkout@v4
+    - name: Tests
+      uses: sersoft-gmbh/xcodebuild-action@v3
+      with:
+        project: SwiftBeanCountApp.xcodeproj
+        scheme: SwiftBeanCountApp
+        destination: platform=iOS
+        action: build
   swiftlint:
     name: SwiftLint
     runs-on: ubuntu-latest
