@@ -13,24 +13,26 @@ jobs:
     runs-on: macOS-14
     steps:
     - uses: actions/checkout@v4
-    - name: Tests
+    - name: Build
       uses: sersoft-gmbh/xcodebuild-action@v3
       with:
         project: SwiftBeanCountApp.xcodeproj
         scheme: SwiftBeanCountApp
         destination: platform=macOS
         action: build
+        build-settings: -skipPackagePluginValidation -skipMacroValidation
   build-ios:
     runs-on: macOS-14
     steps:
     - uses: actions/checkout@v4
-    - name: Tests
+    - name: Build
       uses: sersoft-gmbh/xcodebuild-action@v3
       with:
         project: SwiftBeanCountApp.xcodeproj
         scheme: SwiftBeanCountApp
         destination: platform=iOS
         action: build
+        build-settings: -skipPackagePluginValidation -skipMacroValidation
   swiftlint:
     name: SwiftLint
     runs-on: ubuntu-latest
