@@ -64,6 +64,15 @@
       }
     },
     {
+      "identity" : "swiftbeancounttax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountTax",
+      "state" : {
+        "revision" : "4f6569713587021518006195e27a2b97fb5b1d29",
+        "version" : "0.0.2"
+      }
+    },
+    {
       "identity" : "swiftlint",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/SwiftLint",
