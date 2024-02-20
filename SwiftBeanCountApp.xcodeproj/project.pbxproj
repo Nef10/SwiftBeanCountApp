@@ -19,6 +19,8 @@
 		F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */; };
 		F95DEAA12B834C810070E8EC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA02B834C810070E8EC /* Logger.swift */; };
 		F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */; };
+		F9D5662D2B8420F7008B384A /* Taxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D5662C2B8420F7008B384A /* Taxes.swift */; };
+		F9D566302B8421A0008B384A /* SwiftBeanCountTax in Frameworks */ = {isa = PBXBuildFile; productRef = F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,7 @@
 		F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerManager.swift; sourceTree = "<group>"; };
 		F95DEAA02B834C810070E8EC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLedgerOverlay.swift; sourceTree = "<group>"; };
+		F9D5662C2B8420F7008B384A /* Taxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taxes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +47,7 @@
 			files = (
 				F95DEA8A2B81BC1D0070E8EC /* SwiftBeanCountModel in Frameworks */,
 				F95DEA872B81BC120070E8EC /* SwiftBeanCountParser in Frameworks */,
+				F9D566302B8421A0008B384A /* SwiftBeanCountTax in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				F95DEA982B81F2D00070E8EC /* ContentViews.swift */,
+				F9D5662C2B8420F7008B384A /* Taxes.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			packageProductDependencies = (
 				F95DEA862B81BC120070E8EC /* SwiftBeanCountParser */,
 				F95DEA892B81BC1D0070E8EC /* SwiftBeanCountModel */,
+				F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */,
 			);
 			productName = SwiftBeanCountApp;
 			productReference = F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */;
@@ -170,6 +176,7 @@
 				F95DEA852B81BC120070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
 				F95DEA882B81BC1D0070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
 				F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */,
 			);
 			productRefGroup = F95DEA702B81443A0070E8EC /* Products */;
 			projectDirPath = "";
@@ -201,6 +208,7 @@
 				F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */,
 				F95DEA962B81EFBF0070E8EC /* ChangeLedgerView.swift in Sources */,
 				F95DEA992B81F2D00070E8EC /* ContentViews.swift in Sources */,
+				F9D5662D2B8420F7008B384A /* Taxes.swift in Sources */,
 				F95DEA842B81B9D40070E8EC /* LedgerSelectionWrapperView.swift in Sources */,
 				F95DEA752B81443A0070E8EC /* MainNavigationView.swift in Sources */,
 				F95DEA732B81443A0070E8EC /* SwiftBeanCountApp.swift in Sources */,
@@ -468,6 +476,14 @@
 				version = 0.54.0;
 			};
 		};
+		F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountTax";
+			requirement = {
+				kind = exactVersion;
+				version = 0.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -485,6 +501,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
+		};
+		F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */;
+			productName = SwiftBeanCountTax;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

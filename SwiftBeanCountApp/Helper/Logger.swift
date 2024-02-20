@@ -12,4 +12,5 @@ extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
 
     static let ledger = Logger(subsystem: subsystem, category: "ledgerManagement")
+    static let tax = Logger(subsystem: subsystem, category: "tax")
 }
