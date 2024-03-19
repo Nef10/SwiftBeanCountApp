@@ -50,7 +50,7 @@ struct Slip: View {
     }
 }
 
-struct Taxes: View {
+struct TaxSlips: View {
 
     @EnvironmentObject var ledger: LedgerManager
 
@@ -119,5 +119,5 @@ struct Taxes: View {
 }
 
 #Preview {
-    Taxes().environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
+    TaxSlips().environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
 }

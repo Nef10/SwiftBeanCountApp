@@ -15,11 +15,11 @@
 		F95DEA8A2B81BC1D0070E8EC /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F95DEA892B81BC1D0070E8EC /* SwiftBeanCountModel */; };
 		F95DEA8F2B81D4100070E8EC /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */; };
 		F95DEA962B81EFBF0070E8EC /* ChangeLedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */; };
-		F95DEA992B81F2D00070E8EC /* ContentViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA982B81F2D00070E8EC /* ContentViews.swift */; };
 		F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */; };
 		F95DEAA12B834C810070E8EC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA02B834C810070E8EC /* Logger.swift */; };
 		F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */; };
-		F9D5662D2B8420F7008B384A /* Taxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D5662C2B8420F7008B384A /* Taxes.swift */; };
+		F9B4DF6F2B8455CC0047B1BA /* TaxSales.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */; };
+		F9D5662D2B8420F7008B384A /* TaxSlips.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D5662C2B8420F7008B384A /* TaxSlips.swift */; };
 		F9D566302B8421A0008B384A /* SwiftBeanCountTax in Frameworks */ = {isa = PBXBuildFile; productRef = F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */; };
 /* End PBXBuildFile section */
 
@@ -33,11 +33,11 @@
 		F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F95DEA922B81DF120070E8EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLedgerView.swift; sourceTree = "<group>"; };
-		F95DEA982B81F2D00070E8EC /* ContentViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViews.swift; sourceTree = "<group>"; };
 		F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerManager.swift; sourceTree = "<group>"; };
 		F95DEAA02B834C810070E8EC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLedgerOverlay.swift; sourceTree = "<group>"; };
-		F9D5662C2B8420F7008B384A /* Taxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taxes.swift; sourceTree = "<group>"; };
+		F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxSales.swift; sourceTree = "<group>"; };
+		F9D5662C2B8420F7008B384A /* TaxSlips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxSlips.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +108,8 @@
 		F95DEA972B81F2B50070E8EC /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				F95DEA982B81F2D00070E8EC /* ContentViews.swift */,
-				F9D5662C2B8420F7008B384A /* Taxes.swift */,
+				F9D5662C2B8420F7008B384A /* TaxSlips.swift */,
+				F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -207,8 +207,8 @@
 				F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */,
 				F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */,
 				F95DEA962B81EFBF0070E8EC /* ChangeLedgerView.swift in Sources */,
-				F95DEA992B81F2D00070E8EC /* ContentViews.swift in Sources */,
-				F9D5662D2B8420F7008B384A /* Taxes.swift in Sources */,
+				F9B4DF6F2B8455CC0047B1BA /* TaxSales.swift in Sources */,
+				F9D5662D2B8420F7008B384A /* TaxSlips.swift in Sources */,
 				F95DEA842B81B9D40070E8EC /* LedgerSelectionWrapperView.swift in Sources */,
 				F95DEA752B81443A0070E8EC /* MainNavigationView.swift in Sources */,
 				F95DEA732B81443A0070E8EC /* SwiftBeanCountApp.swift in Sources */,
@@ -481,7 +481,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountTax";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.2;
+				version = 0.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

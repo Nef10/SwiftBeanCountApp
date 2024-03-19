@@ -33,9 +33,8 @@ struct SwiftBeanCountApp: App {
     var body: some Scene {
         // Register all tab views here
         let tabs = [
-            Tab(title: "Taxes", icon: "doc.text", view: AnyView(Taxes())),
-            Tab(title: "Import", icon: "square.and.arrow.down", view: AnyView(ContentView1())),
-            Tab(title: "Export", icon: "square.and.arrow.up", view: AnyView(ContentView2()))
+            Tab(title: "Tax Slips", icon: "doc.text", view: AnyView(TaxSlips())),
+            Tab(title: "Tax Sales", icon: "banknote", view: AnyView(TaxSales())),
         ]
 
         let content = LedgerSelectionWrapperView(tabs)
