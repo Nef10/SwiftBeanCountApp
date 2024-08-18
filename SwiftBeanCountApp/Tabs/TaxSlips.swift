@@ -69,13 +69,7 @@ struct TaxSlips: View {
                 Spacer()
             }.padding(.bottom)
             if generating {
-                Spacer()
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
-                Spacer()
+                LoadingView()
             } else {
                 TabView {
                     ForEach(slips, id: \.id) { slip in

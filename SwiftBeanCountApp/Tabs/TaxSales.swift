@@ -61,13 +61,7 @@ struct TaxSales: View {
                 Spacer()
             }.padding(.bottom)
             if generating {
-                Spacer()
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
-                Spacer()
+                LoadingView()
             } else {
                 TabView {
                     ForEach(groupedSales.sorted { $0.key < $1.key }, id: \.key) { key, value in
