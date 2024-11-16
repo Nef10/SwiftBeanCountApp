@@ -10,13 +10,14 @@ import SwiftBeanCountTax
 import SwiftUI
 
 struct Sales: View {
-    let sales: [Sale]
 
-    var dateFormatter: DateFormatter {
+    private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter
-    }
+    }()
+
+    let sales: [Sale]
 
     var body: some View {
         let columns = Array(repeating: GridItem(.flexible(), alignment: .leading), count: 6)
@@ -30,7 +31,7 @@ struct Sales: View {
                 Text("Gain").bold()
                 ForEach(sales, id: \.description) { sale in
                     Group {
-                        Text(dateFormatter.string(from: sale.date))
+                        Text(Self.dateFormatter.string(from: sale.date))
                         Text(sale.symbol)
                         Text(sale.quantity.formatted())
                         Text(sale.name ?? "").lineLimit(1)
