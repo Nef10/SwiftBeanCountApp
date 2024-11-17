@@ -17,7 +17,22 @@ enum LedgerManagerError: Error {
     case noAccess
 }
 
+struct RecentFile: Hashable {
+    let url: URL
+    let name: String
+    let path: String
+}
+
+private struct SavedRecentFile: Codable {
+    let bookmarkData: Data
+    let name: String
+    let path: String
+}
+
 class LedgerManager: ObservableObject {
+
+    private static let recentsKey = "recents"
+    private static let recentsLimit = 5
 
     @Published var url: URL? {
         didSet {
@@ -38,6 +53,54 @@ class LedgerManager: ObservableObject {
     init(_ ledgerURL: URL? = nil, waitingForLedgerLoad: Bool = false) {
         self.url = ledgerURL
         self.waitingForLedgerLoad = waitingForLedgerLoad
+    }
+
+    public static func lastURLs() -> [RecentFile] {
+#if os(macOS)
+        guard let data = UserDefaults.standard.data(forKey: recentsKey), let recents = try? JSONDecoder().decode([SavedRecentFile].self, from: data) else {
+            Logger.ledger.warning("Failed to read recents from UserDefaults")
+            return []
+        }
+        return recents.compactMap {
+            var isStale = false
+            guard let url = try? URL(resolvingBookmarkData: $0.bookmarkData, options: .withSecurityScope, bookmarkDataIsStale: &isStale), !isStale else {
+                return nil
+            }
+            return RecentFile(url: url, name: $0.name, path: $0.path)
+        }
+#else
+        return []
+#endif
+    }
+
+    private static func saveLastURL(_ url: URL) {
+#if os(macOS)
+        var recents: [SavedRecentFile]!
+
+        if let data = UserDefaults.standard.data(forKey: recentsKey) {
+            recents = try? JSONDecoder().decode([SavedRecentFile].self, from: data)
+        }
+        if recents == nil {
+            Logger.ledger.warning("Failed to read recents from UserDefaults - will create a new array")
+            recents = []
+        }
+        guard let bookmarkData = try? url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil) else {
+            Logger.ledger.error("Failed to create bookmark data for \(url)")
+            return
+        }
+        let save = SavedRecentFile(bookmarkData: bookmarkData, name: url.lastPathComponent, path: url.path)
+        // remove if already present
+        recents = recents.filter { $0.path != save.path }
+        // insert at first position
+        recents.insert(save, at: 0)
+        // only keep last `recentsLimit` entries
+        recents = Array(recents.prefix(recentsLimit))
+        guard let data = try? JSONEncoder().encode(recents) else {
+            Logger.ledger.error("Failed to encode recents to JSON")
+            return
+        }
+        UserDefaults.standard.set(data, forKey: recentsKey)
+#endif
     }
 
     /// Re-reads the ledger file from disk and checks if the hash
@@ -141,10 +204,10 @@ class LedgerManager: ObservableObject {
         guard let url else {
             throw LedgerManagerError.noLedgerSpecified
         }
-        let gotAccess = url.startAccessingSecurityScopedResource()
-        if !gotAccess {
+        guard url.startAccessingSecurityScopedResource() else {
             throw LedgerManagerError.noAccess
         }
+        Self.saveLastURL(url)
         let text = try String(contentsOf: url)
         url.stopAccessingSecurityScopedResource()
         let data = Data(text.utf8)

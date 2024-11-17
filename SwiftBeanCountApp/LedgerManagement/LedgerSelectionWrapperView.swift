@@ -38,6 +38,9 @@ struct LedgerSelectionWrapperView: View {
                         } label: {
                             Text("Open ledger")
                         }.padding()
+                        if !LedgerManager.lastURLs().isEmpty {
+                            recents
+                        }
                     }
                 }
             }
@@ -64,6 +67,33 @@ struct LedgerSelectionWrapperView: View {
         .environmentObject(ledger)
     }
 
+    var recents: some View {
+        Group {
+            HStack {
+                Text("Recents").font(.title2).padding(.top)
+                Spacer()
+            }
+            VStack {
+                ForEach(Array(LedgerManager.lastURLs().enumerated()), id: \.element) { index, element in
+                    Button {
+                        ledger.url = element.url
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(element.name).bold()
+                                Text(element.path).font(.subheadline)
+                            }
+                            Spacer()
+                        }
+                    }.buttonStyle(PlainButtonStyle())
+                    if index < LedgerManager.lastURLs().count - 1 {
+                        Divider()
+                    }
+                }
+            }.padding()
+        }
+    }
+
     init(_ tabs: [Tab]) {
         self.tabs = tabs
     }
@@ -73,5 +103,5 @@ struct LedgerSelectionWrapperView: View {
     LedgerSelectionWrapperView([
         Tab(title: "Import", icon: "square.and.arrow.down", view: AnyView(Text("Import"))),
         Tab(title: "Export", icon: "square.and.arrow.up", view: AnyView(Text("Export")))
-    ])
+    ]).frame(width: 500, height: 900)
 }
