@@ -43,7 +43,7 @@ struct MainNavigationView: View {
                     Image(systemName: "arrow.clockwise")
                         .accessibilityLabel(Text("Refresh Ledger"))
                 }
-            }
+            }.disabled(ledger.loadingLedger)
         }
     }
 
