@@ -1,4 +1,5 @@
 {
+  "originHash" : "16d8a1d44f45a6d56774c19f22a0e937a97f33ac684cf1cf50f86f0f0bdbd5cc",
   "pins" : [
     {
       "identity" : "collectionconcurrencykit",
@@ -64,6 +65,15 @@
       }
     },
     {
+      "identity" : "swiftbeancountstatements",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountStatements",
+      "state" : {
+        "revision" : "7ffeefc74e53752a54a21ae90bd41e3254e5b00d",
+        "version" : "0.0.1"
+      }
+    },
+    {
       "identity" : "swiftbeancounttax",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountTax",
@@ -109,5 +119,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
