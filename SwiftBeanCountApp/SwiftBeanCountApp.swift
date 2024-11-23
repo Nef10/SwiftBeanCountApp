@@ -30,13 +30,20 @@ struct SwiftBeanCountApp: App {
     @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
 #endif
 
-    var body: some Scene {
-        // Register all tab views here
-        let tabs = [
-            Tab(title: "Tax Slips", icon: "doc.text", view: AnyView(TaxSlips())),
+    var tabs: [Tab] { // Register all tab views here
+        var tabs = [
+            Tab(title: "Tax Slips", icon: "text.page", view: AnyView(TaxSlips())),
             Tab(title: "Tax Sales", icon: "banknote", view: AnyView(TaxSales())),
         ]
+#if os(macOS)
+        tabs += [
+            Tab(title: "Statements", icon: "doc.text", view: AnyView(Statements())),
+        ]
+#endif
+        return tabs
+    }
 
+    var body: some Scene {
         let content = LedgerSelectionWrapperView(tabs)
 
 #if os(macOS)
