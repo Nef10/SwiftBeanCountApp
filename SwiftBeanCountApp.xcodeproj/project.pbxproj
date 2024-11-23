@@ -496,8 +496,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountStatements";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 0.0.1;
 			};
 		};
 		F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */ = {

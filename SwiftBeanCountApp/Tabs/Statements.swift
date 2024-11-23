@@ -240,11 +240,20 @@ struct Statements: View {
     }
 }
 
+#if hasFeature(RetroactiveAttribute)
 extension AccountName: @retroactive Identifiable {
     public var id: String {
         self.fullName
     }
 }
+#else
+extension AccountName: Identifiable {
+    public var id: String {
+        self.fullName
+    }
+}
+
+#endif
 
 #Preview {
     Statements().environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
