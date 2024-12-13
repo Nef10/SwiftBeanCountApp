@@ -13,7 +13,8 @@ import UniformTypeIdentifiers
 /// Forces the user to select a ledger before showing the MainNavigationView
 struct LedgerSelectionWrapperView: View {
 
-    @StateObject private var ledger = LedgerManager()
+    @EnvironmentObject var ledger: LedgerManager
+
     private let tabs: [Tab]
 
     var body: some View {
@@ -64,7 +65,6 @@ struct LedgerSelectionWrapperView: View {
                 .interactiveDismissDisabled(true)
         }
 #endif
-        .environmentObject(ledger)
     }
 
     var recents: some View {
@@ -103,5 +103,5 @@ struct LedgerSelectionWrapperView: View {
     LedgerSelectionWrapperView([
         Tab(title: "Import", icon: "square.and.arrow.down", view: AnyView(Text("Import"))),
         Tab(title: "Export", icon: "square.and.arrow.up", view: AnyView(Text("Export")))
-    ]).frame(width: 500, height: 900)
+    ]).frame(width: 500, height: 900).environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
 }
