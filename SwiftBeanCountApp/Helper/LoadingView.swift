@@ -8,17 +8,29 @@
 import SwiftUI
 
 struct LoadingView: View {
+
+    @Binding var message: String?
+
     var body: some View {
-        Spacer()
-        HStack {
+        VStack {
             Spacer()
-            ProgressView()
+            HStack {
+                Spacer()
+                ProgressView().padding()
+                Spacer()
+            }
+            if let message {
+                Text(message)
+            }
             Spacer()
         }
-        Spacer()
+    }
+
+    init(message: Binding<String?>? = nil) {
+        self._message = message ?? .constant(nil)
     }
 }
 
 #Preview {
-    LoadingView()
+    LoadingView(message: .constant("Test Message"))
 }
