@@ -54,5 +54,6 @@ struct SwiftBeanCountApp: App {
 #else
         WindowGroup { content }
 #endif
+        Window("Importer Help", id: "importer-help") { ImporterHelpView() }
     }
 }
