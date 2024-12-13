@@ -43,11 +43,13 @@ struct SwiftBeanCountApp: App {
         return tabs
     }
 
+    @StateObject private var ledger = LedgerManager()
+
     var body: some Scene {
-        let content = LedgerSelectionWrapperView(tabs)
+
+        let content = LedgerSelectionWrapperView(tabs).environmentObject(ledger)
 
 #if os(macOS)
-        // To only allow one window
         Window("SwiftBeanCountApp", id: "main") { content }.handlesExternalEvents(matching: ["*"])
 #else
         WindowGroup { content }
