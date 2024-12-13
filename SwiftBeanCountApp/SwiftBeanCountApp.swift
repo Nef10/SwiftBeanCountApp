@@ -51,8 +51,11 @@ struct SwiftBeanCountApp: App {
 
 #if os(macOS)
         Window("SwiftBeanCountApp", id: "main") { content }.handlesExternalEvents(matching: ["*"])
+        Window("Importer Help", id: "importer-help") { ImporterHelpView() }
 #else
         WindowGroup { content }
+        WindowGroup("Importer Help", id: "importer-help") { ImporterHelpView() }
 #endif
+
     }
 }
