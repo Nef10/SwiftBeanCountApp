@@ -6,7 +6,7 @@
 //
 
 import OSLog
-import SwiftBeanCountTax
+@preconcurrency import SwiftBeanCountTax
 import SwiftUI
 
 struct Sales: View {
