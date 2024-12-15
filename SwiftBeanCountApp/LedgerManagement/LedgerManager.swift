@@ -146,12 +146,12 @@ class LedgerManager: ObservableObject {
             throw LedgerManagerError.noTask
         }
         if !ledgerLoaded || skipHashCheck {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.waitingForLedgerLoad = true
             }
         }
         defer {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.waitingForLedgerLoad = false
             }
         }
@@ -171,20 +171,20 @@ class LedgerManager: ObservableObject {
     @discardableResult
     private func loadLedger() -> Task<(SHA256.Digest, Ledger), Error>? {
         task?.cancel()
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.ledgerLoaded = false
         }
         guard url != nil else {
             return nil
         }
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.loadingLedger = true
         }
         task = Task.detached(priority: .background) { () -> (SHA256.Digest, Ledger) in
             Logger.ledger.info("Start loading ledger")
             defer {
                 if !Task.isCancelled {
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         self.loadingLedger = false
                     }
                 }
