@@ -84,13 +84,13 @@ struct LedgerSelectionWrapperView: View {
                                 Text(element.path).font(.subheadline)
                             }
                             Spacer()
-                        }
+                        }.contentShape(Rectangle())
                     }.buttonStyle(PlainButtonStyle())
                     if index < LedgerManager.lastURLs().count - 1 {
                         Divider()
                     }
                 }
-            }.padding()
+            }.padding(10).background(Color(red: 35 / 255, green: 35 / 255, blue: 35 / 255)).clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
 
