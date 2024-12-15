@@ -208,7 +208,7 @@ class LedgerManager: ObservableObject {
             throw LedgerManagerError.noAccess
         }
         Self.saveLastURL(url)
-        let text = try String(contentsOf: url)
+        let text = try String(contentsOf: url, encoding: .utf8)
         url.stopAccessingSecurityScopedResource()
         let data = Data(text.utf8)
         let hash = SHA256.hash(data: data)
