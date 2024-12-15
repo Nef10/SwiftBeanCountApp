@@ -103,5 +103,5 @@ struct LedgerSelectionWrapperView: View {
     LedgerSelectionWrapperView([
         Tab(title: "Import", icon: "square.and.arrow.down", view: AnyView(Text("Import"))),
         Tab(title: "Export", icon: "square.and.arrow.up", view: AnyView(Text("Export")))
-    ]).frame(width: 500, height: 900)
+    ]).frame(width: 500, height: 900).environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
 }
