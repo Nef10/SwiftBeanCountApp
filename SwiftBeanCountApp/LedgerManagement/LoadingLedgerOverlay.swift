@@ -16,7 +16,7 @@ struct LoadingLedgerOverlay: View {
             GeometryReader { geometry in
                 VStack {
                     ProgressView {
-                        Text("Loading Ledger").bold()
+                        Text("Loading Ledger").bold().padding(.top)
                     }
                 }
                 .frame(width: geometry.size.width / 2, height: geometry.size.height / 5)
