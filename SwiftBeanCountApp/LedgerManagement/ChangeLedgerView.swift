@@ -17,16 +17,18 @@ struct ChangeLedgerView: View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Current Ledger:").font(.title3).bold()
+                    Text("Current Ledger:").font(.title3).bold().padding(.bottom)
                     Text(ledger.url?.lastPathComponent ?? "")
                 }.padding()
                 Spacer()
-            }.padding()
+            }.padding(.horizontal)
             Button(action: {
                 ledger.displayLedgerSelector = true
             }, label: {
+                Spacer()
                 Text("Change")
-            }).padding()
+                Spacer()
+            }).padding().buttonStyle(.bordered)
             Spacer()
         }
         .navigationTitle("Ledger")
