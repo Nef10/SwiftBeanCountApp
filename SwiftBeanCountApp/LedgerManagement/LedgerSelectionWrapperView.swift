@@ -38,7 +38,7 @@ struct LedgerSelectionWrapperView: View {
                             ledger.displayLedgerSelector = true
                         } label: {
                             Text("Open ledger")
-                        }.padding()
+                        }.padding().buttonStyle(.borderedProminent)
                         if !LedgerManager.lastURLs().isEmpty {
                             recents
                         }
