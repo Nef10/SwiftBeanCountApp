@@ -23,6 +23,7 @@
 		F96F0E292CFD8F2A0044BD4D /* SwiftBeanCountImporter in Frameworks */ = {isa = PBXBuildFile; productRef = F96F0E282CFD8F2A0044BD4D /* SwiftBeanCountImporter */; };
 		F974D1FE2BB95783009CE45C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F974D1FD2BB95783009CE45C /* LoadingView.swift */; };
 		F9952AC72CEB34C100950757 /* SwiftBeanCountStatements in Frameworks */ = {isa = PBXBuildFile; productRef = F9952AC62CEB34C100950757 /* SwiftBeanCountStatements */; };
+		F9A2C0FB2D1189FA00E925F4 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = F9A2C0FA2D1189FA00E925F4 /* SimpleKeychain */; };
 		F9B4DF6F2B8455CC0047B1BA /* TaxSales.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */; };
 		F9D5662D2B8420F7008B384A /* TaxSlips.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D5662C2B8420F7008B384A /* TaxSlips.swift */; };
 		F9D566302B8421A0008B384A /* SwiftBeanCountTax in Frameworks */ = {isa = PBXBuildFile; productRef = F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */; };
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A2C0FB2D1189FA00E925F4 /* SimpleKeychain in Frameworks */,
 				F9952AC72CEB34C100950757 /* SwiftBeanCountStatements in Frameworks */,
 				F96F0E292CFD8F2A0044BD4D /* SwiftBeanCountImporter in Frameworks */,
 				F95DEA8A2B81BC1D0070E8EC /* SwiftBeanCountModel in Frameworks */,
@@ -166,6 +168,7 @@
 				F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */,
 				F9952AC62CEB34C100950757 /* SwiftBeanCountStatements */,
 				F96F0E282CFD8F2A0044BD4D /* SwiftBeanCountImporter */,
+				F9A2C0FA2D1189FA00E925F4 /* SimpleKeychain */,
 			);
 			productName = SwiftBeanCountApp;
 			productReference = F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */;
@@ -202,6 +205,7 @@
 				F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */,
 				F9952AC52CEB34C100950757 /* XCRemoteSwiftPackageReference "SwiftBeanCountStatements" */,
 				F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */,
+				F9A2C0F92D1189FA00E925F4 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
 			);
 			productRefGroup = F95DEA702B81443A0070E8EC /* Products */;
 			projectDirPath = "";
@@ -524,6 +528,14 @@
 				version = 0.0.1;
 			};
 		};
+		F9A2C0F92D1189FA00E925F4 /* XCRemoteSwiftPackageReference "SimpleKeychain" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/SimpleKeychain";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountTax";
@@ -559,6 +571,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F9952AC52CEB34C100950757 /* XCRemoteSwiftPackageReference "SwiftBeanCountStatements" */;
 			productName = SwiftBeanCountStatements;
+		};
+		F9A2C0FA2D1189FA00E925F4 /* SimpleKeychain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9A2C0F92D1189FA00E925F4 /* XCRemoteSwiftPackageReference "SimpleKeychain" */;
+			productName = SimpleKeychain;
 		};
 		F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */ = {
 			isa = XCSwiftPackageProductDependency;
