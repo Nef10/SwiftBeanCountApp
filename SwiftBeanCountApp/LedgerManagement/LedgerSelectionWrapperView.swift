@@ -90,7 +90,7 @@ struct LedgerSelectionWrapperView: View {
                         Divider()
                     }
                 }
-            }.padding(10).background(Color(red: 35 / 255, green: 35 / 255, blue: 35 / 255)).clipShape(RoundedRectangle(cornerRadius: 10))
+            }.padding(10).background(.black.opacity(0.1)).clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
 
