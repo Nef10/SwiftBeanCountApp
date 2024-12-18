@@ -7,50 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F937A48F2CBBA7E300ACDEC4 /* Statements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F937A48E2CBBA7E300ACDEC4 /* Statements.swift */; };
 		F95DEA732B81443A0070E8EC /* SwiftBeanCountApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA722B81443A0070E8EC /* SwiftBeanCountApp.swift */; };
-		F95DEA752B81443A0070E8EC /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA742B81443A0070E8EC /* MainNavigationView.swift */; };
-		F95DEA772B81443B0070E8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F95DEA762B81443B0070E8EC /* Assets.xcassets */; };
-		F95DEA842B81B9D40070E8EC /* LedgerSelectionWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA832B81B9D40070E8EC /* LedgerSelectionWrapperView.swift */; };
 		F95DEA872B81BC120070E8EC /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F95DEA862B81BC120070E8EC /* SwiftBeanCountParser */; };
 		F95DEA8A2B81BC1D0070E8EC /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F95DEA892B81BC1D0070E8EC /* SwiftBeanCountModel */; };
-		F95DEA8F2B81D4100070E8EC /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */; };
-		F95DEA962B81EFBF0070E8EC /* ChangeLedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */; };
-		F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */; };
-		F95DEAA12B834C810070E8EC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA02B834C810070E8EC /* Logger.swift */; };
-		F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */; };
-		F96F0E262CFD8CBB0044BD4D /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96F0E252CFD8CBB0044BD4D /* Importer.swift */; };
 		F96F0E292CFD8F2A0044BD4D /* SwiftBeanCountImporter in Frameworks */ = {isa = PBXBuildFile; productRef = F96F0E282CFD8F2A0044BD4D /* SwiftBeanCountImporter */; };
-		F974D1FE2BB95783009CE45C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F974D1FD2BB95783009CE45C /* LoadingView.swift */; };
 		F9952AC72CEB34C100950757 /* SwiftBeanCountStatements in Frameworks */ = {isa = PBXBuildFile; productRef = F9952AC62CEB34C100950757 /* SwiftBeanCountStatements */; };
 		F9A2C0FB2D1189FA00E925F4 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = F9A2C0FA2D1189FA00E925F4 /* SimpleKeychain */; };
-		F9B4DF6F2B8455CC0047B1BA /* TaxSales.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */; };
-		F9D5662D2B8420F7008B384A /* TaxSlips.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D5662C2B8420F7008B384A /* TaxSlips.swift */; };
 		F9D566302B8421A0008B384A /* SwiftBeanCountTax in Frameworks */ = {isa = PBXBuildFile; productRef = F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F937A48E2CBBA7E300ACDEC4 /* Statements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statements.swift; sourceTree = "<group>"; };
 		F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95DEA722B81443A0070E8EC /* SwiftBeanCountApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountApp.swift; sourceTree = "<group>"; };
-		F95DEA742B81443A0070E8EC /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
-		F95DEA762B81443B0070E8EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F95DEA782B81443B0070E8EC /* SwiftBeanCountApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftBeanCountApp.entitlements; sourceTree = "<group>"; };
-		F95DEA832B81B9D40070E8EC /* LedgerSelectionWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerSelectionWrapperView.swift; sourceTree = "<group>"; };
-		F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		F95DEA922B81DF120070E8EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLedgerView.swift; sourceTree = "<group>"; };
-		F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerManager.swift; sourceTree = "<group>"; };
-		F95DEAA02B834C810070E8EC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLedgerOverlay.swift; sourceTree = "<group>"; };
-		F96F0E252CFD8CBB0044BD4D /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
-		F974D1FD2BB95783009CE45C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxSales.swift; sourceTree = "<group>"; };
-		F9D5662C2B8420F7008B384A /* TaxSlips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxSlips.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F9AA6EE52D187BBF002087EB /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F95DEA6E2B81443A0070E8EC /* SwiftBeanCountApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F96F0E2A2CFD9F4E0044BD4D /* Importer */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Importer; sourceTree = "<group>"; };
+		F9A2C1112D12AC6500E925F4 /* Main Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Main Views"; sourceTree = "<group>"; };
+		F9A2C1122D12AC8400E925F4 /* LedgerManagement */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LedgerManagement; sourceTree = "<group>"; };
+		F9A2C1132D12AC9200E925F4 /* Tabs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tabs; sourceTree = "<group>"; };
+		F9A2C1202D12ACAC00E925F4 /* Helper */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helper; sourceTree = "<group>"; };
+		F9A2C1212D12AD2E00E925F4 /* Supporting Files */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F9AA6EE52D187BBF002087EB /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Supporting Files"; sourceTree = "<group>"; };
+		F9AA6E772D162D7C002087EB /* Settings */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Settings; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,56 +77,13 @@
 			isa = PBXGroup;
 			children = (
 				F95DEA722B81443A0070E8EC /* SwiftBeanCountApp.swift */,
-				F95DEA922B81DF120070E8EC /* Info.plist */,
-				F95DEA762B81443B0070E8EC /* Assets.xcassets */,
-				F95DEA782B81443B0070E8EC /* SwiftBeanCountApp.entitlements */,
-				F95DEA942B81EF880070E8EC /* Main Views */,
-				F95DEA932B81EF780070E8EC /* LedgerManagement */,
-				F95DEA972B81F2B50070E8EC /* Tabs */,
-				F95DEA9F2B834C6D0070E8EC /* Helper */,
+				F9A2C1112D12AC6500E925F4 /* Main Views */,
+				F9A2C1122D12AC8400E925F4 /* LedgerManagement */,
+				F9A2C1132D12AC9200E925F4 /* Tabs */,
+				F9A2C1202D12ACAC00E925F4 /* Helper */,
+				F9A2C1212D12AD2E00E925F4 /* Supporting Files */,
 			);
 			path = SwiftBeanCountApp;
-			sourceTree = "<group>";
-		};
-		F95DEA932B81EF780070E8EC /* LedgerManagement */ = {
-			isa = PBXGroup;
-			children = (
-				F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */,
-				F95DEA832B81B9D40070E8EC /* LedgerSelectionWrapperView.swift */,
-				F95DEA952B81EFBF0070E8EC /* ChangeLedgerView.swift */,
-				F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */,
-			);
-			path = LedgerManagement;
-			sourceTree = "<group>";
-		};
-		F95DEA942B81EF880070E8EC /* Main Views */ = {
-			isa = PBXGroup;
-			children = (
-				F95DEA742B81443A0070E8EC /* MainNavigationView.swift */,
-				F95DEA8E2B81D4100070E8EC /* WelcomeView.swift */,
-			);
-			path = "Main Views";
-			sourceTree = "<group>";
-		};
-		F95DEA972B81F2B50070E8EC /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				F96F0E2A2CFD9F4E0044BD4D /* Importer */,
-				F937A48E2CBBA7E300ACDEC4 /* Statements.swift */,
-				F9D5662C2B8420F7008B384A /* TaxSlips.swift */,
-				F96F0E252CFD8CBB0044BD4D /* Importer.swift */,
-				F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */,
-			);
-			path = Tabs;
-			sourceTree = "<group>";
-		};
-		F95DEA9F2B834C6D0070E8EC /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				F95DEAA02B834C810070E8EC /* Logger.swift */,
-				F974D1FD2BB95783009CE45C /* LoadingView.swift */,
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +103,11 @@
 				F95DEA9E2B834A490070E8EC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				F96F0E2A2CFD9F4E0044BD4D /* Importer */,
+				F9A2C1112D12AC6500E925F4 /* Main Views */,
+				F9A2C1122D12AC8400E925F4 /* LedgerManagement */,
+				F9A2C1132D12AC9200E925F4 /* Tabs */,
+				F9A2C1202D12ACAC00E925F4 /* Helper */,
+				F9A2C1212D12AD2E00E925F4 /* Supporting Files */,
 			);
 			name = SwiftBeanCountApp;
 			packageProductDependencies = (
@@ -221,7 +169,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F95DEA772B81443B0070E8EC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,19 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F96F0E262CFD8CBB0044BD4D /* Importer.swift in Sources */,
-				F95DEA8F2B81D4100070E8EC /* WelcomeView.swift in Sources */,
-				F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */,
-				F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */,
-				F95DEA962B81EFBF0070E8EC /* ChangeLedgerView.swift in Sources */,
-				F9B4DF6F2B8455CC0047B1BA /* TaxSales.swift in Sources */,
-				F937A48F2CBBA7E300ACDEC4 /* Statements.swift in Sources */,
-				F974D1FE2BB95783009CE45C /* LoadingView.swift in Sources */,
-				F9D5662D2B8420F7008B384A /* TaxSlips.swift in Sources */,
-				F95DEA842B81B9D40070E8EC /* LedgerSelectionWrapperView.swift in Sources */,
-				F95DEA752B81443A0070E8EC /* MainNavigationView.swift in Sources */,
 				F95DEA732B81443A0070E8EC /* SwiftBeanCountApp.swift in Sources */,
-				F95DEAA12B834C810070E8EC /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,9 +315,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SwiftBeanCountApp.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = "SwiftBeanCountApp/Supporting Files/SwiftBeanCountApp.entitlements";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -390,7 +325,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwiftBeanCountApp/Info.plist;
+				INFOPLIST_FILE = "SwiftBeanCountApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SwiftBeanCount;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -425,9 +360,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = SwiftBeanCountApp/SwiftBeanCountApp.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = "SwiftBeanCountApp/Supporting Files/SwiftBeanCountApp.entitlements";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -435,7 +370,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwiftBeanCountApp/Info.plist;
+				INFOPLIST_FILE = "SwiftBeanCountApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SwiftBeanCount;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
