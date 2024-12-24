@@ -57,5 +57,10 @@ struct SwiftBeanCountApp: App {
         WindowGroup("Importer Help", id: "importer-help") { ImporterHelpView() }
 #endif
 
+#if os(macOS)
+       Settings {
+           SettingsView()
+       }
+#endif
     }
 }
