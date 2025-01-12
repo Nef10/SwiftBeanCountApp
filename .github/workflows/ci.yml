@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         platform:  ['macOS', 'iOS']
-    runs-on: macOS-14
+    runs-on: macOS-15
     steps:
     - uses: actions/checkout@v4
     - name: Build
@@ -22,12 +22,12 @@ jobs:
       with:
         project: SwiftBeanCountApp.xcodeproj
         scheme: SwiftBeanCountApp
-        destination: platform=${{ matrix.platform }}
+        destination: ${{ matrix.platform == 'iOS' && 'generic/platform=iOS Simulator' || format('platform={0}', matrix.platform) }}
         action: build
         build-settings: -skipPackagePluginValidation -skipMacroValidation
   swiftlint:
     name: SwiftLint
-    runs-on: macOS-14
+    runs-on: macOS-15
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
