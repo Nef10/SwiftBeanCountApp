@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,8 @@
 		F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */; };
 		F95DEAA12B834C810070E8EC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA02B834C810070E8EC /* Logger.swift */; };
 		F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */; };
+		F96F0E262CFD8CBB0044BD4D /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96F0E252CFD8CBB0044BD4D /* Importer.swift */; };
+		F96F0E292CFD8F2A0044BD4D /* SwiftBeanCountImporter in Frameworks */ = {isa = PBXBuildFile; productRef = F96F0E282CFD8F2A0044BD4D /* SwiftBeanCountImporter */; };
 		F974D1FE2BB95783009CE45C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F974D1FD2BB95783009CE45C /* LoadingView.swift */; };
 		F9952AC72CEB34C100950757 /* SwiftBeanCountStatements in Frameworks */ = {isa = PBXBuildFile; productRef = F9952AC62CEB34C100950757 /* SwiftBeanCountStatements */; };
 		F9B4DF6F2B8455CC0047B1BA /* TaxSales.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */; };
@@ -40,10 +42,15 @@
 		F95DEA9A2B81F3580070E8EC /* LedgerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerManager.swift; sourceTree = "<group>"; };
 		F95DEAA02B834C810070E8EC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F95DEAA22B8354370070E8EC /* LoadingLedgerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLedgerOverlay.swift; sourceTree = "<group>"; };
+		F96F0E252CFD8CBB0044BD4D /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
 		F974D1FD2BB95783009CE45C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxSales.swift; sourceTree = "<group>"; };
 		F9D5662C2B8420F7008B384A /* TaxSlips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxSlips.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F96F0E2A2CFD9F4E0044BD4D /* Importer */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Importer; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F95DEA6C2B81443A0070E8EC /* Frameworks */ = {
@@ -51,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9952AC72CEB34C100950757 /* SwiftBeanCountStatements in Frameworks */,
+				F96F0E292CFD8F2A0044BD4D /* SwiftBeanCountImporter in Frameworks */,
 				F95DEA8A2B81BC1D0070E8EC /* SwiftBeanCountModel in Frameworks */,
 				F95DEA872B81BC120070E8EC /* SwiftBeanCountParser in Frameworks */,
 				F9D566302B8421A0008B384A /* SwiftBeanCountTax in Frameworks */,
@@ -114,8 +122,10 @@
 		F95DEA972B81F2B50070E8EC /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				F96F0E2A2CFD9F4E0044BD4D /* Importer */,
 				F937A48E2CBBA7E300ACDEC4 /* Statements.swift */,
 				F9D5662C2B8420F7008B384A /* TaxSlips.swift */,
+				F96F0E252CFD8CBB0044BD4D /* Importer.swift */,
 				F9B4DF6E2B8455CC0047B1BA /* TaxSales.swift */,
 			);
 			path = Tabs;
@@ -146,12 +156,16 @@
 			dependencies = (
 				F95DEA9E2B834A490070E8EC /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				F96F0E2A2CFD9F4E0044BD4D /* Importer */,
+			);
 			name = SwiftBeanCountApp;
 			packageProductDependencies = (
 				F95DEA862B81BC120070E8EC /* SwiftBeanCountParser */,
 				F95DEA892B81BC1D0070E8EC /* SwiftBeanCountModel */,
 				F9D5662F2B8421A0008B384A /* SwiftBeanCountTax */,
 				F9952AC62CEB34C100950757 /* SwiftBeanCountStatements */,
+				F96F0E282CFD8F2A0044BD4D /* SwiftBeanCountImporter */,
 			);
 			productName = SwiftBeanCountApp;
 			productReference = F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */;
@@ -187,6 +201,7 @@
 				F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */,
 				F9952AC52CEB34C100950757 /* XCRemoteSwiftPackageReference "SwiftBeanCountStatements" */,
+				F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */,
 			);
 			productRefGroup = F95DEA702B81443A0070E8EC /* Products */;
 			projectDirPath = "";
@@ -213,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96F0E262CFD8CBB0044BD4D /* Importer.swift in Sources */,
 				F95DEA8F2B81D4100070E8EC /* WelcomeView.swift in Sources */,
 				F95DEA9B2B81F3580070E8EC /* LedgerManager.swift in Sources */,
 				F95DEAA32B8354370070E8EC /* LoadingLedgerOverlay.swift in Sources */,
@@ -386,7 +402,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountApp;
 				PRODUCT_NAME = SwiftBeanCount;
@@ -431,7 +447,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountApp;
 				PRODUCT_NAME = SwiftBeanCount;
@@ -492,6 +508,14 @@
 				version = 0.54.0;
 			};
 		};
+		F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter";
+			requirement = {
+				kind = exactVersion;
+				version = 0.10.0;
+			};
+		};
 		F9952AC52CEB34C100950757 /* XCRemoteSwiftPackageReference "SwiftBeanCountStatements" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountStatements";
@@ -525,6 +549,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
+		};
+		F96F0E282CFD8F2A0044BD4D /* SwiftBeanCountImporter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */;
+			productName = SwiftBeanCountImporter;
 		};
 		F9952AC62CEB34C100950757 /* SwiftBeanCountStatements */ = {
 			isa = XCSwiftPackageProductDependency;
