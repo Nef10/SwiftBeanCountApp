@@ -40,6 +40,11 @@ struct SwiftBeanCountApp: App {
             Tab(title: "Statements", icon: "doc.text", view: AnyView(Statements())),
         ]
 #endif
+#if os(iOS)
+        tabs += [
+            Tab(title: "Settings", icon: "gear", view: AnyView(SettingsView())),
+        ]
+#endif
         return tabs
     }
 
@@ -57,5 +62,10 @@ struct SwiftBeanCountApp: App {
         WindowGroup("Importer Help", id: "importer-help") { ImporterHelpView() }
 #endif
 
+#if os(macOS)
+       Settings {
+           SettingsView()
+       }
+#endif
     }
 }
