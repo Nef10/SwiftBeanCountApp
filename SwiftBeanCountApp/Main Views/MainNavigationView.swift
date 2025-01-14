@@ -63,14 +63,6 @@ struct MainNavigationView: View {
                     }
                     .tag(index as Int?)
                 }
-                NavigationStack {
-                    ChangeLedgerView()
-                        .toolbar {
-                            toolbarItem
-                        }
-                }
-                    .tabItem { Label("Ledger", systemImage: "doc.fill") }
-                    .tag(tabs.count as Int?)
             }
         } else {
             NavigationSplitView {

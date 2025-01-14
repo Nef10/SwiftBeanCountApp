@@ -42,6 +42,7 @@ struct SwiftBeanCountApp: App {
 #endif
 #if os(iOS)
         tabs += [
+            Tab(title: "Ledger", icon: "doc.fill", view: AnyView(ChangeLedgerView())),
             Tab(title: "Settings", icon: "gear", view: AnyView(SettingsView())),
         ]
 #endif
