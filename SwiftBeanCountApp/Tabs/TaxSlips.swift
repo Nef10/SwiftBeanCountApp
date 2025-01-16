@@ -16,69 +16,76 @@ struct Slip: View {
     var body: some View {
         VStack {
             Text("**\(slip.header)**")
-
-            let columns = Array(repeating: GridItem(.flexible(), alignment: .leading), count: slip.boxesWithNumbers.count + (slip.symbols.isEmpty ? 0 : 2))
             ScrollView {
-                LazyVGrid(columns: columns) {
+                boxesWithNumbers
+                if !slip.boxesWithoutNumbers.isEmpty {
+                    boxesWithoutNumbers
+                }
+            }
+        }
+    }
+
+    private var boxesWithNumbers: some View {
+        VStack {
+            let columns = Array(repeating: GridItem(.flexible(), alignment: .leading), count: slip.boxesWithNumbers.count + (slip.symbols.isEmpty ? 0 : 2))
+            LazyVGrid(columns: columns) {
+                if !slip.symbols.isEmpty {
+                    Text("**Symbol**")
+                    Text("**Name**")
+                }
+                ForEach(slip.boxesWithNumbers, id: \.self) {
+                    Text("**\($0)**")
+                }
+                ForEach(slip.rowsWithBoxNumbers) { row in
                     if !slip.symbols.isEmpty {
-                        Text("**Symbol**")
-                        Text("**Name**")
+                        Text(row.symbol ?? "").lineLimit(1)
+                        Text(row.name ?? "").lineLimit(1)
                     }
-                    ForEach(slip.boxesWithNumbers, id: \.self) {
-                        Text("**\($0)**")
+                    ForEach(row.values) { value in
+                        Text(value.displayValue)
                     }
-                    ForEach(slip.rowsWithBoxNumbers) { row in
-                        if !slip.symbols.isEmpty {
-                            Text(row.symbol ?? "").lineLimit(1)
-                            Text(row.name ?? "").lineLimit(1)
-                        }
-                        ForEach(row.values) { value in
-                            Text(value.displayValue)
-                        }
-                    }
-                    if !slip.symbols.isEmpty {
-                        let row = slip.sumRowWithBoxNumbers
-                        Text("")
-                        Text("**Totals**")
-                        ForEach(row.values) { value in
-                            Text("**\(value.displayValue)**")
-                        }
+                }
+                if !slip.symbols.isEmpty {
+                    Text("")
+                    Text("**Totals**")
+                    ForEach(slip.sumRowWithBoxNumbers.values) { value in
+                        Text("**\(value.displayValue)**")
                     }
                 }
             }
-            if !slip.boxesWithoutNumbers.isEmpty {
-                Divider()
-                let columns2 = Array(repeating: GridItem(.flexible(), alignment: .leading), count: slip.boxesWithoutNumbers.count + (slip.symbols.isEmpty ? 0 : 2))
-                ScrollView {
-                    LazyVGrid(columns: columns2) {
-                        if !slip.symbols.isEmpty {
-                            Text("**Symbol**")
-                            Text("**Name**")
-                        }
-                        ForEach(slip.boxesWithoutNumbers, id: \.self) {
-                            Text("**\($0)**")
-                        }
-                        ForEach(slip.rowsWithoutBoxNumbers) { row in
-                            if !slip.symbols.isEmpty {
-                                Text(row.symbol ?? "").lineLimit(1)
-                                Text(row.name ?? "").lineLimit(1)
-                            }
-                            ForEach(row.values) { value in
-                                Text(value.displayValue)
-                            }
-                        }
-                        if !slip.symbols.isEmpty {
-                            let row = slip.sumRowWithoutBoxNumbers
-                            Text("")
-                            Text("**Totals**")
-                            ForEach(row.values) { value in
-                                Text("**\(value.displayValue)**")
-                            }
-                        }
+        }
+    }
+
+    private var boxesWithoutNumbers: some View {
+        VStack {
+            Divider()
+            let columns = Array(repeating: GridItem(.flexible(), alignment: .leading), count: slip.boxesWithoutNumbers.count + (slip.symbols.isEmpty ? 0 : 2))
+            LazyVGrid(columns: columns) {
+                if !slip.symbols.isEmpty {
+                    Text("**Symbol**")
+                    Text("**Name**")
+                }
+                ForEach(slip.boxesWithoutNumbers, id: \.self) {
+                    Text("**\($0)**")
+                }
+                ForEach(slip.rowsWithoutBoxNumbers) { row in
+                    if !slip.symbols.isEmpty {
+                        Text(row.symbol ?? "").lineLimit(1)
+                        Text(row.name ?? "").lineLimit(1)
+                    }
+                    ForEach(row.values) { value in
+                        Text(value.displayValue)
                     }
                 }
-                Spacer()
+                if !slip.symbols.isEmpty {
+                    Text("")
+                    Text("**Totals**")
+                    ForEach(slip.sumRowWithoutBoxNumbers.values) { value in
+                        Text("**\(value.displayValue)**")
+                    }
+                }
             }
+            Spacer()
         }
     }
 }
