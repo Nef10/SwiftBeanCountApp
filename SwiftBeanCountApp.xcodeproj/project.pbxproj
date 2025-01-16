@@ -478,7 +478,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountTax";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.3;
+				version = 0.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
