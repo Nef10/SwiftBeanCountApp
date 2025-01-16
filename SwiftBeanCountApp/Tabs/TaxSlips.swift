@@ -17,17 +17,17 @@ struct Slip: View {
         VStack {
             Text("**\(slip.header)**")
 
-            let columns = Array(repeating: GridItem(.flexible(), alignment: .leading), count: slip.boxes.count + (slip.symbols.isEmpty ? 0 : 2))
+            let columns = Array(repeating: GridItem(.flexible(), alignment: .leading), count: slip.boxesWithNumbers.count + (slip.symbols.isEmpty ? 0 : 2))
             ScrollView {
                 LazyVGrid(columns: columns) {
                     if !slip.symbols.isEmpty {
                         Text("**Symbol**")
                         Text("**Name**")
                     }
-                    ForEach(slip.boxes, id: \.self) {
+                    ForEach(slip.boxesWithNumbers, id: \.self) {
                         Text("**\($0)**")
                     }
-                    ForEach(slip.rows) { row in
+                    ForEach(slip.rowsWithBoxNumbers) { row in
                         if !slip.symbols.isEmpty {
                             Text(row.symbol ?? "").lineLimit(1)
                             Text(row.name ?? "").lineLimit(1)
@@ -37,7 +37,7 @@ struct Slip: View {
                         }
                     }
                     if !slip.symbols.isEmpty {
-                        let row = slip.sumRow
+                        let row = slip.sumRowWithBoxNumbers
                         Text("")
                         Text("**Totals**")
                         ForEach(row.values) { value in
@@ -45,6 +45,39 @@ struct Slip: View {
                         }
                     }
                 }
+            }
+            if !slip.boxesWithoutNumbers.isEmpty {
+                Divider()
+                let columns2 = Array(repeating: GridItem(.flexible(), alignment: .leading), count: slip.boxesWithoutNumbers.count + (slip.symbols.isEmpty ? 0 : 2))
+                ScrollView {
+                    LazyVGrid(columns: columns2) {
+                        if !slip.symbols.isEmpty {
+                            Text("**Symbol**")
+                            Text("**Name**")
+                        }
+                        ForEach(slip.boxesWithoutNumbers, id: \.self) {
+                            Text("**\($0)**")
+                        }
+                        ForEach(slip.rowsWithoutBoxNumbers) { row in
+                            if !slip.symbols.isEmpty {
+                                Text(row.symbol ?? "").lineLimit(1)
+                                Text(row.name ?? "").lineLimit(1)
+                            }
+                            ForEach(row.values) { value in
+                                Text(value.displayValue)
+                            }
+                        }
+                        if !slip.symbols.isEmpty {
+                            let row = slip.sumRowWithoutBoxNumbers
+                            Text("")
+                            Text("**Totals**")
+                            ForEach(row.values) { value in
+                                Text("**\(value.displayValue)**")
+                            }
+                        }
+                    }
+                }
+                Spacer()
             }
         }
     }
