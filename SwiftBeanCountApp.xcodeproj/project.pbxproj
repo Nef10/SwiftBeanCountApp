@@ -19,6 +19,8 @@
 /* Begin PBXFileReference section */
 		F95DEA6F2B81443A0070E8EC /* SwiftBeanCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95DEA722B81443A0070E8EC /* SwiftBeanCountApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountApp.swift; sourceTree = "<group>"; };
+		F9AAB9762D62AD66003B45F7 /* SwiftBeanCountTangerineMapper */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftBeanCountTangerineMapper; path = ../SwiftBeanCountTangerineMapper; sourceTree = SOURCE_ROOT; };
+		F9AAB9772D62B66F003B45F7 /* SwiftBeanCountImporter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftBeanCountImporter; path = ../SwiftBeanCountImporter; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -60,8 +62,10 @@
 		F95DEA662B81443A0070E8EC = {
 			isa = PBXGroup;
 			children = (
+				F9AAB9762D62AD66003B45F7 /* SwiftBeanCountTangerineMapper */,
 				F95DEA712B81443A0070E8EC /* SwiftBeanCountApp */,
 				F95DEA702B81443A0070E8EC /* Products */,
+				F9AAB9772D62B66F003B45F7 /* SwiftBeanCountImporter */,
 			);
 			sourceTree = "<group>";
 		};

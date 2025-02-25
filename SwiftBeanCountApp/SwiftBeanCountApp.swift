@@ -38,6 +38,7 @@ struct SwiftBeanCountApp: App {
 #if os(macOS)
         tabs += [
             Tab(title: "Statements", icon: "doc.text", view: AnyView(Statements())),
+            Tab(title: "Importer", icon: "square.and.arrow.down.on.square", view: AnyView(Importer())),
         ]
 #endif
 #if os(iOS)
