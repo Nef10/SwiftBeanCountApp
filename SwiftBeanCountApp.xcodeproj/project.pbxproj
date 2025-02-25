@@ -438,7 +438,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountParser";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.8;
+				version = 0.1.9;
 			};
 		};
 		F95DEA882B81BC1D0070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
@@ -446,7 +446,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountModel";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.6;
+				version = 0.2.0;
 			};
 		};
 		F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */ = {
@@ -454,7 +454,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter";
 			requirement = {
 				kind = exactVersion;
-				version = 0.10.0;
+				version = 0.11.2;
 			};
 		};
 		F98C060A2EF2173700159521 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
@@ -470,7 +470,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountStatements";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.1;
+				version = 0.0.2;
 			};
 		};
 		F9A2C0F92D1189FA00E925F4 /* XCRemoteSwiftPackageReference "SimpleKeychain" */ = {
@@ -486,7 +486,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountTax";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.4;
+				version = 0.0.5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
