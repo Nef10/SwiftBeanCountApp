@@ -101,7 +101,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F95DEA9E2B834A490070E8EC /* PBXTargetDependency */,
+				F98C060C2EF2174A00159521 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F9A2C1112D12AC6500E925F4 /* Main Views */,
@@ -151,11 +151,11 @@
 			packageReferences = (
 				F95DEA852B81BC120070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
 				F95DEA882B81BC1D0070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
-				F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				F9D5662E2B8421A0008B384A /* XCRemoteSwiftPackageReference "SwiftBeanCountTax" */,
 				F9952AC52CEB34C100950757 /* XCRemoteSwiftPackageReference "SwiftBeanCountStatements" */,
 				F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */,
 				F9A2C0F92D1189FA00E925F4 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
+				F98C060A2EF2173700159521 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			productRefGroup = F95DEA702B81443A0070E8EC /* Products */;
 			projectDirPath = "";
@@ -188,9 +188,9 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F95DEA9E2B834A490070E8EC /* PBXTargetDependency */ = {
+		F98C060C2EF2174A00159521 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = F95DEA9D2B834A490070E8EC /* SwiftLintPlugin */;
+			productRef = F98C060B2EF2174A00159521 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -441,20 +441,20 @@
 				version = 0.1.6;
 			};
 		};
-		F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint";
-			requirement = {
-				kind = exactVersion;
-				version = 0.54.0;
-			};
-		};
 		F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter";
 			requirement = {
 				kind = exactVersion;
 				version = 0.10.0;
+			};
+		};
+		F98C060A2EF2173700159521 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = exactVersion;
+				version = 0.62.2;
 			};
 		};
 		F9952AC52CEB34C100950757 /* XCRemoteSwiftPackageReference "SwiftBeanCountStatements" */ = {
@@ -494,15 +494,15 @@
 			package = F95DEA882B81BC1D0070E8EC /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
 			productName = SwiftBeanCountModel;
 		};
-		F95DEA9D2B834A490070E8EC /* SwiftLintPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F95DEA9C2B834A120070E8EC /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintPlugin";
-		};
 		F96F0E282CFD8F2A0044BD4D /* SwiftBeanCountImporter */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F96F0E272CFD8F2A0044BD4D /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */;
 			productName = SwiftBeanCountImporter;
+		};
+		F98C060B2EF2174A00159521 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F98C060A2EF2173700159521 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		F9952AC62CEB34C100950757 /* SwiftBeanCountStatements */ = {
 			isa = XCSwiftPackageProductDependency;
