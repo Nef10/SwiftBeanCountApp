@@ -16,7 +16,7 @@ struct WelcomeView<Content: View>: View {
             Text("Welcome to SwiftBeanCount")
                 .font(.largeTitle)
                 .padding()
-            Image("Icon")
+            Image(.icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: 400)
