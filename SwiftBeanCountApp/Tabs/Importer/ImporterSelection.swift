@@ -13,6 +13,11 @@ struct ImporterSelection: View {
 
     @EnvironmentObject var ledger: LedgerManager
 
+#if os(macOS)
+    @Environment(\.colorScheme)
+    var colorScheme: ColorScheme
+#endif
+
     @Environment(\.openWindow)
     var openWindow
 
@@ -55,20 +60,17 @@ struct ImporterSelection: View {
 
             Spacer()
             HStack {
-                Button("?") {
-                    openHelp()
-                }.buttonBorderShape(.circle)
+                Button("?") { openHelp() }.buttonBorderShape(.circle)
                 Spacer()
-                Button("Reset") {
-                    resetInput()
-                }.disabled(fileImport.isEmpty && textImport.isEmpty && downloadImport.allSatisfy { !$0 })
+                Button("Reset") { resetInput() }.disabled(fileImport.isEmpty && textImport.isEmpty && downloadImport.allSatisfy { !$0 })
                 if ledger.loadingLedger {
                     ProgressView().controlSize(.small).padding(5)
                 } else {
-                    Button("Generate Transactions") { generate() } .disabled(fileImport.isEmpty && textImport.isEmpty && downloadImport.allSatisfy { !$0 })
+                    Button("Generate Transactions") { generate() }
+                        .buttonStyle(.borderedProminent).disabled(fileImport.isEmpty && textImport.isEmpty && downloadImport.allSatisfy { !$0 })
                 }
             }
-        }
+        }.buttonStyle(.bordered)
         .padding()
         .fileImporter(
             isPresented: $isDocumentPickerPresented,
@@ -78,23 +80,7 @@ struct ImporterSelection: View {
         )
         .alert("Error", isPresented: $showErrorAlert) { Button("OK") { /* empty */ } } message: { Text(errorMessage) }
         .sheet(isPresented: $showTextInputSheet) {
-            VStack {
-                HStack {
-                    VStack {
-                        Text("Transaction").font(.headline)
-                        TextEditor(text: $textInputTransaction).frame(minHeight: 400)
-                    }
-                    VStack {
-                        Text("Balance").font(.headline)
-                        TextEditor(text: $textInputBalance).frame(minHeight: 400)
-                    }
-                }
-                HStack {
-                    Spacer()
-                    Button("Cancel") { closeTextInputSheet() }
-                    Button("Add") { addAndCloseTextInput() }
-                }.padding(.top)
-            }.padding()
+            textInputSheet
         }
 #if !os(macOS)
         .sheet(isPresented: $showHelp) {
@@ -103,15 +89,48 @@ struct ImporterSelection: View {
 #endif
     }
 
+    var textInputSheet: some View {
+        VStack {
+            HStack {
+                VStack {
+                    Text("Transaction").font(.headline)
+                    TextEditor(text: $textInputTransaction).frame(minHeight: 400).padding(5).overlay(
+                        RoundedRectangle(cornerRadius: 8).stroke(.separator)
+#if os(macOS)
+                            .opacity(colorScheme == .dark ? 0.0 : 0.5)
+#else
+                            .opacity(0.5)
+#endif
+                    )
+                }
+                VStack {
+                    Text("Balance").font(.headline)
+                    TextEditor(text: $textInputBalance).frame(minHeight: 400).padding(5).overlay(
+                        RoundedRectangle(cornerRadius: 8).stroke(.separator)
+#if os(macOS)
+                            .opacity(colorScheme == .dark ? 0.0 : 0.5)
+#else
+                            .opacity(0.5)
+#endif
+                    )
+                }
+            }
+            HStack {
+                Spacer()
+                Button("Cancel") { closeTextInputSheet() }.buttonStyle(.bordered)
+                Button("Add") { addAndCloseTextInput() }.buttonStyle(.borderedProminent)
+            }.padding(.top)
+        }.padding()
+    }
+
     init(_ imports: Binding<[ImportType]>) {
         self._imports = imports
     }
 
     private func generate() {
-        let importTypes = fileImport.map { ImportType.csv($0) }
+        imports = fileImport.map { ImportType.csv($0) }
             + textImport.map { ImportType.text($0.0, $0.1) }
             + downloadImport.enumerated().compactMap { $0.element ? ImportType.download(ImporterFactory.downloadImporterNames[$0.offset]) : nil }
-        imports = importTypes
     }
 
     private func resetInput() {
