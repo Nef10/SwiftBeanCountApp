@@ -51,14 +51,15 @@ struct ImporterResultsView: View {
                             .lineLimit(nil)
                             .padding(7)
                             .textSelection(.enabled)
+                            .background(.gray.opacity(0.1))
+                            .cornerRadius(5)
+                            .blur(radius: importManager.showLoadingIndicator ? 5 : 0)
                     }
-                }.background(.black.opacity(0.05)).cornerRadius(5).blur(radius: importManager.showLoadingIndicator ? 5 : 0)
+                }
                 if importManager.showLoadingIndicator {
-                    HStack {
-                        LoadingView(message: $importManager.loadingMessage)
-                    }
+                    HStack { LoadingView(message: $importManager.loadingMessage) }
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                        .background(.black.opacity(0.05))
+                        .background(.gray.opacity(0.1))
                         .cornerRadius(5)
                 }
             }
