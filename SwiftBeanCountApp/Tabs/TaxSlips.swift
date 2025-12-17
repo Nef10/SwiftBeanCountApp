@@ -120,7 +120,9 @@ struct TaxSlips: View {
         }
         .padding()
         .onAppear {
-            generateSlips()
+            if !generating {
+                generateSlips()
+            }
         }
         .onChange(of: year) {
             generateSlips()
@@ -136,12 +138,16 @@ struct TaxSlips: View {
         generating = true
         Task.detached {
             do {
+                Logger.tax.info("Tax Slips - Start")
                 let ledger = try await ledger.getLedgerContent()
+                Logger.tax.info("Tax Slips - Got Ledger")
                 let slips = try await TaxCalculator.generateTaxSlips(from: ledger, for: year)
+                Logger.tax.info("Tax Slips - Generated Slips")
                 DispatchQueue.main.async {
                     self.slips = slips
                     generating = false
                 }
+                Logger.tax.info("Tax Slips - Done")
             } catch {
                 DispatchQueue.main.async {
                     generating = false
