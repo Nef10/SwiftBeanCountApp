@@ -37,10 +37,15 @@ struct ImporterResultsView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
+#if os(macOS)
             Text("Imported Transactions:").font(.headline)
+#endif
             ZStack {
                 VStack {
                     ScrollView {
+#if !os(macOS)
+                        Text("Imported Transactions:").font(.headline)
+#endif
                         Text(resultText)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             .lineLimit(nil)
@@ -59,7 +64,7 @@ struct ImporterResultsView: View {
             }
             HStack {
                 Spacer()
-                Button("Done") { imports = [] }.disabled(importManager.showLoadingIndicator)
+                Button("Done") { imports = [] }.disabled(importManager.showLoadingIndicator).buttonStyle(.borderedProminent)
             }
         }
         .padding()
