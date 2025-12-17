@@ -18,6 +18,9 @@ jobs:
     runs-on: macOS-26
     steps:
     - uses: actions/checkout@v4
+    - name: Configure SwiftLint Reporter
+      run: |
+        echo "reporter: \"github-actions-logging\"" >> .swiftlint.yml
     - name: Build
       uses: sersoft-gmbh/xcodebuild-action@v4
       with:
