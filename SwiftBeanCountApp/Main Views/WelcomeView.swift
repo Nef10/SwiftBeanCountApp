@@ -30,7 +30,7 @@ struct WelcomeView<Content: View>: View {
 
 #Preview {
     WelcomeView {
-        Text("To get started, select an option from the menu on the right.")
+        Text("To get started, select an option from the menu on the left.")
             .font(.title3)
     }
 }

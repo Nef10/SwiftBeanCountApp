@@ -95,7 +95,7 @@ struct MainNavigationView: View {
                         tabs[activeTab].view.navigationTitle(tabs[activeTab].title)
                     } else {
                         WelcomeView {
-                            Text("To get started, select an option from the menu on the right.")
+                            Text("To get started, select an option from the menu on the left.")
                                 .font(.title3)
                         }
                     }
