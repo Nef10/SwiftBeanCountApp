@@ -30,7 +30,9 @@ struct SwiftBeanCountApp: App {
     @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
 #endif
 
-    var tabs: [Tab] { // Register all tab views here
+    private let initializedTabs: [Tab]
+
+    init() {
         var tabs = [
             Tab(title: "Tax Slips", icon: "text.page", view: AnyView(TaxSlips())),
             Tab(title: "Tax Sales", icon: "banknote", view: AnyView(TaxSales())),
@@ -46,7 +48,11 @@ struct SwiftBeanCountApp: App {
             Tab(title: "Settings", icon: "gear", view: AnyView(SettingsView())),
         ]
 #endif
-        return tabs
+        initializedTabs = tabs
+    }
+
+    var tabs: [Tab] { // Register all tab views here
+        return initializedTabs
     }
 
     @StateObject private var ledger = LedgerManager()
