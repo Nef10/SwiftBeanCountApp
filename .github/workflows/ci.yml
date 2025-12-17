@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         platform:  ['macOS', 'iOS']
-    runs-on: macOS-15
+    runs-on: macOS-26
     steps:
     - uses: actions/checkout@v4
     - name: Build
@@ -27,7 +27,7 @@ jobs:
         build-settings: -skipPackagePluginValidation -skipMacroValidation
   swiftlint:
     name: SwiftLint
-    runs-on: macOS-15
+    runs-on: macOS-26
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
