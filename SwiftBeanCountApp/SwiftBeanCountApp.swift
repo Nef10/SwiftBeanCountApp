@@ -30,7 +30,31 @@ struct SwiftBeanCountApp: App {
     @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
 #endif
 
+    @StateObject private var ledger = LedgerManager()
+
     private let initializedTabs: [Tab]
+
+    var tabs: [Tab] { // Register all tab views here
+        initializedTabs
+    }
+
+    var body: some Scene {
+
+        let content = LedgerSelectionWrapperView(tabs).environmentObject(ledger)
+
+#if os(macOS)
+        Window("SwiftBeanCountApp", id: "main") { content }.handlesExternalEvents(matching: ["*"])
+        Window("Importer Help", id: "importer-help") { ImporterHelpView() }
+#else
+        WindowGroup { content }
+#endif
+
+#if os(macOS)
+       Settings {
+           SettingsView()
+       }
+#endif
+    }
 
     init() {
         var tabs = [
@@ -51,27 +75,4 @@ struct SwiftBeanCountApp: App {
         initializedTabs = tabs
     }
 
-    var tabs: [Tab] { // Register all tab views here
-        return initializedTabs
-    }
-
-    @StateObject private var ledger = LedgerManager()
-
-    var body: some Scene {
-
-        let content = LedgerSelectionWrapperView(tabs).environmentObject(ledger)
-
-#if os(macOS)
-        Window("SwiftBeanCountApp", id: "main") { content }.handlesExternalEvents(matching: ["*"])
-        Window("Importer Help", id: "importer-help") { ImporterHelpView() }
-#else
-        WindowGroup { content }
-#endif
-
-#if os(macOS)
-       Settings {
-           SettingsView()
-       }
-#endif
-    }
 }
