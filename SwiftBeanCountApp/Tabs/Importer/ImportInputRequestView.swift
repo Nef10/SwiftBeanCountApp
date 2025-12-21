@@ -44,35 +44,41 @@ struct ImportInputRequestView: View {
 
     var body: some View {
         let type = importManager.input!.2
+        let text = "\(type == .bool ? importManager.input!.1 : "Please provide the requested information") for the following import: \(importManager.input!.0)"
         VStack(alignment: .leading) {
-            let text = "\(type == .bool ? importManager.input!.1 : "Please provide the requested information") for the following import: \(importManager.input!.0)"
-
-            Form {
-                Text(text).padding(.bottom).padding(.trailing)
-                switch type {
-                case .bool:
-                    EmptyView() // No other UI, just the buttons
-                case .otp:
-                    TextField(importManager.input!.1, text: $input).textContentType(.oneTimeCode)
-                case .secret:
-                    SecureField(importManager.input!.1, text: $input).textContentType(.password)
-                case let .text(suggestions):
-                    textInputView(suggestions)
-                case let .choice(choices):
-                    Picker(importManager.input!.1, selection: $input) { ForEach(choices, id: \.self) { Text($0).tag($0) } }
-                }
-                HStack {
-                    Spacer()
-                    if type == .bool {
-                        Button("No") { importManager.input("false") }
-                        Button("Yes") { importManager.input("true") }
-                    } else {
-                        Button("Cancel") { importManager.cancelInput() }
-                        Button("OK") { importManager.input(input) }.disabled(disableOkButton)
-                    }
-                }.padding(.top)
+#if !os(macOS)
+            Text("Importer Input").font(.largeTitle).bold().padding(.vertical)
+#endif
+            Text(text).padding(.bottom).padding(.trailing)
+            if .bool != type {
+                Text(importManager.input!.1).font(.headline)
             }
-        }.padding()
+            switch type {
+            case .bool:
+                EmptyView() // No other UI, just the buttons
+            case .otp:
+                TextField(importManager.input!.1, text: $input).textContentType(.oneTimeCode)
+            case .secret:
+                SecureField(importManager.input!.1, text: $input).textContentType(.password)
+            case let .text(suggestions):
+                textInputView(suggestions)
+            case let .choice(choices):
+                Picker(importManager.input!.1, selection: $input) { ForEach(choices, id: \.self) { Text($0).tag($0) } }
+            }
+            HStack {
+                Spacer()
+                if type == .bool {
+                    Button("No") { importManager.input("false") }
+                    Button("Yes") { importManager.input("true") }
+                } else {
+                    Button("Cancel") { importManager.cancelInput() }
+                    Button("OK") { importManager.input(input) }.disabled(disableOkButton).buttonStyle(.borderedProminent)
+                }
+            }.padding(.top).buttonStyle(.bordered)
+            Spacer()
+        }
+            .padding()
+            .interactiveDismissDisabled()
     }
 
     func textInputView(_ suggestions: [String]) -> some View {
