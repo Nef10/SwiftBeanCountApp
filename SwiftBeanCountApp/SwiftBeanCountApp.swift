@@ -60,13 +60,13 @@ struct SwiftBeanCountApp: App {
         var tabs = [
             Tab(title: "Tax Slips", icon: "text.page", view: AnyView(TaxSlips())),
             Tab(title: "Tax Sales", icon: "banknote", view: AnyView(TaxSales())),
+            Tab(title: "Importer", icon: "square.and.arrow.down.on.square", view: AnyView(Importer())),
         ]
 #if os(macOS)
         tabs += [
             Tab(title: "Statements", icon: "doc.text", view: AnyView(Statements())),
         ]
-#endif
-#if os(iOS)
+#else
         tabs += [
             Tab(title: "Ledger", icon: "doc.fill", view: AnyView(ChangeLedgerView())),
             Tab(title: "Settings", icon: "gear", view: AnyView(SettingsView())),

@@ -60,7 +60,7 @@ struct GeneralSettingsView: View {
                 HStack {
                     Text("Date tolerance for checking duplicate transactions:")
                     TextField("", value: $dateTolerance, formatter: NumberFormatter()).frame(minWidth: 15, maxWidth: 40)
-#if os(iOS)
+#if !os(macOS)
                         .textFieldStyle(.roundedBorder)
 #endif
                 }
