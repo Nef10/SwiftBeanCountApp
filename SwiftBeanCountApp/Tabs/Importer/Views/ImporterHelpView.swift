@@ -78,18 +78,14 @@ struct ImporterHelpView: View {
     }
 }
 
-struct HelpTextView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview("HelpTextView", traits: .sizeThatFitsLayout) {
 #if os(macOS)
-        HelpTextView(title: "Title", content: "ABC\ndef\n\ngh").previewLayout(.sizeThatFits)
+    HelpTextView(title: "Title", content: "ABC\ndef\n\ngh")
 #else
-        HelpTextView(title: "Title", content: "ABC\ndef\n\ngh", dismiss: nil).previewLayout(.sizeThatFits)
+    HelpTextView(title: "Title", content: "ABC\ndef\n\ngh", dismiss: nil)
 #endif
-    }
 }
 
-struct HelpView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImporterHelpView()
-    }
+#Preview("ImporterHelpView") {
+    ImporterHelpView()
 }
