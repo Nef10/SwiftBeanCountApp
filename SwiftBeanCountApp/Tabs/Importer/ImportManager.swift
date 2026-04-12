@@ -22,21 +22,20 @@ private enum ImportPhase {
     case done
 }
 
-class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
+class ImportManager: ObservableObject {
 
     @Published var resultLedger = Ledger()
     @Published var showLoadingIndicator = true
     @Published var loadingMessage: String? = "Organizing imports"
     @Published var showErrorAlert = false
     @Published var errorMessage = ""
-    @Published var showDuplicateSheet = false
-    @Published var duplicate: (ImportedTransaction, String)?
-    @Published var showInputRequestSheet = false
-    @Published var input: (String, String, ImporterInputRequestType)? // swiftlint:disable:this large_tuple
-    @Published var showDataEntrySheet = false
-    @Published var transactionToImport: ImportedTransaction?
 
-    private var currentImporter: SwiftBeanCountImporter.Importer!
+    // Sheet items — using optional Identifiable VMs instead of bool + force-unwrapped data
+    @Published var duplicateVM: DuplicateViewModel?
+    @Published var inputRequestVM: InputRequestViewModel?
+    @Published var dataEntryVM: DataEntryViewModel?
+
+    private var currentImporter: SwiftBeanCountImporter.Importer?
     private var importers = [SwiftBeanCountImporter.Importer]()
     private var importPhase: ImportPhase = .setupImporters
 
@@ -87,34 +86,39 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
         }
     }
 
+    @MainActor
     func skipDuplicateImport() {
-        Task { @MainActor in
-            duplicate = nil
+        duplicateVM = nil
+        Task {
             await continueImport()
         }
     }
 
+    @MainActor
     func importDuplicate() {
-        let transaction = duplicate!.0
-        Task { @MainActor in
-            duplicate = nil
-            showDataEntryView(for: transaction)
+        guard let duplicateViewModel = duplicateVM else {
+            return
         }
+        let importedTransaction = duplicateViewModel.importedTransaction
+        duplicateVM = nil
+        showDataEntryView(for: importedTransaction)
     }
 
-    func input(_ result: String) {
-        Task {
-            Task { @MainActor in
-                showInputRequestSheet = false
+    func handleInputSubmit(_ result: String) {
+        Task { @MainActor in
+            let completion = inputRequestCompletion
+            let currentInputVM = inputRequestVM
+            inputRequestVM = nil
+
+            guard let completion else {
+                return
             }
-            try? await Task.sleep(nanoseconds: 100_000_000) // 0.1s
-            if !inputRequestCompletion!(result) {
-                Task { // re-request in case of invalid input
-                    await showInputRequestSheet(inputName: input!.1, inputType: input!.2)
-                }
-            } else {
-                Task { @MainActor in
-                    input = nil
+            if !completion(result) {
+                // re-request in case of invalid input
+                if let currentInputVM {
+                    presentInputRequest(importerName: currentInputVM.importerName,
+                                        inputName: currentInputVM.inputName,
+                                        inputType: currentInputVM.inputType)
                 }
             }
         }
@@ -122,7 +126,7 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
 
     func cancelInput() {
         Task { @MainActor in
-            showInputRequestSheet = false
+            inputRequestVM = nil
         }
         Task {
             // skip current importer without the required input
@@ -132,8 +136,7 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
 
     @MainActor
     func importTransaction(_ transaction: Transaction) {
-        showDataEntrySheet = false
-        transactionToImport = nil
+        dataEntryVM = nil
         resultLedger.add(transaction)
         Task {
             await nextTransaction()
@@ -142,8 +145,7 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
 
     @MainActor
     func skipTransaction() {
-        showDataEntrySheet = false
-        transactionToImport = nil
+        dataEntryVM = nil
         Task {
             await nextTransaction()
         }
@@ -151,8 +153,7 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
 
     @MainActor
     func skipImporter() {
-        showDataEntrySheet = false
-        transactionToImport = nil
+        dataEntryVM = nil
         finishImporter()
     }
 
@@ -191,29 +192,42 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
 
     @MainActor
     private func showDuplicateSheet(for importedTransaction: ImportedTransaction) {
-        duplicate = (importedTransaction, currentImporter.importName)
-        showDuplicateSheet = true
+        guard let importer = currentImporter else {
+            return
+        }
+        guard let duplicateViewModel = DuplicateViewModel(importedTransaction: importedTransaction,
+                                                          importerName: importer.importName) else {
+            return
+        }
+        duplicateViewModel.onImport = { [weak self] in self?.importDuplicate() }
+        duplicateViewModel.onSkip = { [weak self] in self?.skipDuplicateImport() }
+        duplicateVM = duplicateViewModel
     }
 
     @MainActor
-    private func showInputRequestSheet(inputName: String, inputType: ImporterInputRequestType) {
-        input = (currentImporter.importName, inputName, inputType)
-        showInputRequestSheet = true
+    private func presentInputRequest(importerName: String, inputName: String, inputType: ImporterInputRequestType) {
+        let inputViewModel = InputRequestViewModel(importerName: importerName, inputName: inputName, inputType: inputType)
+        inputViewModel.onSubmit = { [weak self] result in self?.handleInputSubmit(result) }
+        inputViewModel.onCancel = { [weak self] in self?.cancelInput() }
+        inputRequestVM = inputViewModel
     }
 
     @MainActor
     private func showDataEntryView(for transaction: ImportedTransaction) {
-        transactionToImport = transaction
-        showDataEntrySheet = true
+        let entryViewModel = DataEntryViewModel(importedTransaction: transaction)
+        entryViewModel.onImport = { [weak self] transaction in self?.importTransaction(transaction) }
+        entryViewModel.onSkip = { [weak self] in self?.skipTransaction() }
+        entryViewModel.onAbort = { [weak self] in self?.skipImporter() }
+        dataEntryVM = entryViewModel
     }
 
     private func nextImporter() async {
         importPhase = .importing
         currentImporter = importers.popLast()
-        if currentImporter != nil {
-            await showLoadingIndicator(true, message: "Importing: \(currentImporter.importName)")
-            currentImporter.delegate = self
-            currentImporter.load()
+        if var importer = currentImporter {
+            await showLoadingIndicator(true, message: "Importing: \(importer.importName)")
+            importer.delegate = self
+            importer.load()
             await nextTransaction()
         } else {
             importPhase = .done
@@ -222,10 +236,12 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
     }
 
     private func nextTransaction() async {
-        transaction = currentImporter.nextTransaction()
+        guard let importer = currentImporter else {
+            return
+        }
+        transaction = importer.nextTransaction()
         if let importedTransaction = transaction {
             if importedTransaction.shouldAllowUserToEdit {
-                try? await Task.sleep(for: .seconds(0.5))
                 if importedTransaction.possibleDuplicate != nil {
                     await showDuplicateSheet(for: importedTransaction)
                 } else {
@@ -241,10 +257,13 @@ class ImportManager: ObservableObject, ImportInputRequestViewDataProvider {
 
     @MainActor
     private func finishImporter() {
-        for balance in currentImporter.balancesToImport() {
+        guard let importer = currentImporter else {
+            return
+        }
+        for balance in importer.balancesToImport() {
             resultLedger.add(balance)
         }
-        for price in currentImporter.pricesToImport() {
+        for price in importer.pricesToImport() {
             try? resultLedger.add(price)
         }
         Task {
@@ -280,8 +299,11 @@ extension ImportManager: ImporterDelegate {
 
     func requestInput(name: String, type: ImporterInputRequestType, completion: @escaping (String) -> Bool) {
         inputRequestCompletion = completion
-        Task {
-            await showInputRequestSheet(inputName: name, inputType: type)
+        guard let importer = currentImporter else {
+            return
+        }
+        Task { @MainActor in
+            presentInputRequest(importerName: importer.importName, inputName: name, inputType: type)
         }
     }
 

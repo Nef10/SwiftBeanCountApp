@@ -70,28 +70,28 @@ struct ImporterResultsView: View {
         }
         .padding()
         .alert("Error", isPresented: $importManager.showErrorAlert) { Button("OK") { importManager.dismissError() } } message: { Text(importManager.errorMessage) }
-        .sheet(isPresented: $importManager.showDuplicateSheet) {
+        .sheet(item: $importManager.duplicateVM) { viewModel in
             Text("""
-            The transaction found in the import data of \(importManager.duplicate!.1):
+            The transaction found in the import data of \(viewModel.importerName):
 
-            \(String(describing: importManager.duplicate!.0.transaction))
+            \(String(describing: viewModel.importedTransaction.transaction))
 
             seems to be already present in your ledger:
 
-            \(String(describing: importManager.duplicate!.0.possibleDuplicate!))
+            \(String(describing: viewModel.possibleDuplicate))
 
             How do you want to proceed?
             """)
             HStack {
-                Button("Import Anyways") { importManager.importDuplicate() }
-                Button("Skip") { importManager.skipDuplicateImport() }
+                Button("Import Anyways") { viewModel.onImport?() }
+                Button("Skip") { viewModel.onSkip?() }
             }
         }
-        .sheet(isPresented: $importManager.showInputRequestSheet) {
-            ImportInputRequestView(importManager: importManager)
+        .sheet(item: $importManager.inputRequestVM) { viewModel in
+            ImportInputRequestView(viewModel: viewModel)
         }
-        .sheet(isPresented: $importManager.showDataEntrySheet) {
-            ImporterDataEntryView(importManager: importManager)
+        .sheet(item: $importManager.dataEntryVM) { viewModel in
+            ImporterDataEntryView(viewModel: viewModel)
         }
         .task {
             await importManager.startImporting(imports, from: ledger)

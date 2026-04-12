@@ -11,23 +11,8 @@ import SwiftUI
 
 struct ImporterDataEntryView: View {
 
-    private static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter
-    }()
+    @ObservedObject var viewModel: DataEntryViewModel
 
-    private let importManager: ImportManager
-    private let date: Date
-    private let amount: String
-
-    @State private var description: String = ""
-    @State private var payee: String = ""
-    @State private var saveDescriptionPayeeMapping = false
-    @State private var tags: String = ""
-    @State private var flag: String = ""
-    @State private var account: String = ""
-    @State private var saveAccountMapping = false
     @State private var showAccountValidationError = false
     @State private var payees = [String]()
     @State private var accounts = [String]()
@@ -36,18 +21,18 @@ struct ImporterDataEntryView: View {
 
     var body: some View {
         Form {
-            TextField("Date:", text: .constant(Self.dateFormatter.string(from: date))).disabled(true)
-            TextField("Amount:", text: .constant(amount)).disabled(true).padding(.bottom)
+            TextField("Date:", text: .constant(viewModel.dateString)).disabled(true)
+            TextField("Amount:", text: .constant(viewModel.amount)).disabled(true).padding(.bottom)
 
-            TextField("Payee:", text: $payee)
+            TextField("Payee:", text: $viewModel.payee)
 #if os(macOS)
-                .textInputSuggestions { payeeCompeltions }
+                .textInputSuggestions { payeeCompletions }
 #endif
-            TextField("Description:", text: $description)
-            Toggle(isOn: $saveDescriptionPayeeMapping) { Text("Save this description / payee mapping") }.padding(.bottom)
+            TextField("Description:", text: $viewModel.description)
+            Toggle(isOn: $viewModel.saveDescriptionPayeeMapping) { Text("Save this description / payee mapping") }.padding(.bottom)
 
-            TextField("Tags:", text: $tags)
-            Picker("Flag:", selection: $flag) {
+            TextField("Tags:", text: $viewModel.tags)
+            Picker("Flag:", selection: $viewModel.flag) {
                 Text("Complete").tag("*")
                 Text("Incomplete").tag("!")
             }.padding(.bottom)
@@ -55,15 +40,15 @@ struct ImporterDataEntryView: View {
                 .pickerStyle(.radioGroup)
                 .horizontalRadioGroupLayout()
 #endif
-            TextField("Account:", text: $account)
+            TextField("Account:", text: $viewModel.account)
 #if os(macOS)
                 .textInputSuggestions { accountCompletions }
 #endif
-            Toggle(isOn: $saveAccountMapping) { Text("Save this account for the payee") }.disabled(!saveDescriptionPayeeMapping).padding(.bottom)
+            Toggle(isOn: $viewModel.saveAccountMapping) { Text("Save this account for the payee") }.disabled(!viewModel.saveDescriptionPayeeMapping).padding(.bottom)
             HStack {
                 Spacer()
-                Button("Abort Import") { importManager.skipImporter() }
-                Button("Skip") { importManager.skipTransaction() }
+                Button("Abort Import") { viewModel.onAbort?() }
+                Button("Skip") { viewModel.onSkip?() }
                 Button("Save") { saveTransaction() }
             }
         }
@@ -74,8 +59,8 @@ struct ImporterDataEntryView: View {
         }
     }
 
-    private var payeeCompeltions: some View {
-        ForEach(payees.filter { $0.lowercased().contains(payee.lowercased()) && $0.lowercased() != payee.lowercased() }, id: \.self) {
+    private var payeeCompletions: some View {
+        ForEach(payees.filter { $0.lowercased().contains(viewModel.payee.lowercased()) && $0.lowercased() != viewModel.payee.lowercased() }, id: \.self) {
             Text($0)
 #if os(macOS)
                 .textInputCompletion($0)
@@ -85,7 +70,9 @@ struct ImporterDataEntryView: View {
 
     private var accountCompletions: some View {
         ForEach(AccountType.allValues(), id: \.self) { accountType in
-            let accounts = accounts.filter { $0.hasPrefix(accountType.rawValue) && $0.lowercased().contains(account.lowercased()) && $0.lowercased() != account.lowercased() }
+            let accounts = accounts.filter {
+                $0.hasPrefix(accountType.rawValue) && $0.lowercased().contains(viewModel.account.lowercased()) && $0.lowercased() != viewModel.account.lowercased()
+            }
             if !accounts.isEmpty {
                 Section(content: {
                     ForEach(accounts, id: \.self) {
@@ -101,30 +88,6 @@ struct ImporterDataEntryView: View {
         }
     }
 
-    init(importManager: ImportManager) {
-        self.importManager = importManager
-
-        let importedTransaction = importManager.transactionToImport!
-        let transaction = importedTransaction.transaction
-        let metaData = transaction.metaData
-        let posting = transaction.postings.first { $0.accountName != importedTransaction.accountName }!
-
-        date = metaData.date
-        var priceString = ""
-        if posting.price != nil {
-            if posting.priceType == .total {
-                priceString = " @@ \(String(describing: posting.totalPrice!))"
-            } else {
-                priceString = " @ \(String(describing: posting.price!))"
-            }
-        }
-        amount = String(describing: posting.amount) + priceString
-        _description = State(initialValue: metaData.narration)
-        _payee = State(initialValue: metaData.payee)
-        _flag = State(initialValue: metaData.flag == .complete ? "*" : "!")
-        _account = State(initialValue: posting.accountName.fullName)
-    }
-
     private func calculateAccountsAndPayees() async {
         guard let ledger = try? await ledger.getLedgerContent() else {
             return
@@ -134,56 +97,20 @@ struct ImporterDataEntryView: View {
     }
 
     private func saveTransaction() {
-        guard let accountName = try? AccountName(account) else {
+        guard let accountName = try? AccountName(viewModel.account) else {
             showAccountValidationError = true
             return
         }
-        let transaction = getTransaction(in: accountName)
-        if saveDescriptionPayeeMapping, let importedTransaction = importManager.transactionToImport {
-            importedTransaction.saveMapped(description: transaction.metaData.narration,
-                                           payee: transaction.metaData.payee,
-                                           accountName: saveAccountMapping ? accountName : nil)
+        guard let transaction = viewModel.buildTransaction(accountName: accountName) else {
+            showAccountValidationError = true
+            return
         }
-        importManager.importTransaction(transaction)
-    }
-
-    private func getTransaction(in accountName: AccountName) -> SwiftBeanCountModel.Transaction {
-        let importedTransaction = importManager.transactionToImport!
-        let transaction = importedTransaction.transaction
-        let posting = transaction.postings.first { $0.accountName != importedTransaction.accountName }!
-
-        let metaData = TransactionMetaData(date: transaction.metaData.date,
-                                           payee: payee,
-                                           narration: description,
-                                           flag: flag == "*" ? .complete : .incomplete,
-                                           tags: getTags(),
-                                           metaData: transaction.metaData.metaData)
-        guard let newPosting = try? Posting(accountName: accountName,
-                                            amount: posting.amount,
-                                            price: posting.priceType == .total ? posting.totalPrice : posting.price,
-                                            priceType: posting.priceType)
-        else {
-            fatalError("Invalid price config in posting")
+        if viewModel.saveDescriptionPayeeMapping {
+            viewModel.importedTransaction.saveMapped(description: transaction.metaData.narration,
+                                                     payee: transaction.metaData.payee,
+                                                     accountName: viewModel.saveAccountMapping ? accountName : nil)
         }
-        var postings: [Posting] = transaction.postings.filter { $0 != posting }
-        postings.append(newPosting)
-        return Transaction(metaData: metaData, postings: postings)
-    }
-
-    private func getTags() -> [Tag] {
-        let tagStrings = Set(tags.components(separatedBy: CharacterSet.whitespacesAndNewlines))
-        var tags = [Tag]()
-        for tagString in tagStrings {
-            guard !tagString.isEmpty else {
-                continue
-            }
-            var tag = tagString
-            if tagString.starts(with: "#") {
-                tag = String(tagString.dropFirst())
-            }
-            tags.append(Tag(name: tag))
-        }
-        return tags
+        viewModel.onImport?(transaction)
     }
 
 }

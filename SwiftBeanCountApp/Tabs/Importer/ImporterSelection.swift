@@ -162,6 +162,26 @@ struct ImporterSelection: View {
 #endif
     }
 
+    private func csvURLsInDirectory(_ url: URL) -> [URL] {
+        guard let enumerator = FileManager.default.enumerator(at: url,
+                                                              includingPropertiesForKeys: [.isDirectoryKey],
+                                                              options: [.skipsHiddenFiles],
+                                                              errorHandler: { _, error -> Bool in
+            errorMessage = error.localizedDescription
+            showErrorAlert = true
+            return true
+        }) else {
+            errorMessage = "Could not enumerate directory"
+            showErrorAlert = true
+            return []
+        }
+        var urls = [URL]()
+        for case let fileURL as URL in enumerator where !fileURL.hasDirectoryPath && fileURL.pathExtension.lowercased() == "csv" {
+            urls.append(fileURL)
+        }
+        return urls
+    }
+
     private func selectFilesFromURLs(_ result: Result<[URL], Error>) {
         switch result {
         case .success(let urls):
@@ -174,18 +194,7 @@ struct ImporterSelection: View {
                 if !url.hasDirectoryPath {
                     fileImport.append(url)
                 } else {
-                    let enumerator = FileManager.default.enumerator(at: url,
-                                                                    includingPropertiesForKeys: [.isDirectoryKey],
-                                                                    options: [.skipsHiddenFiles]) { _, error -> Bool in
-                        errorMessage = error.localizedDescription
-                        showErrorAlert = true
-                        return true
-                    }!
-                    var urls = [URL]()
-                    for case let fileURL as URL in enumerator where !fileURL.hasDirectoryPath && fileURL.pathExtension.lowercased() == "csv" {
-                        urls.append(url)
-                    }
-                    fileImport.append(contentsOf: urls)
+                    fileImport.append(contentsOf: csvURLsInDirectory(url))
                 }
                 url.stopAccessingSecurityScopedResource()
             }
