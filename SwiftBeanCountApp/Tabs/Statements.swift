@@ -228,8 +228,8 @@ struct Statements: View {
     private func showResults(_ results: [AccountName: AccountResult], url: URL) {
         generatingError = nil
         self.results = results
-        self.keys = Array(results.keys).sorted { $0.fullName < $1.fullName }
-        self.scopedRootURL = url
+        keys = Array(results.keys).sorted { $0.fullName < $1.fullName }
+        scopedRootURL = url
         generating = false
     }
 
@@ -243,13 +243,13 @@ struct Statements: View {
 #if hasFeature(RetroactiveAttribute)
 extension AccountName: @retroactive Identifiable {
     public var id: String {
-        self.fullName
+        fullName
     }
 }
 #else
 extension AccountName: Identifiable {
     public var id: String {
-        self.fullName
+        fullName
     }
 }
 
