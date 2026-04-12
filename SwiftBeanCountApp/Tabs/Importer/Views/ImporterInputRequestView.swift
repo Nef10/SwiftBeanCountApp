@@ -1,5 +1,5 @@
 //
-//  ImportInputRequestView.swift
+//  ImporterInputRequestView.swift
 //  SwiftBeanCountApp
 //
 //  Created by Steffen Kötte on 2024-12-12.
@@ -8,9 +8,11 @@
 import SwiftBeanCountImporter
 import SwiftUI
 
-struct ImportInputRequestView: View {
+struct ImporterInputRequestView: View {
 
-    @ObservedObject var viewModel: InputRequestViewModel
+    let viewModel: InputRequestViewModel
+
+    @State private var input = ""
 
     private var disableOkButton: Bool {
         if case .choice = viewModel.inputType, input.isEmpty {
@@ -18,8 +20,6 @@ struct ImportInputRequestView: View {
         }
         return false
     }
-
-    @State private var input = ""
 
     var body: some View {
         let type = viewModel.inputType
@@ -76,24 +76,28 @@ struct ImportInputRequestView: View {
 struct ImportInputRequestView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ImportInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .secret)
+        ImporterInputRequestView(viewModel:
+            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .secret, onSubmit: nil, onCancel: nil)
         )
 
-        ImportInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .text(["suggestion1 a little bit longer", "suggestion2"]))
+        ImporterInputRequestView(viewModel:
+            InputRequestViewModel(importerName: "Importer Name",
+                                  inputName: "Input text",
+                                  inputType: .text(["suggestion1 a little bit longer", "suggestion2"]),
+                                  onSubmit: nil,
+                                  onCancel: nil)
         )
 
-        ImportInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .choice(["choice1", "choice2"]))
+        ImporterInputRequestView(viewModel:
+            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .choice(["choice1", "choice2"]), onSubmit: nil, onCancel: nil)
         )
 
-        ImportInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input choice", inputType: .bool)
+        ImporterInputRequestView(viewModel:
+            InputRequestViewModel(importerName: "Importer Name", inputName: "Input choice", inputType: .bool, onSubmit: nil, onCancel: nil)
         )
 
-        ImportInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .otp)
+        ImporterInputRequestView(viewModel:
+            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .otp, onSubmit: nil, onCancel: nil)
         )
     }
 }

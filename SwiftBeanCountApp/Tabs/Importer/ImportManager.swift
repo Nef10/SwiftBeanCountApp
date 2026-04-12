@@ -30,7 +30,7 @@ class ImportManager: ObservableObject {
     @Published var showErrorAlert = false
     @Published var errorMessage = ""
 
-    // Sheet items — using optional Identifiable VMs instead of bool + force-unwrapped data
+    // Sheets
     @Published var duplicateVM: DuplicateViewModel?
     @Published var inputRequestVM: InputRequestViewModel?
     @Published var dataEntryVM: DataEntryViewModel?
@@ -97,11 +97,11 @@ class ImportManager: ObservableObject {
     @MainActor
     func importDuplicate() {
         guard let duplicateViewModel = duplicateVM else {
+            Logger.importer.error("Duplicate view model not found when trying to import duplicate")
             return
         }
-        let importedTransaction = duplicateViewModel.importedTransaction
         duplicateVM = nil
-        showDataEntryView(for: importedTransaction)
+        importTransaction(duplicateViewModel.importedTransaction)
     }
 
     func handleInputSubmit(_ result: String) {
@@ -124,10 +124,9 @@ class ImportManager: ObservableObject {
         }
     }
 
+    @MainActor
     func cancelInput() {
-        Task { @MainActor in
-            inputRequestVM = nil
-        }
+        inputRequestVM = nil
         Task {
             // skip current importer without the required input
             await nextImporter()
@@ -175,6 +174,7 @@ class ImportManager: ObservableObject {
     @MainActor
     private func showErrorMessage() {
         guard let message = errors.first else {
+            Logger.importer.error("No error message found to show")
             return
         }
         errors.removeFirst()
@@ -191,25 +191,23 @@ class ImportManager: ObservableObject {
     }
 
     @MainActor
-    private func showDuplicateSheet(for importedTransaction: ImportedTransaction) {
-        guard let importer = currentImporter else {
-            return
+    private func showDuplicateSheet(for importedTransaction: SwiftBeanCountModel.Transaction, possibleDuplicate: SwiftBeanCountModel.Transaction, importerName: String) {
+        duplicateVM = DuplicateViewModel(importedTransaction: importedTransaction,
+                                         possibleDuplicate: possibleDuplicate,
+                                         importerName: importerName) { [weak self] in
+            self?.importDuplicate()
+        } onSkip: { [weak self] in
+            self?.skipDuplicateImport()
         }
-        guard let duplicateViewModel = DuplicateViewModel(importedTransaction: importedTransaction,
-                                                          importerName: importer.importName) else {
-            return
-        }
-        duplicateViewModel.onImport = { [weak self] in self?.importDuplicate() }
-        duplicateViewModel.onSkip = { [weak self] in self?.skipDuplicateImport() }
-        duplicateVM = duplicateViewModel
     }
 
     @MainActor
     private func presentInputRequest(importerName: String, inputName: String, inputType: ImporterInputRequestType) {
-        let inputViewModel = InputRequestViewModel(importerName: importerName, inputName: inputName, inputType: inputType)
-        inputViewModel.onSubmit = { [weak self] result in self?.handleInputSubmit(result) }
-        inputViewModel.onCancel = { [weak self] in self?.cancelInput() }
-        inputRequestVM = inputViewModel
+        inputRequestVM = InputRequestViewModel(importerName: importerName, inputName: inputName, inputType: inputType) { [weak self] result in
+            self?.handleInputSubmit(result)
+        } onCancel: { [weak self] in
+            self?.cancelInput()
+        }
     }
 
     @MainActor
@@ -237,13 +235,14 @@ class ImportManager: ObservableObject {
 
     private func nextTransaction() async {
         guard let importer = currentImporter else {
+            Logger.importer.error("No current importer found when trying to get next transaction")
             return
         }
         transaction = importer.nextTransaction()
         if let importedTransaction = transaction {
             if importedTransaction.shouldAllowUserToEdit {
-                if importedTransaction.possibleDuplicate != nil {
-                    await showDuplicateSheet(for: importedTransaction)
+                if let possibleDuplicate = importedTransaction.possibleDuplicate {
+                    await showDuplicateSheet(for: importedTransaction.transaction, possibleDuplicate: possibleDuplicate, importerName: importer.importName)
                 } else {
                     await showDataEntryView(for: importedTransaction)
                 }
@@ -258,6 +257,7 @@ class ImportManager: ObservableObject {
     @MainActor
     private func finishImporter() {
         guard let importer = currentImporter else {
+            Logger.importer.error("No current importer found when trying to finish importer")
             return
         }
         for balance in importer.balancesToImport() {
@@ -300,6 +300,7 @@ extension ImportManager: ImporterDelegate {
     func requestInput(name: String, type: ImporterInputRequestType, completion: @escaping (String) -> Bool) {
         inputRequestCompletion = completion
         guard let importer = currentImporter else {
+            Logger.importer.error("No current importer found when trying to request input")
             return
         }
         Task { @MainActor in

@@ -71,24 +71,10 @@ struct ImporterResultsView: View {
         .padding()
         .alert("Error", isPresented: $importManager.showErrorAlert) { Button("OK") { importManager.dismissError() } } message: { Text(importManager.errorMessage) }
         .sheet(item: $importManager.duplicateVM) { viewModel in
-            Text("""
-            The transaction found in the import data of \(viewModel.importerName):
-
-            \(String(describing: viewModel.importedTransaction.transaction))
-
-            seems to be already present in your ledger:
-
-            \(String(describing: viewModel.possibleDuplicate))
-
-            How do you want to proceed?
-            """)
-            HStack {
-                Button("Import Anyways") { viewModel.onImport?() }
-                Button("Skip") { viewModel.onSkip?() }
-            }
+            ImporterDuplicateView(viewModel: viewModel)
         }
         .sheet(item: $importManager.inputRequestVM) { viewModel in
-            ImportInputRequestView(viewModel: viewModel)
+            ImporterInputRequestView(viewModel: viewModel)
         }
         .sheet(item: $importManager.dataEntryVM) { viewModel in
             ImporterDataEntryView(viewModel: viewModel)

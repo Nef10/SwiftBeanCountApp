@@ -8,19 +8,11 @@
 import Foundation
 import SwiftBeanCountImporter
 
-class InputRequestViewModel: ObservableObject, Identifiable {
-
+struct InputRequestViewModel: Identifiable {
     let id = UUID()
     let importerName: String
     let inputName: String
     let inputType: ImporterInputRequestType
-
-    var onSubmit: ((String) -> Void)?
-    var onCancel: (() -> Void)?
-
-    init(importerName: String, inputName: String, inputType: ImporterInputRequestType) {
-        self.importerName = importerName
-        self.inputName = inputName
-        self.inputType = inputType
-    }
+    let onSubmit: ((String) -> Void)?
+    let onCancel: (() -> Void)?
 }
