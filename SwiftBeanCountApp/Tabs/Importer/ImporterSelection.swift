@@ -1,5 +1,5 @@
 //
-//  Importer.swift
+//  ImporterSelection.swift
 //  SwiftBeanCountApp
 //
 //  Created by Steffen Kötte on 2024-12-01.

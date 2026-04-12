@@ -59,7 +59,7 @@ struct ImporterDataEntryView: View {
 #if os(macOS)
                 .textInputSuggestions { accountCompletions }
 #endif
-            Toggle(isOn: $saveAccountMapping) { Text("Save this accout for the payee") }.disabled(!saveDescriptionPayeeMapping).padding(.bottom)
+            Toggle(isOn: $saveAccountMapping) { Text("Save this account for the payee") }.disabled(!saveDescriptionPayeeMapping).padding(.bottom)
             HStack {
                 Spacer()
                 Button("Abort Import") { importManager.skipImporter() }

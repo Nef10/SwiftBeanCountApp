@@ -304,7 +304,7 @@ extension ImportManager: ImporterDelegate {
     }
 
     func readCredential(_ key: String) -> String? {
-        (try? keychain.string(forKey: key)) ?? ""
+        try? keychain.string(forKey: key)
     }
 
     func error(_ error: Error, completion: @escaping () -> Void) {

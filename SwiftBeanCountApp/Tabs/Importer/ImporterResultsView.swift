@@ -76,7 +76,7 @@ struct ImporterResultsView: View {
 
             \(String(describing: importManager.duplicate!.0.transaction))
 
-            seems to be alredy present in your ledger:
+            seems to be already present in your ledger:
 
             \(String(describing: importManager.duplicate!.0.possibleDuplicate!))
 
