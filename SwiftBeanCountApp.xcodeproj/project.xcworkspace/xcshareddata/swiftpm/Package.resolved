@@ -123,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCount",
       "state" : {
-        "revision" : "d30ae186710200fad257513a13f26f2b3254d8c0",
-        "version" : "0.1.0"
+        "revision" : "7c7adf9dba16e7369727b7421f13447a138eb593",
+        "version" : "0.1.1"
       }
     },
     {
