@@ -26,6 +26,8 @@ jobs:
         xcode-version: latest-stable
     - name: Build
       uses: sersoft-gmbh/xcodebuild-action@v4
+      env:
+        SKIP_WARNINGS_SWIFTBEANCOUNT: true
       with:
         project: SwiftBeanCountApp.xcodeproj
         scheme: SwiftBeanCountApp
