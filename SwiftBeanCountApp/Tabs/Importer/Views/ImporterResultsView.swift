@@ -90,8 +90,6 @@ struct ImporterResultsView: View {
 
 }
 
-struct ImporterResultsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImporterResultsView(.constant([])).environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
-    }
+#Preview {
+    ImporterResultsView(.constant([])).environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
 }

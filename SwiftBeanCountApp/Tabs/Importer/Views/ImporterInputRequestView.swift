@@ -73,31 +73,32 @@ struct ImporterInputRequestView: View {
 
 }
 
-struct ImportInputRequestView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        ImporterInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .secret, onSubmit: nil, onCancel: nil)
-        )
-
-        ImporterInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name",
-                                  inputName: "Input text",
-                                  inputType: .text(["suggestion1 a little bit longer", "suggestion2"]),
-                                  onSubmit: nil,
-                                  onCancel: nil)
-        )
-
-        ImporterInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .choice(["choice1", "choice2"]), onSubmit: nil, onCancel: nil)
-        )
-
-        ImporterInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input choice", inputType: .bool, onSubmit: nil, onCancel: nil)
-        )
-
-        ImporterInputRequestView(viewModel:
-            InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .otp, onSubmit: nil, onCancel: nil)
-        )
-    }
+#Preview("Secret") {
+    ImporterInputRequestView(viewModel:
+        InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .secret, onSubmit: nil, onCancel: nil)
+    )
+}
+#Preview("Text") {
+    ImporterInputRequestView(viewModel:
+        InputRequestViewModel(importerName: "Importer Name",
+                              inputName: "Input text",
+                              inputType: .text(["suggestion1 a little bit longer", "suggestion2"]),
+                              onSubmit: nil,
+                              onCancel: nil)
+    )
+}
+#Preview("Choice") {
+    ImporterInputRequestView(viewModel:
+        InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .choice(["choice1", "choice2"]), onSubmit: nil, onCancel: nil)
+    )
+}
+#Preview("Bool") {
+    ImporterInputRequestView(viewModel:
+        InputRequestViewModel(importerName: "Importer Name", inputName: "Input choice", inputType: .bool, onSubmit: nil, onCancel: nil)
+    )
+}
+#Preview("OTP") {
+    ImporterInputRequestView(viewModel:
+        InputRequestViewModel(importerName: "Importer Name", inputName: "Input text", inputType: .otp, onSubmit: nil, onCancel: nil)
+    )
 }

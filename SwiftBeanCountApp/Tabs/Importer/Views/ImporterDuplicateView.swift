@@ -39,7 +39,7 @@ struct ImporterDuplicateView: View {
     }
 }
 
-#Preview {
+#Preview("Default") {
     let transaction = Transaction(metaData: TransactionMetaData(date: Date(), narration: "Test"), postings: [])
     let possibleDuplicate = Transaction(metaData: TransactionMetaData(date: Date(), narration: "Duplicate", metaData: [:]), postings: [])
     let viewModel = DuplicateViewModel(importedTransaction: transaction, possibleDuplicate: possibleDuplicate, importerName: "Import A", onImport: nil, onSkip: nil)
