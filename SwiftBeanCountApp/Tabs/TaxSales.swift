@@ -94,7 +94,7 @@ struct TaxSales: View {
                 Logger.tax.info("Sales Calculation - Start")
                 let ledger = try await ledger.getLedgerContent()
                 Logger.tax.info("Sales Calculation - Got Ledger")
-                let sales = try await TaxCalculator.getTaxableSales(from: ledger, for: year)
+                let sales = await TaxCalculator.getTaxableSales(from: ledger, for: year)
                 Logger.tax.info("Sales Calculation - Got Sales")
                 let groupedSales = Dictionary(grouping: sales) { $0.provider }
                 DispatchQueue.main.async {
