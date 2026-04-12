@@ -11,8 +11,7 @@ import SwiftUI
 
 struct ImporterDataEntryView: View {
 
-    @ObservedObject var viewModel: DataEntryViewModel
-
+    @State private var viewModel: DataEntryViewModel
     @State private var showAccountValidationError = false
     @State private var payees = [String]()
     @State private var accounts = [String]()
@@ -58,7 +57,6 @@ struct ImporterDataEntryView: View {
             Task { await calculateAccountsAndPayees() }
         }
     }
-
     private var payeeCompletions: some View {
         ForEach(payees.filter { $0.lowercased().contains(viewModel.payee.lowercased()) && $0.lowercased() != viewModel.payee.lowercased() }, id: \.self) {
             Text($0)
@@ -86,6 +84,10 @@ struct ImporterDataEntryView: View {
                 })
             }
         }
+    }
+
+    init(viewModel: DataEntryViewModel) {
+        self.viewModel = viewModel
     }
 
     private func calculateAccountsAndPayees() async {

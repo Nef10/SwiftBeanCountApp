@@ -9,7 +9,7 @@ import Foundation
 import SwiftBeanCountImporter
 import SwiftBeanCountModel
 
-class DataEntryViewModel: ObservableObject, Identifiable {
+struct DataEntryViewModel: Identifiable {
 
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -22,20 +22,23 @@ class DataEntryViewModel: ObservableObject, Identifiable {
     let dateString: String
     let amount: String
 
-    @Published var description: String
-    @Published var payee: String
-    @Published var saveDescriptionPayeeMapping = false
-    @Published var tags: String = ""
-    @Published var flag: String
-    @Published var account: String
-    @Published var saveAccountMapping = false
+    let onImport: ((SwiftBeanCountModel.Transaction) -> Void)?
+    let onSkip: (() -> Void)?
+    let onAbort: (() -> Void)?
 
-    var onImport: ((SwiftBeanCountModel.Transaction) -> Void)?
-    var onSkip: (() -> Void)?
-    var onAbort: (() -> Void)?
+    var description: String
+    var payee: String
+    var saveDescriptionPayeeMapping = false
+    var tags: String = ""
+    var flag: String
+    var account: String
+    var saveAccountMapping = false
 
-    init(importedTransaction: ImportedTransaction) {
+    init(importedTransaction: ImportedTransaction, onImport: ((SwiftBeanCountModel.Transaction) -> Void)? = nil, onSkip: (() -> Void)? = nil, onAbort: (() -> Void)? = nil) {
         self.importedTransaction = importedTransaction
+        self.onImport = onImport
+        self.onSkip = onSkip
+        self.onAbort = onAbort
 
         let transaction = importedTransaction.transaction
         let metaData = transaction.metaData
@@ -77,8 +80,7 @@ class DataEntryViewModel: ObservableObject, Identifiable {
         guard let newPosting = try? Posting(accountName: accountName,
                                             amount: posting.amount,
                                             price: posting.priceType == .total ? posting.totalPrice : posting.price,
-                                            priceType: posting.priceType)
-        else {
+                                            priceType: posting.priceType) else {
             return nil
         }
         var postings: [Posting] = transaction.postings.filter { $0 != posting }

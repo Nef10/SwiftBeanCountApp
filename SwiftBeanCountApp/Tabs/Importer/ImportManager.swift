@@ -212,11 +212,13 @@ class ImportManager: ObservableObject {
 
     @MainActor
     private func showDataEntryView(for transaction: ImportedTransaction) {
-        let entryViewModel = DataEntryViewModel(importedTransaction: transaction)
-        entryViewModel.onImport = { [weak self] transaction in self?.importTransaction(transaction) }
-        entryViewModel.onSkip = { [weak self] in self?.skipTransaction() }
-        entryViewModel.onAbort = { [weak self] in self?.skipImporter() }
-        dataEntryVM = entryViewModel
+        dataEntryVM = DataEntryViewModel(importedTransaction: transaction) { [weak self] transaction in
+            self?.importTransaction(transaction)
+        } onSkip: { [weak self] in
+            self?.skipTransaction()
+        } onAbort: { [weak self] in
+            self?.skipImporter()
+        }
     }
 
     private func nextImporter() async {
