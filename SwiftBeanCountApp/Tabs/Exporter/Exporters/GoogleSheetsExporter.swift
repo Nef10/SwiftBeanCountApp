@@ -35,11 +35,22 @@ final class GoogleSheetsExporter: LedgerExporter {
 
     static var exporterName: String { ExportType.googleSheets.displayName }
 
+    private static let recentSheetURLsKey = "recentGoogleSheetURLs"
+    private static let recentSheetURLsLimit = 3
+
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter
     }()
+
+    private static var recentSheetURLs: [String] {
+        let recents = UserDefaults.standard.stringArray(forKey: Self.recentSheetURLsKey) ?? []
+        return Array(recents
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+            .prefix(Self.recentSheetURLsLimit))
+    }
 
     weak var delegate: LedgerExporterDelegate?
 
@@ -105,6 +116,18 @@ final class GoogleSheetsExporter: LedgerExporter {
         return nil
     }
 
+    private static func saveRecentSheetURL(_ sheetURL: String) {
+        let trimmedSheetURL = sheetURL.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard !trimmedSheetURL.isEmpty else {
+            return
+        }
+
+        var recents = Self.recentSheetURLs.filter { $0 != trimmedSheetURL }
+        recents.insert(trimmedSheetURL, at: 0)
+        UserDefaults.standard.set(Array(recents.prefix(Self.recentSheetURLsLimit)), forKey: Self.recentSheetURLsKey)
+    }
+
     func export(completion: @escaping (Result<String, Error>) -> Void) {
         switch requestSheetURL() {
         case .failure(let error):
@@ -119,20 +142,31 @@ final class GoogleSheetsExporter: LedgerExporter {
             return .failure(GoogleSheetsExporterError.missingInputHandler)
         }
 
+        let requestResult = requestSheetURLInput(using: delegate)
+
+        if requestResult.wasCanceled {
+            return .failure(ExporterWorkflowError.canceled)
+        }
+
+        guard !requestResult.sheetURL.isEmpty else {
+            return .failure(GoogleSheetsExporterError.missingSheetURL)
+        }
+        return .success(requestResult.sheetURL)
+    }
+
+    private func requestSheetURLInput(using delegate: LedgerExporterDelegate) -> (sheetURL: String, wasCanceled: Bool) {
         var sheetURL = ""
         var wasCanceled = false
         let group = DispatchGroup()
         group.enter()
 
-        delegate.requestInput(
-            name: "Google Sheets URL",
-            type: .text(["https://docs.google.com/spreadsheets/d/..."])
-        ) { input in
+        delegate.requestInput(name: "Google Sheets URL", type: .text(Self.recentSheetURLs)) { input in
             let trimmedInput = input.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !trimmedInput.isEmpty else {
                 return false
             }
             sheetURL = trimmedInput
+            Self.saveRecentSheetURL(trimmedInput)
             group.leave()
             return true
         } onCancel: {
@@ -141,15 +175,7 @@ final class GoogleSheetsExporter: LedgerExporter {
         }
 
         group.wait()
-
-        if wasCanceled {
-            return .failure(ExporterWorkflowError.canceled)
-        }
-
-        guard !sheetURL.isEmpty else {
-            return .failure(GoogleSheetsExporterError.missingSheetURL)
-        }
-        return .success(sheetURL)
+        return (sheetURL, wasCanceled)
     }
 
     private func startAuthenticatedExport(
