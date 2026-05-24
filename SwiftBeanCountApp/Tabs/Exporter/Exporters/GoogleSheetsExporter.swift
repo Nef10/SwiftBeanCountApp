@@ -38,12 +38,6 @@ final class GoogleSheetsExporter: LedgerExporter {
     private static let recentSheetURLsKey = "recentGoogleSheetURLs"
     private static let recentSheetURLsLimit = 3
 
-    private static var dateFormatter: DateFormatter = {
-        var dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter
-    }()
-
     private static var recentSheetURLs: [String] {
         let recents = UserDefaults.standard.stringArray(forKey: Self.recentSheetURLsKey) ?? []
         return Array(recents
@@ -66,54 +60,23 @@ final class GoogleSheetsExporter: LedgerExporter {
         self.ledger = ledger
     }
 
-    private static func format(result: SyncResult, sheetURL: String) -> String {
-        let parserErrors = if result.parserErrors.isEmpty {
-            "none"
+    private static func format(result: SyncResult) -> String {
+        var text = ""
+
+        if !result.parserErrors.isEmpty {
+            text += "Errors (\(result.parserErrors.count)):\n"
+            text += result.parserErrors.map { "- \($0.localizedDescription)" }.joined(separator: "\n")
+            text += "\n\n"
+        }
+
+        if result.transactions.isEmpty {
+            text += "No new transactions to upload."
         } else {
-            result.parserErrors.map { "- \($0)" }.joined(separator: "\n")
+            text += "Transactions to upload (\(result.transactions.count)):\n"
+            text += result.sheetCells.map { row in row.joined(separator: "\t") }.joined(separator: "\n\n")
         }
 
-        let transactions = if result.transactions.isEmpty {
-            "No new transactions to upload."
-        } else {
-            /*
-            result.transactions
-                .sorted { $0.metaData.date < $1.metaData.date }
-                .map { sheetFormat($0, ledgerSettings: result.ledgerSettings) }
-                .joined(separator: "\n\n")
-             */
-            result.sheetCells.map { row in row.joined(separator: "\t") }.joined(separator: "\n\n")
-        }
-
-        return """
-        Exporter: Google Sheets
-        Sheet URL: \(sheetURL)
-        Mode: \(result.mode)
-
-        Transactions to upload: \(result.transactions.count)
-
-        Parser errors:
-        \(parserErrors)
-
-        Output:
-        \(transactions)
-        """
-    }
-
-    private static func sheetFormat(_ transaction: SwiftBeanCountModel.Transaction, ledgerSettings: LedgerSettings) -> String {
-        let amount = expensePosting(transaction)?.amount.description.components(separatedBy: " ")[0] ?? "?"
-        let date = Self.dateFormatter.string(from: transaction.metaData.date)
-        let category = ledgerSettings.accountNameCategories[expensePosting(transaction)?.accountName.fullName ?? ""] ?? ""
-        let name = ledgerSettings.name
-        return "\(date)\t\(transaction.metaData.payee)\t\(category)\t\(name)\t\(amount)\t\(transaction.metaData.narration)"
-    }
-
-    private static func expensePosting(_ transaction: SwiftBeanCountModel.Transaction) -> Posting? {
-        let postings = transaction.postings.filter { $0.accountName.accountType == .expense }
-        if postings.count == 1 {
-            return postings.first!
-        }
-        return nil
+        return text
     }
 
     private static func saveRecentSheetURL(_ sheetURL: String) {
@@ -189,7 +152,7 @@ final class GoogleSheetsExporter: LedgerExporter {
                 switch result {
                 case .success:
                     Uploader(sheetURL: sheetURL, ledger: ledger).start(authentication: authentication) { syncResult in
-                        completion(syncResult.map { Self.format(result: $0, sheetURL: sheetURL) })
+                        completion(syncResult.map { Self.format(result: $0) })
                     }
                 case .failure(let error):
                     completion(.failure(error))
