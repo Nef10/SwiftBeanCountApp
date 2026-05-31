@@ -48,17 +48,21 @@ struct ImporterDataEntryView: View {
                 .textInputSuggestions { accountCompletions }
 #endif
             Toggle(isOn: $viewModel.saveAccountMapping) { Text("Save this account for the payee") }.disabled(!viewModel.saveDescriptionPayeeMapping).padding(.bottom)
-            HStack {
-                Spacer()
-                Button("Abort Import") { viewModel.onAbort?() }
-                Button("Skip") { viewModel.onSkip?() }
-                Button("Save") { saveTransaction() }
-            }
+            buttons
         }
         .padding()
         .alert("Error", isPresented: $showAccountValidationError) { Button("OK") { /* nothing */ } } message: { Text("Please enter a valid account.") }
         .onChange(of: ledger.loadingLedger, initial: true) {
             Task { await calculateAccountsAndPayees() }
+        }
+    }
+
+    private var buttons: some View {
+        HStack {
+            Spacer()
+            Button("Abort Import") { viewModel.onAbort?() }
+            Button("Skip") { viewModel.onSkip?() }
+            Button("Save") { saveTransaction() }
         }
     }
 
@@ -105,6 +109,10 @@ struct ImporterDataEntryView: View {
         }
     }
 
+    private var currentTagInput: String {
+        viewModel.tags.components(separatedBy: CharacterSet.whitespacesAndNewlines).last ?? ""
+    }
+
     init(viewModel: DataEntryViewModel) {
         self.viewModel = viewModel
     }
@@ -116,10 +124,6 @@ struct ImporterDataEntryView: View {
         payees = Array(Set(ledger.transactions.map(\.metaData.payee))).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
         accounts = Array(Set(ledger.transactions.flatMap { $0.postings.map(\.accountName.fullName) })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
         tags = Array(Set(ledger.transactions.flatMap { $0.metaData.tags.map(\.description) })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
-    }
-
-    private var currentTagInput: String {
-        viewModel.tags.components(separatedBy: CharacterSet.whitespacesAndNewlines).last ?? ""
     }
 
     private func completedTags(for tag: String) -> String {
