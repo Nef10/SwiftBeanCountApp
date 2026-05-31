@@ -319,7 +319,7 @@ extension ImportManager: ImporterDelegate {
         credentialLock.lock()
         defer { credentialLock.unlock() }
 
-        saveCredentialLocked(value, for: key)
+        _ = saveCredentialLocked(value, for: key)
     }
 
     func readCredential(_ key: String) -> String? {
@@ -333,8 +333,9 @@ extension ImportManager: ImporterDelegate {
 
         do {
             let legacyCredential = try keychain.string(forKey: key)
-            Logger.importer.debug("Migrating legacy credential into shared storage")
-            saveCredentialLocked(legacyCredential, for: key)
+            if saveCredentialLocked(legacyCredential, for: key) {
+                Logger.importer.debug("Migrated legacy credential into shared storage")
+            }
             return legacyCredential
         } catch {
             guard case SimpleKeychainError.itemNotFound = error else {
@@ -358,7 +359,7 @@ extension ImportManager: ImporterDelegate {
 private extension ImportManager {
 
     // Call only while holding credentialLock.
-    func saveCredentialLocked(_ value: String, for key: String) {
+    func saveCredentialLocked(_ value: String, for key: String) -> Bool {
         var credentials = readStoredCredentialsLocked()
 
         // the keychain does not allow saving empty strings,
@@ -369,13 +370,23 @@ private extension ImportManager {
             credentials[key] = value
         }
 
-        persistStoredCredentialsLocked(credentials)
+        guard persistStoredCredentialsLocked(credentials) else {
+            return false
+        }
         deleteLegacyCredentialLocked(for: key)
+        return true
     }
 
     // Call only while holding credentialLock.
     func readStoredCredentialsLocked() -> [String: String] {
-        guard let storedCredentials = try? keychain.string(forKey: CredentialStorage.keychainKey) else {
+        let storedCredentials: String
+        do {
+            storedCredentials = try keychain.string(forKey: CredentialStorage.keychainKey)
+        } catch {
+            guard case SimpleKeychainError.itemNotFound = error else {
+                Logger.importer.error("Error reading shared credentials: \(error)")
+                return [:]
+            }
             return [:]
         }
 
@@ -393,7 +404,7 @@ private extension ImportManager {
     }
 
     // Call only while holding credentialLock.
-    func persistStoredCredentialsLocked(_ credentials: [String: String]) {
+    func persistStoredCredentialsLocked(_ credentials: [String: String]) -> Bool {
         if credentials.isEmpty {
             do {
                 try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
@@ -402,18 +413,20 @@ private extension ImportManager {
                                  failureMessage: "Error deleting credentials",
                                  notFoundMessage: "No shared importer credentials found to delete")
             }
-            return
+            return true
         }
 
         do {
             let data = try JSONEncoder().encode(credentials)
             guard let storedCredentials = String(data: data, encoding: .utf8) else {
                 Logger.importer.error("Failed to convert encoded credentials to UTF-8 string")
-                return
+                return false
             }
             try keychain.set(storedCredentials, forKey: CredentialStorage.keychainKey)
+            return true
         } catch {
             Logger.importer.error("Error saving credentials: \(error)")
+            return false
         }
     }
 
