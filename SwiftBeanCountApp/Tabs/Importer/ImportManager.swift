@@ -319,7 +319,9 @@ extension ImportManager: ImporterDelegate {
         credentialLock.lock()
         defer { credentialLock.unlock() }
 
-        _ = saveCredentialLocked(value, for: key)
+        if !saveCredentialLocked(value, for: key) {
+            Logger.importer.error("Failed to save credential into shared storage")
+        }
     }
 
     func readCredential(_ key: String) -> String? {
@@ -412,8 +414,8 @@ private extension ImportManager {
                 try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
             } catch {
                 logDeletionError(error,
-                                 failureMessage: "Error deleting credentials",
-                                 notFoundMessage: "No shared importer credentials found to delete")
+                    failureMessage: "Error deleting credentials",
+                    notFoundMessage: "No shared importer credentials found to delete")
             }
             return true
         }
@@ -438,8 +440,8 @@ private extension ImportManager {
             try keychain.deleteItem(forKey: key)
         } catch {
             logDeletionError(error,
-                             failureMessage: "Error deleting legacy credential",
-                             notFoundMessage: "Legacy credential already absent during cleanup")
+                failureMessage: "Error deleting legacy credential",
+                notFoundMessage: "Legacy credential already absent during cleanup")
         }
     }
 
