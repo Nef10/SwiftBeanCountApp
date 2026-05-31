@@ -331,9 +331,11 @@ extension ImportManager: ImporterDelegate {
             return credential
         }
 
-        let legacyCredential: String
         do {
-            legacyCredential = try keychain.string(forKey: key)
+            let legacyCredential = try keychain.string(forKey: key)
+            Logger.importer.debug("Migrating legacy credential for key: \(key, privacy: .private)")
+            saveCredentialLocked(legacyCredential, for: key)
+            return legacyCredential
         } catch {
             guard case SimpleKeychainError.itemNotFound = error else {
                 Logger.importer.error("Error reading legacy credential: \(error)")
@@ -341,9 +343,6 @@ extension ImportManager: ImporterDelegate {
             }
             return nil
         }
-        Logger.importer.debug("Migrating legacy credential for key: \(key, privacy: .private)")
-        saveCredentialLocked(legacyCredential, for: key)
-        return legacyCredential
     }
 
     func error(_ error: Error, completion: @escaping () -> Void) {
@@ -429,6 +428,7 @@ private extension ImportManager {
         }
     }
 
+    // Does not require credentialLock.
     func logDeletionError(_ error: Error, failureMessage: String, notFoundMessage: String) {
         guard case SimpleKeychainError.itemNotFound = error else {
             Logger.importer.error("\(failureMessage): \(error)")
