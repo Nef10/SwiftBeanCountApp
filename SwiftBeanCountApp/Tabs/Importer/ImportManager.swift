@@ -335,6 +335,8 @@ extension ImportManager: ImporterDelegate {
             let legacyCredential = try keychain.string(forKey: key)
             if saveCredentialLocked(legacyCredential, for: key) {
                 Logger.importer.debug("Migrated legacy credential into shared storage")
+            } else {
+                Logger.importer.error("Failed to migrate legacy credential into shared storage")
             }
             return legacyCredential
         } catch {
