@@ -55,7 +55,7 @@ enum PayeeDuplicateDetector {
             checkTypos(payee1, payee2)
         ]
 
-        guard let best = checks.compactMap({ $0 }).max(by: { $0.0 < $1.0 }) else {
+        guard let best = checks.compactMap(\.self).max(by: { $0.0 < $1.0 }) else {
             return nil
         }
 
@@ -67,7 +67,9 @@ enum PayeeDuplicateDetector {
     /// Detects duplicates that differ only in capitalization
     /// e.g. "Save-On-Foods" vs "save-on-foods"
     private static func checkCapitalization(_ a: String, _ b: String) -> (Double, String)? {
-        guard a != b, a.lowercased() == b.lowercased() else { return nil }
+        guard a != b, a.lowercased() == b.lowercased() else {
+            return nil
+        }
         return (1.0, "Different capitalization")
     }
 
@@ -77,14 +79,18 @@ enum PayeeDuplicateDetector {
         let normalizedA = normalizeMarkings(a)
         let normalizedB = normalizeMarkings(b)
 
-        guard a != b, normalizedA == normalizedB else { return nil }
+        guard a != b, normalizedA == normalizedB else {
+            return nil
+        }
         return (0.95, "Different word separators")
     }
 
     /// Detects duplicates with minor differences (e.g. pluralization)
     /// e.g. "McDonald" vs "McDonalds"
     private static func checkMinorDifferences(_ a: String, _ b: String) -> (Double, String)? {
-        guard a != b else { return nil }
+        guard a != b else {
+            return nil
+        }
 
         let lowA = a.lowercased()
         let lowB = b.lowercased()
@@ -103,7 +109,9 @@ enum PayeeDuplicateDetector {
     /// Detects duplicates where one is a substring/prefix of the other with common suffixes
     /// e.g. "ABCD" vs "ABCD Canada" or "ABCD Inc."
     private static func checkMissingParts(_ a: String, _ b: String) -> (Double, String)? {
-        guard a != b else { return nil }
+        guard a != b else {
+            return nil
+        }
 
         let lowA = a.lowercased()
         let lowB = b.lowercased()
@@ -111,18 +119,24 @@ enum PayeeDuplicateDetector {
         let (shorter, longer) = lowA.count <= lowB.count ? (lowA, lowB) : (lowB, lowA)
 
         // The shorter string must be at least 4 characters to avoid false positives
-        guard shorter.count >= 4, longer.hasPrefix(shorter) else { return nil }
+        guard shorter.count >= 4, longer.hasPrefix(shorter) else {
+            return nil
+        }
 
         let suffix = String(longer.dropFirst(shorter.count)).trimmingCharacters(in: .whitespaces)
-        guard !suffix.isEmpty else { return nil }
+        guard !suffix.isEmpty else {
+            return nil
+        }
 
         return evaluateSuffix(suffix, shorterLength: shorter.count, longerLength: longer.count)
     }
 
     private static func evaluateSuffix(_ suffix: String, shorterLength: Int, longerLength: Int) -> (Double, String)? {
-        let commonSuffixes = ["inc", "inc.", "ltd", "ltd.", "llc", "corp", "corp.",
-                              "co", "co.", "canada", "us", "usa", "uk", "online",
-                              "store", "shop", "group", "international", "intl"]
+        let commonSuffixes = [
+            "inc", "inc.", "ltd", "ltd.", "llc", "corp", "corp.",
+            "co", "co.", "canada", "us", "usa", "uk", "online",
+            "store", "shop", "group", "international", "intl"
+        ]
 
         if commonSuffixes.contains(suffix.lowercased()) {
             return (0.85, "Missing business suffix")
@@ -139,27 +153,35 @@ enum PayeeDuplicateDetector {
     /// Detects duplicates based on edit distance (typos)
     /// Uses Levenshtein distance
     private static func checkTypos(_ a: String, _ b: String) -> (Double, String)? {
-        guard a != b else { return nil }
+        guard a != b else {
+            return nil
+        }
 
         let lowA = a.lowercased()
         let lowB = b.lowercased()
 
         // Skip if already caught by other methods
-        guard lowA != lowB else { return nil }
+        guard lowA != lowB else {
+            return nil
+        }
 
         let distance = levenshteinDistance(lowA, lowB)
         let maxLength = max(lowA.count, lowB.count)
 
         // Only consider as typo if the strings are reasonably long and the distance is small
-        guard maxLength >= 5 else { return nil }
+        guard maxLength >= 5 else {
+            return nil
+        }
 
         let ratio = 1.0 - (Double(distance) / Double(maxLength))
 
         if distance == 1 && maxLength >= 5 {
             return (0.8, "Possible typo (1 character difference)")
-        } else if distance == 2 && maxLength >= 8 {
+        }
+        if distance == 2 && maxLength >= 8 {
             return (0.6, "Possible typo (2 character differences)")
-        } else if ratio >= 0.85 && maxLength >= 10 {
+        }
+        if ratio >= 0.85 && maxLength >= 10 {
             return (0.5, "Similar names")
         }
 
@@ -186,8 +208,12 @@ enum PayeeDuplicateDetector {
         let aCount = aChars.count
         let bCount = bChars.count
 
-        if aCount == 0 { return bCount }
-        if bCount == 0 { return aCount }
+        if aCount == 0 {
+            return bCount
+        }
+        if bCount == 0 {
+            return aCount
+        }
 
         var matrix = [[Int]](repeating: [Int](repeating: 0, count: bCount + 1), count: aCount + 1)
 

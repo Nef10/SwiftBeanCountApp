@@ -136,11 +136,11 @@ struct Payees: View {
     private func confidenceColor(_ confidence: Double) -> Color {
         if confidence >= 0.9 {
             return .red
-        } else if confidence >= 0.7 {
-            return .orange
-        } else {
-            return .yellow
         }
+        if confidence >= 0.7 {
+            return .orange
+        }
+        return .yellow
     }
 
     private func loadPayees() {
