@@ -24,6 +24,10 @@ private enum ImportPhase {
 
 class ImportManager: ObservableObject {
 
+    private enum CredentialStorage {
+        static let keychainKey = "importer-credentials"
+    }
+
     @Published var resultLedger = Ledger()
     @Published var showLoadingIndicator = true
     @Published var loadingMessage: String? = "Organizing imports"
@@ -47,6 +51,7 @@ class ImportManager: ObservableObject {
     private var inputRequestCompletion: ((String) -> Bool)?
     private var errorAlertCompletion: (() -> Void)?
     private let keychain = SimpleKeychain(accessibility: .whenUnlocked)
+    private var credentialCache: [String: String]?
 
     private var errors = [String]()
 
@@ -311,25 +316,31 @@ extension ImportManager: ImporterDelegate {
     }
 
     func saveCredential(_ value: String, for key: String) {
+        var credentials = readStoredCredentials()
+
         // seems the keychain does not allow saving empty strings
         // it will not save but just keep the old value
         if value.isEmpty {
-            do {
-                try keychain.deleteItem(forKey: key)
-            } catch {
-                Logger.importer.error("Error deleting credential: \(error)")
-            }
+            credentials.removeValue(forKey: key)
         } else {
-            do {
-                try keychain.set(value, forKey: key)
-            } catch {
-                Logger.importer.error("Error saving credential: \(error)")
-            }
+            credentials[key] = value
         }
+
+        persistStoredCredentials(credentials)
+        deleteLegacyCredential(for: key)
     }
 
     func readCredential(_ key: String) -> String? {
-        try? keychain.string(forKey: key)
+        let credentials = readStoredCredentials()
+        if let credential = credentials[key] {
+            return credential
+        }
+
+        guard let legacyCredential = try? keychain.string(forKey: key) else {
+            return nil
+        }
+        saveCredential(legacyCredential, for: key)
+        return legacyCredential
     }
 
     func error(_ error: Error, completion: @escaping () -> Void) {
@@ -338,6 +349,63 @@ extension ImportManager: ImporterDelegate {
         Task {
             await showErrorMessage()
         }
+    }
+
+}
+
+private extension ImportManager {
+
+    func readStoredCredentials() -> [String: String] {
+        if let credentialCache {
+            return credentialCache
+        }
+
+        guard let storedCredentials = try? keychain.string(forKey: CredentialStorage.keychainKey) else {
+            credentialCache = [:]
+            return [:]
+        }
+
+        guard let data = storedCredentials.data(using: .utf8) else {
+            Logger.importer.error("Unable to decode stored credentials")
+            return [:]
+        }
+
+        do {
+            let decodedCredentials = try JSONDecoder().decode([String: String].self, from: data)
+            credentialCache = decodedCredentials
+            return decodedCredentials
+        } catch {
+            Logger.importer.error("Error reading credentials: \(error)")
+            return [:]
+        }
+    }
+
+    func persistStoredCredentials(_ credentials: [String: String]) {
+        credentialCache = credentials
+
+        if credentials.isEmpty {
+            do {
+                try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
+            } catch {
+                Logger.importer.error("Error deleting credentials: \(error)")
+            }
+            return
+        }
+
+        do {
+            let data = try JSONEncoder().encode(credentials)
+            guard let storedCredentials = String(data: data, encoding: .utf8) else {
+                Logger.importer.error("Unable to encode credentials")
+                return
+            }
+            try keychain.set(storedCredentials, forKey: CredentialStorage.keychainKey)
+        } catch {
+            Logger.importer.error("Error saving credentials: \(error)")
+        }
+    }
+
+    func deleteLegacyCredential(for key: String) {
+        try? keychain.deleteItem(forKey: key)
     }
 
 }
