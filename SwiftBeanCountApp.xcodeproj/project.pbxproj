@@ -453,7 +453,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCount";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.2;
+				version = 0.2.0;
 			};
 		};
 		F9A2C0F92D1189FA00E925F4 /* XCRemoteSwiftPackageReference "SimpleKeychain" */ = {
