@@ -50,6 +50,7 @@ class ImportManager: ObservableObject {
     private var transaction: ImportedTransaction?
     private var inputRequestCompletion: ((String) -> Bool)?
     private var errorAlertCompletion: (() -> Void)?
+    private let credentialLock = NSRecursiveLock()
     private let keychain = SimpleKeychain(accessibility: .whenUnlocked)
 
     private var errors = [String]()
@@ -315,6 +316,9 @@ extension ImportManager: ImporterDelegate {
     }
 
     func saveCredential(_ value: String, for key: String) {
+        credentialLock.lock()
+        defer { credentialLock.unlock() }
+
         var credentials = readStoredCredentials()
 
         // seems the keychain does not allow saving empty strings
@@ -330,6 +334,9 @@ extension ImportManager: ImporterDelegate {
     }
 
     func readCredential(_ key: String) -> String? {
+        credentialLock.lock()
+        defer { credentialLock.unlock() }
+
         let credentials = readStoredCredentials()
         if let credential = credentials[key] {
             return credential
@@ -360,7 +367,7 @@ private extension ImportManager {
         }
 
         guard let data = storedCredentials.data(using: .utf8) else {
-            Logger.importer.error("Unable to convert stored credentials to data")
+            Logger.importer.error("Failed to convert credentials string to UTF-8 data")
             return [:]
         }
 
@@ -388,7 +395,7 @@ private extension ImportManager {
         do {
             let data = try JSONEncoder().encode(credentials)
             guard let storedCredentials = String(data: data, encoding: .utf8) else {
-                Logger.importer.error("Unable to encode credentials")
+                Logger.importer.error("Failed to convert encoded credentials to UTF-8 string")
                 return
             }
             try keychain.set(storedCredentials, forKey: CredentialStorage.keychainKey)
