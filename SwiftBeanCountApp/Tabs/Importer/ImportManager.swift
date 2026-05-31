@@ -51,7 +51,6 @@ class ImportManager: ObservableObject {
     private var inputRequestCompletion: ((String) -> Bool)?
     private var errorAlertCompletion: (() -> Void)?
     private let keychain = SimpleKeychain(accessibility: .whenUnlocked)
-    private var credentialCache: [String: String]?
 
     private var errors = [String]()
 
@@ -356,24 +355,17 @@ extension ImportManager: ImporterDelegate {
 private extension ImportManager {
 
     func readStoredCredentials() -> [String: String] {
-        if let credentialCache {
-            return credentialCache
-        }
-
         guard let storedCredentials = try? keychain.string(forKey: CredentialStorage.keychainKey) else {
-            credentialCache = [:]
             return [:]
         }
 
         guard let data = storedCredentials.data(using: .utf8) else {
-            Logger.importer.error("Unable to decode stored credentials")
+            Logger.importer.error("Unable to convert stored credentials to data")
             return [:]
         }
 
         do {
-            let decodedCredentials = try JSONDecoder().decode([String: String].self, from: data)
-            credentialCache = decodedCredentials
-            return decodedCredentials
+            return try JSONDecoder().decode([String: String].self, from: data)
         } catch {
             Logger.importer.error("Error reading credentials: \(error)")
             return [:]
@@ -381,13 +373,14 @@ private extension ImportManager {
     }
 
     func persistStoredCredentials(_ credentials: [String: String]) {
-        credentialCache = credentials
-
         if credentials.isEmpty {
             do {
                 try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
             } catch {
-                Logger.importer.error("Error deleting credentials: \(error)")
+                guard case SimpleKeychainError.itemNotFound = error else {
+                    Logger.importer.error("Error deleting credentials: \(error)")
+                    return
+                }
             }
             return
         }
@@ -405,7 +398,14 @@ private extension ImportManager {
     }
 
     func deleteLegacyCredential(for key: String) {
-        try? keychain.deleteItem(forKey: key)
+        do {
+            try keychain.deleteItem(forKey: key)
+        } catch {
+            guard case SimpleKeychainError.itemNotFound = error else {
+                Logger.importer.error("Error deleting legacy credential: \(error)")
+                return
+            }
+        }
     }
 
 }
