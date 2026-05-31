@@ -361,8 +361,8 @@ private extension ImportManager {
     func saveCredentialLocked(_ value: String, for key: String) {
         var credentials = readStoredCredentialsLocked()
 
-        // seems the keychain does not allow saving empty strings
-        // it will not save but just keep the old value
+        // the keychain does not allow saving empty strings,
+        // so empty values remove the stored credential instead
         if value.isEmpty {
             credentials.removeValue(forKey: key)
         } else {
@@ -387,7 +387,7 @@ private extension ImportManager {
         do {
             return try JSONDecoder().decode([String: String].self, from: data)
         } catch {
-            Logger.importer.error("Error reading credentials: \(error)")
+            Logger.importer.error("Error decoding credentials from JSON: \(error)")
             return [:]
         }
     }
