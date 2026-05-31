@@ -333,7 +333,7 @@ extension ImportManager: ImporterDelegate {
 
         do {
             let legacyCredential = try keychain.string(forKey: key)
-            Logger.importer.debug("Migrating legacy credential for key: \(key, privacy: .private)")
+            Logger.importer.debug("Migrating legacy credential into shared storage")
             saveCredentialLocked(legacyCredential, for: key)
             return legacyCredential
         } catch {
@@ -424,7 +424,7 @@ private extension ImportManager {
         } catch {
             logDeletionError(error,
                              failureMessage: "Error deleting legacy credential",
-                             notFoundMessage: "Legacy credential already absent for key: \(key, privacy: .private)")
+                             notFoundMessage: "Legacy credential already absent during cleanup")
         }
     }
 
