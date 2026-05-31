@@ -319,25 +319,14 @@ extension ImportManager: ImporterDelegate {
         credentialLock.lock()
         defer { credentialLock.unlock() }
 
-        var credentials = readStoredCredentials()
-
-        // seems the keychain does not allow saving empty strings
-        // it will not save but just keep the old value
-        if value.isEmpty {
-            credentials.removeValue(forKey: key)
-        } else {
-            credentials[key] = value
-        }
-
-        persistStoredCredentials(credentials)
-        deleteLegacyCredential(for: key)
+        saveCredentialLocked(value, for: key)
     }
 
     func readCredential(_ key: String) -> String? {
         credentialLock.lock()
         defer { credentialLock.unlock() }
 
-        let credentials = readStoredCredentials()
+        let credentials = readStoredCredentialsLocked()
         if let credential = credentials[key] {
             return credential
         }
@@ -345,7 +334,7 @@ extension ImportManager: ImporterDelegate {
         guard let legacyCredential = try? keychain.string(forKey: key) else {
             return nil
         }
-        saveCredential(legacyCredential, for: key)
+        saveCredentialLocked(legacyCredential, for: key)
         return legacyCredential
     }
 
@@ -361,7 +350,24 @@ extension ImportManager: ImporterDelegate {
 
 private extension ImportManager {
 
-    func readStoredCredentials() -> [String: String] {
+    // Call only while holding credentialLock.
+    func saveCredentialLocked(_ value: String, for key: String) {
+        var credentials = readStoredCredentialsLocked()
+
+        // seems the keychain does not allow saving empty strings
+        // it will not save but just keep the old value
+        if value.isEmpty {
+            credentials.removeValue(forKey: key)
+        } else {
+            credentials[key] = value
+        }
+
+        persistStoredCredentialsLocked(credentials)
+        deleteLegacyCredentialLocked(for: key)
+    }
+
+    // Call only while holding credentialLock.
+    func readStoredCredentialsLocked() -> [String: String] {
         guard let storedCredentials = try? keychain.string(forKey: CredentialStorage.keychainKey) else {
             return [:]
         }
@@ -379,7 +385,8 @@ private extension ImportManager {
         }
     }
 
-    func persistStoredCredentials(_ credentials: [String: String]) {
+    // Call only while holding credentialLock.
+    func persistStoredCredentialsLocked(_ credentials: [String: String]) {
         if credentials.isEmpty {
             do {
                 try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
@@ -404,7 +411,8 @@ private extension ImportManager {
         }
     }
 
-    func deleteLegacyCredential(for key: String) {
+    // Call only while holding credentialLock.
+    func deleteLegacyCredentialLocked(for key: String) {
         do {
             try keychain.deleteItem(forKey: key)
         } catch {
