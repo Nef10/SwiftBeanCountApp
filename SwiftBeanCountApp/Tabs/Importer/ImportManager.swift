@@ -50,7 +50,7 @@ class ImportManager: ObservableObject {
     private var transaction: ImportedTransaction?
     private var inputRequestCompletion: ((String) -> Bool)?
     private var errorAlertCompletion: (() -> Void)?
-    private let credentialLock = NSRecursiveLock()
+    private let credentialLock = NSLock()
     private let keychain = SimpleKeychain(accessibility: .whenUnlocked)
 
     private var errors = [String]()
@@ -334,6 +334,7 @@ extension ImportManager: ImporterDelegate {
         guard let legacyCredential = try? keychain.string(forKey: key) else {
             return nil
         }
+        Logger.importer.debug("Migrating legacy credential for key: \(key, privacy: .private)")
         saveCredentialLocked(legacyCredential, for: key)
         return legacyCredential
     }
@@ -395,6 +396,7 @@ private extension ImportManager {
                     Logger.importer.error("Error deleting credentials: \(error)")
                     return
                 }
+                Logger.importer.debug("No shared importer credentials found to delete")
             }
             return
         }
@@ -420,6 +422,7 @@ private extension ImportManager {
                 Logger.importer.error("Error deleting legacy credential: \(error)")
                 return
             }
+            Logger.importer.debug("Legacy credential already absent for key: \(key, privacy: .private)")
         }
     }
 
