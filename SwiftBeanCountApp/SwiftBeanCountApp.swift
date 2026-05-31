@@ -62,6 +62,7 @@ struct SwiftBeanCountApp: App {
             Tab(title: "Tax Sales", icon: "banknote", view: AnyView(TaxSales())),
             Tab(title: "Payees", icon: "person.2", view: AnyView(Payees())),
             Tab(title: "Importer", icon: "square.and.arrow.down.on.square", view: AnyView(Importer())),
+            Tab(title: "Export", icon: "square.and.arrow.up.on.square", view: AnyView(Exporter())),
         ]
 #if os(macOS)
         tabs += [
