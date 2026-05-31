@@ -15,6 +15,7 @@ struct ImporterDataEntryView: View {
     @State private var showAccountValidationError = false
     @State private var payees = [String]()
     @State private var accounts = [String]()
+    @State private var tags = [String]()
 
     @EnvironmentObject var ledger: LedgerManager
 
@@ -31,6 +32,9 @@ struct ImporterDataEntryView: View {
             Toggle(isOn: $viewModel.saveDescriptionPayeeMapping) { Text("Save this description / payee mapping") }.padding(.bottom)
 
             TextField("Tags:", text: $viewModel.tags)
+#if os(macOS)
+                .textInputSuggestions { tagCompletions }
+#endif
             Picker("Flag:", selection: $viewModel.flag) {
                 Text("Complete").tag("*")
                 Text("Incomplete").tag("!")
@@ -57,6 +61,7 @@ struct ImporterDataEntryView: View {
             Task { await calculateAccountsAndPayees() }
         }
     }
+
     private var payeeCompletions: some View {
         ForEach(payees.filter { $0.lowercased().contains(viewModel.payee.lowercased()) && $0.lowercased() != viewModel.payee.lowercased() }, id: \.self) {
             Text($0)
@@ -86,6 +91,20 @@ struct ImporterDataEntryView: View {
         }
     }
 
+    private var tagCompletions: some View {
+        let currentTag = currentTagInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedCurrentTag = currentTag.starts(with: "#") ? String(currentTag.dropFirst()) : currentTag
+
+        return ForEach(tags.filter {
+            $0.dropFirst().lowercased().contains(normalizedCurrentTag.lowercased()) && $0.dropFirst().lowercased() != normalizedCurrentTag.lowercased()
+        }, id: \.self) {
+            Text($0)
+#if os(macOS)
+                .textInputCompletion(completedTags(for: $0))
+#endif
+        }
+    }
+
     init(viewModel: DataEntryViewModel) {
         self.viewModel = viewModel
     }
@@ -96,6 +115,18 @@ struct ImporterDataEntryView: View {
         }
         payees = Array(Set(ledger.transactions.map(\.metaData.payee))).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
         accounts = Array(Set(ledger.transactions.flatMap { $0.postings.map(\.accountName.fullName) })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
+        tags = Array(Set(ledger.transactions.flatMap { $0.metaData.tags.map(\.description) })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
+    }
+
+    private var currentTagInput: String {
+        viewModel.tags.components(separatedBy: CharacterSet.whitespacesAndNewlines).last ?? ""
+    }
+
+    private func completedTags(for tag: String) -> String {
+        guard !currentTagInput.isEmpty else {
+            return viewModel.tags + tag
+        }
+        return String(viewModel.tags.dropLast(currentTagInput.count)) + tag
     }
 
     private func saveTransaction() {
