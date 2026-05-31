@@ -331,7 +331,14 @@ extension ImportManager: ImporterDelegate {
             return credential
         }
 
-        guard let legacyCredential = try? keychain.string(forKey: key) else {
+        let legacyCredential: String
+        do {
+            legacyCredential = try keychain.string(forKey: key)
+        } catch {
+            guard case SimpleKeychainError.itemNotFound = error else {
+                Logger.importer.error("Error reading legacy credential: \(error)")
+                return nil
+            }
             return nil
         }
         Logger.importer.debug("Migrating legacy credential for key: \(key, privacy: .private)")
@@ -392,11 +399,9 @@ private extension ImportManager {
             do {
                 try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
             } catch {
-                guard case SimpleKeychainError.itemNotFound = error else {
-                    Logger.importer.error("Error deleting credentials: \(error)")
-                    return
-                }
-                Logger.importer.debug("No shared importer credentials found to delete")
+                logDeletionError(error,
+                                 failureMessage: "Error deleting credentials",
+                                 notFoundMessage: "No shared importer credentials found to delete")
             }
             return
         }
@@ -418,12 +423,18 @@ private extension ImportManager {
         do {
             try keychain.deleteItem(forKey: key)
         } catch {
-            guard case SimpleKeychainError.itemNotFound = error else {
-                Logger.importer.error("Error deleting legacy credential: \(error)")
-                return
-            }
-            Logger.importer.debug("Legacy credential already absent for key: \(key, privacy: .private)")
+            logDeletionError(error,
+                             failureMessage: "Error deleting legacy credential",
+                             notFoundMessage: "Legacy credential already absent for key: \(key, privacy: .private)")
         }
+    }
+
+    func logDeletionError(_ error: Error, failureMessage: String, notFoundMessage: String) {
+        guard case SimpleKeychainError.itemNotFound = error else {
+            Logger.importer.error("\(failureMessage): \(error)")
+            return
+        }
+        Logger.importer.debug("\(notFoundMessage)")
     }
 
 }
