@@ -11,8 +11,6 @@ import SwiftUI
 
 struct ImporterSelection: View {
 
-    @EnvironmentObject var ledger: LedgerManager
-
 #if os(macOS)
     @Environment(\.colorScheme)
     var colorScheme: ColorScheme
@@ -63,12 +61,9 @@ struct ImporterSelection: View {
                 Button("?") { openHelp() }.buttonBorderShape(.circle)
                 Spacer()
                 Button("Reset") { resetInput() }.disabled(fileImport.isEmpty && textImport.isEmpty && downloadImport.allSatisfy { !$0 })
-                if ledger.loadingLedger {
-                    ProgressView().controlSize(.small).padding(5)
-                } else {
-                    Button("Generate Transactions") { generate() }
-                        .buttonStyle(.borderedProminent).disabled(fileImport.isEmpty && textImport.isEmpty && downloadImport.allSatisfy { !$0 })
-                }
+                Button("Generate Transactions") { generate() }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(fileImport.isEmpty && textImport.isEmpty && downloadImport.allSatisfy { !$0 })
             }
         }.buttonStyle(.bordered)
         .padding()
