@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftBeanCountModel
 
 /// Represents a pair of payees that are potential duplicates
 struct PayeeDuplicate: Identifiable {
@@ -13,8 +14,12 @@ struct PayeeDuplicate: Identifiable {
     let id = UUID()
     /// First payee name
     let payee1: String
+    /// Count of how often payee 1 appears in the ledger
+    let countPayee1: Int
     /// Second payee name
     let payee2: String
+    /// Count of how  often payee 2 appears in hte ledger
+    let countPayee2: Int
     /// Confidence score from 0.0 to 1.0
     let confidence: Double
     /// Human-readable explanation of why the pair is flagged
@@ -24,20 +29,34 @@ struct PayeeDuplicate: Identifiable {
 /// Detects potential duplicate payees using various strategies
 enum PayeeDuplicateDetector {
 
+    static func processPayees(from ledger: Ledger) -> ([(String, Int)], [PayeeDuplicate]) {
+        var counts = [String: Int]()
+        for transaction in ledger.transactions {
+            let payee = transaction.metaData.payee
+            guard !payee.isEmpty else { continue }
+            counts[payee, default: 0] += 1
+        }
+        let sortedCounts = counts.sorted { $0.key.lowercased() < $1.key.lowercased() }.map { ($0.key, $0.value) }
+        let duplicates = Self.findDuplicates(in: counts)
+        return (sortedCounts, duplicates)
+    }
+
     /// Finds potential duplicate payees from a list of payee names
     /// - Parameter payees: Array of payee names
     /// - Returns: Array of potential duplicates sorted by confidence (highest first)
-    static func findDuplicates(in payees: [String]) -> [PayeeDuplicate] {
+    private static func findDuplicates(in payees: [String: Int]) -> [PayeeDuplicate] {
         var duplicates = [PayeeDuplicate]()
-        let payeeList = payees.sorted()
+        let payeeList = payees.map(\.0).sorted()
 
         for i in 0..<payeeList.count {
             for j in (i + 1)..<payeeList.count {
                 let payee1 = payeeList[i]
                 let payee2 = payeeList[j]
 
-                if let duplicate = detectDuplicate(payee1, payee2) {
-                    duplicates.append(duplicate)
+                if let (confidence, reason) = detectDuplicate(payee1, payee2) {
+                    let count1 = payees[payee1] ?? 0
+                    let count2 = payees[payee2] ?? 0
+                    duplicates.append(PayeeDuplicate(payee1: payee1, countPayee1: count1, payee2: payee2, countPayee2: count2, confidence: confidence, reason: reason))
                 }
             }
         }
@@ -46,7 +65,7 @@ enum PayeeDuplicateDetector {
     }
 
     /// Checks two payees against all detection strategies and returns the highest confidence match
-    private static func detectDuplicate(_ payee1: String, _ payee2: String) -> PayeeDuplicate? {
+    private static func detectDuplicate(_ payee1: String, _ payee2: String) -> (Double, String)? {
         let checks: [(Double, String)?] = [
             checkCapitalization(payee1, payee2),
             checkMarkings(payee1, payee2),
@@ -59,7 +78,7 @@ enum PayeeDuplicateDetector {
             return nil
         }
 
-        return PayeeDuplicate(payee1: payee1, payee2: payee2, confidence: best.0, reason: best.1)
+        return (best.0, best.1)
     }
 
     // MARK: - Detection Strategies

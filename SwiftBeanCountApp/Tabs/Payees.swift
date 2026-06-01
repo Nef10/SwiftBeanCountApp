@@ -51,8 +51,8 @@ struct Payees: View {
     private var content: some View {
 #if os(macOS)
         HSplitView {
-            payeeListSection
-            duplicateSection
+            payeeListSection.padding(.trailing)
+            duplicateSection.padding(.leading)
         }
 #else
         VStack {
@@ -67,10 +67,8 @@ struct Payees: View {
         VStack(alignment: .leading) {
             Text("Payees (\(payeeCounts.count))")
                 .font(.headline)
-                .padding(.bottom, 4)
             TextField("Search payees...", text: $searchText)
                 .textFieldStyle(.roundedBorder)
-                .padding(.bottom, 4)
             List(filteredPayees, id: \.0) { payee, count in
                 HStack {
                     Text(payee)
@@ -116,8 +114,10 @@ struct Payees: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Text(duplicate.payee1).bold()
+                    Text("\(duplicate.countPayee1)")
                     Text("↔").foregroundColor(.secondary)
                     Text(duplicate.payee2).bold()
+                    Text("\(duplicate.countPayee2)")
                 }
                 HStack {
                     Text(duplicate.reason)
@@ -145,40 +145,28 @@ struct Payees: View {
 
     private func loadPayees() {
         loading = true
-        Task.detached {
+        let ledgerManager = ledger
+
+        Task {
             do {
-                Logger.payees.info("Payees - Start")
-                let ledgerContent = try await ledger.getLedgerContent()
-                Logger.payees.info("Payees - Got Ledger")
-                let (sortedCounts, foundDuplicates) = Self.processPayees(from: ledgerContent)
+                let (sortedCounts, foundDuplicates) = try await Task.detached(priority: .userInitiated) {
+                    Logger.payees.info("Payees - Start")
+                    let ledgerContent = try await ledgerManager.getLedgerContent()
+                    Logger.payees.info("Payees - Got Ledger")
+                    return PayeeDuplicateDetector.processPayees(from: ledgerContent)
+                }.value
                 Logger.payees.info("Payees - Found \(foundDuplicates.count) potential duplicates")
-                DispatchQueue.main.async {
-                    self.payeeCounts = sortedCounts
-                    self.duplicates = foundDuplicates
-                    loading = false
-                }
+                payeeCounts = sortedCounts
+                duplicates = foundDuplicates
+                loading = false
                 Logger.payees.info("Payees - Done")
             } catch {
-                DispatchQueue.main.async {
-                    loading = false
-                }
+                loading = false
                 Logger.payees.error("\(error.localizedDescription)")
             }
         }
     }
 
-    private static func processPayees(from ledger: Ledger) -> ([(String, Int)], [PayeeDuplicate]) {
-        var counts = [String: Int]()
-        for transaction in ledger.transactions {
-            let payee = transaction.metaData.payee
-            guard !payee.isEmpty else { continue }
-            counts[payee, default: 0] += 1
-        }
-        let sortedCounts = counts.sorted { $0.key.lowercased() < $1.key.lowercased() }.map { ($0.key, $0.value) }
-        let payeeNames = sortedCounts.map(\.0)
-        let duplicates = PayeeDuplicateDetector.findDuplicates(in: payeeNames)
-        return (sortedCounts, duplicates)
-    }
 }
 
 #Preview {
