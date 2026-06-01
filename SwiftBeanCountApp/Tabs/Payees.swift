@@ -69,6 +69,18 @@ struct Payees: View {
                 .font(.headline)
             TextField("Search payees...", text: $searchText)
                 .textFieldStyle(.roundedBorder)
+                .overlay(alignment: .trailing) {
+                   if !searchText.isEmpty {
+                       Button {
+                           searchText = ""
+                       } label: {
+                           Image(systemName: "xmark.circle.fill")
+                               .foregroundColor(.gray)
+                               .padding(.trailing, 8)
+                               .accessibilityLabel("Clear text field")
+                       }.buttonStyle(.plain)
+                   }
+                }
             List(filteredPayees, id: \.0) { payee, count in
                 HStack {
                     Text(payee)

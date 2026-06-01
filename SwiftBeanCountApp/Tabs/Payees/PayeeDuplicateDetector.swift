@@ -137,13 +137,12 @@ enum PayeeDuplicateDetector {
 
         let (shorter, longer) = lowA.count <= lowB.count ? (lowA, lowB) : (lowB, lowA)
 
-        // The shorter string must be at least 4 characters to avoid false positives
-        guard shorter.count >= 4, longer.hasPrefix(shorter) else {
+        let suffix = String(longer.dropFirst(shorter.count)).trimmingCharacters(in: .whitespaces)
+        guard !suffix.isEmpty else {
             return nil
         }
 
-        let suffix = String(longer.dropFirst(shorter.count)).trimmingCharacters(in: .whitespaces)
-        guard !suffix.isEmpty else {
+        guard longer.hasPrefix(shorter) else {
             return nil
         }
 
@@ -152,13 +151,22 @@ enum PayeeDuplicateDetector {
 
     private static func evaluateSuffix(_ suffix: String, shorterLength: Int, longerLength: Int) -> (Double, String)? {
         let commonSuffixes = [
-            "inc", "inc.", "ltd", "ltd.", "llc", "corp", "corp.",
-            "co", "co.", "canada", "us", "usa", "uk", "online",
+            "inc", "ltd", "llc", "corp", "co", "canada", "us", "usa", "uk", "online",
             "store", "shop", "group", "international", "intl"
         ]
 
-        if commonSuffixes.contains(suffix.lowercased()) {
+        // Split the suffix by whitespace and normalize each part by trimming punctuation
+        // and lowercasing. Return a positive match only if ALL parts are in the
+        // commonSuffixes list to avoid false positives like "Ltd Repairs".
+        let parts = suffix.split { $0.isWhitespace }.map { "\($0.trimmingCharacters(in: .punctuationCharacters))" }
+
+        if !parts.isEmpty && parts.allSatisfy({ commonSuffixes.contains($0) }) {
             return (0.85, "Missing business suffix")
+        }
+
+        // The shorter string must be at least 4 characters to avoid false positives
+        guard shorterLength >= 4 else {
+            return nil
         }
 
         let ratio = Double(shorterLength) / Double(longerLength)
