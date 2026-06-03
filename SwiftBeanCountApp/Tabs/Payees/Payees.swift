@@ -167,6 +167,10 @@ struct Payees: View {
     }
 
     private func loadPayees() {
+        guard !loading else {
+            return
+        }
+
         loading = true
         let ledgerManager = ledger
 
@@ -179,12 +183,16 @@ struct Payees: View {
                     return PayeeDuplicateDetector.processPayees(from: ledgerContent)
                 }.value
                 Logger.payees.info("Payees - Found \(foundDuplicates.count) potential duplicates")
-                payeeCounts = sortedCounts.map { PayeeCount(name: $0.0, count: $0.1) }
-                duplicates = foundDuplicates
-                loading = false
+                await MainActor.run {
+                    payeeCounts = sortedCounts.map { PayeeCount(name: $0.0, count: $0.1) }
+                    duplicates = foundDuplicates
+                    loading = false
+                }
                 Logger.payees.info("Payees - Done")
             } catch {
-                loading = false
+                await MainActor.run {
+                    loading = false
+                }
                 Logger.payees.error("\(error.localizedDescription)")
             }
         }
