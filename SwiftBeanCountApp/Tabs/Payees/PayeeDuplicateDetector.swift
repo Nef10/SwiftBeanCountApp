@@ -64,6 +64,8 @@ enum PayeeDuplicateDetector {
         return duplicates.sorted { $0.confidence > $1.confidence }
     }
 
+    /// These checks are ordered from highest to lowest confidence, so the first
+    /// match is also the best match.
     private static func detectDuplicate(_ payee1: String, _ payee2: String) -> (Double, String)? {
         if let match = checkCapitalization(payee1, payee2) {
             return match
