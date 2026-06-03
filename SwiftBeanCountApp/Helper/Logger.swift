@@ -15,4 +15,5 @@ extension Logger {
     static let tax = Logger(subsystem: subsystem, category: "tax")
     static let files = Logger(subsystem: subsystem, category: "files")
     static let importer = Logger(subsystem: subsystem, category: "importer")
+    static let payees = Logger(subsystem: subsystem, category: "payees")
 }
