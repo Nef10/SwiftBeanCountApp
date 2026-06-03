@@ -182,8 +182,9 @@ struct Payees: View {
                 Logger.payees.info("Payees - Got Ledger")
                 let (sortedCounts, foundDuplicates) = PayeeDuplicateDetector.processPayees(from: ledgerContent)
                 Logger.payees.info("Payees - Found \(foundDuplicates.count) potential duplicates")
+                let counts = sortedCounts.map { PayeeCount(name: $0.0, count: $0.1) }
                 await MainActor.run {
-                    payeeCounts = sortedCounts.map { PayeeCount(name: $0.0, count: $0.1) }
+                    payeeCounts = counts
                     duplicates = foundDuplicates
                     loading = false
                 }
@@ -200,5 +201,5 @@ struct Payees: View {
 }
 
 #Preview {
-    Payees().environmentObject(LedgerManager(FileManager.default.temporaryDirectory.appendingPathComponent("Test.beancount")))
+    Payees().environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
 }
