@@ -13,18 +13,26 @@ import SwiftUI
 /// and shows potential duplicate payees with confidence scores.
 struct Payees: View {
 
+    private struct PayeeCount: Identifiable {
+        let name: String
+        let count: Int
+
+        var id: String { name }
+    }
+
     @EnvironmentObject var ledger: LedgerManager
 
     @State private var loading = false
-    @State private var payeeCounts = [(String, Int)]()
+    @State private var payeeCounts = [PayeeCount]()
     @State private var duplicates = [PayeeDuplicate]()
     @State private var searchText = ""
+    @State private var sortOrder = [KeyPathComparator(\PayeeCount.name)]
 
-    private var filteredPayees: [(String, Int)] {
-        if searchText.isEmpty {
-            return payeeCounts
-        }
-        return payeeCounts.filter { $0.0.lowercased().contains(searchText.lowercased()) }
+    private var filteredPayees: [PayeeCount] {
+        let filtered = searchText.isEmpty
+            ? payeeCounts
+            : payeeCounts.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        return filtered.sorted(using: sortOrder)
     }
 
     var body: some View {
@@ -81,13 +89,16 @@ struct Payees: View {
                        }.buttonStyle(.plain)
                    }
                 }
-            List(filteredPayees, id: \.0) { payee, count in
-                HStack {
-                    Text(payee)
-                    Spacer()
-                    Text("\(count)")
+            Table(of: PayeeCount.self, sortOrder: $sortOrder) {
+                TableColumn("Payee", value: \.name)
+                TableColumn("Count", value: \.count) { payee in
+                    Text("\(payee.count)")
                         .foregroundColor(.secondary)
                         .font(.caption)
+                }
+            } rows: {
+                ForEach(filteredPayees) { payee in
+                    TableRow(payee)
                 }
             }
         }
@@ -168,7 +179,7 @@ struct Payees: View {
                     return PayeeDuplicateDetector.processPayees(from: ledgerContent)
                 }.value
                 Logger.payees.info("Payees - Found \(foundDuplicates.count) potential duplicates")
-                payeeCounts = sortedCounts
+                payeeCounts = sortedCounts.map { PayeeCount(name: $0.0, count: $0.1) }
                 duplicates = foundDuplicates
                 loading = false
                 Logger.payees.info("Payees - Done")
