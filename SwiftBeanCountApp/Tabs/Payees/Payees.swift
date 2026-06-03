@@ -5,6 +5,7 @@
 //  Created by Steffen Kötte on 2024-12-20.
 //
 
+import Foundation
 import OSLog
 import SwiftBeanCountModel
 import SwiftUI
@@ -167,24 +168,30 @@ struct Payees: View {
     }
 
     private func loadPayees() {
+        guard !loading else {
+            return
+        }
+
         loading = true
         let ledgerManager = ledger
 
-        Task {
+        Task.detached(priority: .userInitiated) {
             do {
-                let (sortedCounts, foundDuplicates) = try await Task.detached(priority: .userInitiated) {
-                    Logger.payees.info("Payees - Start")
-                    let ledgerContent = try await ledgerManager.getLedgerContent()
-                    Logger.payees.info("Payees - Got Ledger")
-                    return PayeeDuplicateDetector.processPayees(from: ledgerContent)
-                }.value
+                Logger.payees.info("Payees - Start")
+                let ledgerContent = try await ledgerManager.getLedgerContent()
+                Logger.payees.info("Payees - Got Ledger")
+                let (sortedCounts, foundDuplicates) = PayeeDuplicateDetector.processPayees(from: ledgerContent)
                 Logger.payees.info("Payees - Found \(foundDuplicates.count) potential duplicates")
-                payeeCounts = sortedCounts.map { PayeeCount(name: $0.0, count: $0.1) }
-                duplicates = foundDuplicates
-                loading = false
+                await MainActor.run {
+                    payeeCounts = sortedCounts.map { PayeeCount(name: $0.0, count: $0.1) }
+                    duplicates = foundDuplicates
+                    loading = false
+                }
                 Logger.payees.info("Payees - Done")
             } catch {
-                loading = false
+                await MainActor.run {
+                    loading = false
+                }
                 Logger.payees.error("\(error.localizedDescription)")
             }
         }
@@ -193,5 +200,5 @@ struct Payees: View {
 }
 
 #Preview {
-    Payees().environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
+    Payees().environmentObject(LedgerManager(FileManager.default.temporaryDirectory.appendingPathComponent("Test.beancount")))
 }

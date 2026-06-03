@@ -18,7 +18,7 @@ struct PayeeDuplicate: Identifiable {
     let countPayee1: Int
     /// Second payee name
     let payee2: String
-    /// Count of how  often payee 2 appears in hte ledger
+    /// Count of how often payee 2 appears in the ledger
     let countPayee2: Int
     /// Confidence score from 0.0 to 1.0
     let confidence: Double
@@ -64,21 +64,22 @@ enum PayeeDuplicateDetector {
         return duplicates.sorted { $0.confidence > $1.confidence }
     }
 
-    /// Checks two payees against all detection strategies and returns the highest confidence match
+    /// These checks are ordered from highest to lowest confidence, so the first
+    /// match is also the best match.
     private static func detectDuplicate(_ payee1: String, _ payee2: String) -> (Double, String)? {
-        let checks: [(Double, String)?] = [
-            checkCapitalization(payee1, payee2),
-            checkMarkings(payee1, payee2),
-            checkMinorDifferences(payee1, payee2),
-            checkMissingParts(payee1, payee2),
-            checkTypos(payee1, payee2)
-        ]
-
-        guard let best = checks.compactMap(\.self).max(by: { $0.0 < $1.0 }) else {
-            return nil
+        if let match = checkCapitalization(payee1, payee2) {
+            return match
         }
-
-        return (best.0, best.1)
+        if let match = checkMarkings(payee1, payee2) {
+            return match
+        }
+        if let match = checkMinorDifferences(payee1, payee2) {
+            return match
+        }
+        if let match = checkMissingParts(payee1, payee2) {
+            return match
+        }
+        return checkTypos(payee1, payee2)
     }
 
     // MARK: - Detection Strategies
@@ -158,7 +159,9 @@ enum PayeeDuplicateDetector {
         // Split the suffix by whitespace and normalize each part by trimming punctuation
         // and lowercasing. Return a positive match only if ALL parts are in the
         // commonSuffixes list to avoid false positives like "Ltd Repairs".
-        let parts = suffix.split { $0.isWhitespace }.map { "\($0.trimmingCharacters(in: .punctuationCharacters))" }
+        let parts = suffix.split { $0.isWhitespace }
+            .map { $0.trimmingCharacters(in: .punctuationCharacters) }
+            .filter { !$0.isEmpty }
 
         if !parts.isEmpty && parts.allSatisfy({ commonSuffixes.contains($0) }) {
             return (0.85, "Missing business suffix")
