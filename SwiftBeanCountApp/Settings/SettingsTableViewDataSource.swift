@@ -126,11 +126,11 @@ struct IgnoredPayeeDuplicateMapping: SettingsTableViewDataSource {
     }
 
     func setValue1(_: String) {
-        // empty
+        // Not editable - ignored duplicate pairs can only be removed.
     }
 
     func setValue2(_: String) {
-        // empty
+        // Not editable - ignored duplicate pairs can only be removed.
     }
 
     func delete() {
