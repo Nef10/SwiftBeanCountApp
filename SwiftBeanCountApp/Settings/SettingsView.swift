@@ -40,6 +40,15 @@ struct SettingsView: View {
                     Spacer()
                 }.padding()
             }
+            SwiftUI.Tab("Ignored Duplicates", systemImage: "xmark.circle") {
+                HStack {
+                    VStack {
+                        SettingsTableView<IgnoredPayeeDuplicateMapping>()
+                        Spacer()
+                    }
+                    Spacer()
+                }.padding()
+            }
         }
         .frame(minWidth: 900, minHeight: 500)
 #else
@@ -59,6 +68,11 @@ struct SettingsView: View {
                     SettingsTableView<PayeeAccountMapping>().padding()
                 } label: {
                     Text("Account Mapping")
+                }
+                NavigationLink {
+                    SettingsTableView<IgnoredPayeeDuplicateMapping>().padding()
+                } label: {
+                    Text("Ignored Duplicates")
                 }
             }
             .navigationTitle("Settings")

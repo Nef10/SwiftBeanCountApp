@@ -135,22 +135,31 @@ struct Payees: View {
 
     private var duplicateList: some View {
         List(duplicates) { duplicate in
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Text(duplicate.payee1).bold()
-                    Text("\(duplicate.countPayee1)")
-                    Text("↔").foregroundColor(.secondary)
-                    Text(duplicate.payee2).bold()
-                    Text("\(duplicate.countPayee2)")
-                }
-                HStack {
-                    Text(duplicate.reason)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Text("Confidence: \(Int(duplicate.confidence * 100))%")
-                        .font(.caption)
-                        .foregroundColor(confidenceColor(duplicate.confidence))
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text(duplicate.payee1).bold()
+                            Text("\(duplicate.countPayee1)")
+                            Text("↔").foregroundColor(.secondary)
+                            Text(duplicate.payee2).bold()
+                            Text("\(duplicate.countPayee2)")
+                        }
+                        HStack {
+                            Text(duplicate.reason)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text("Confidence: \(Int(duplicate.confidence * 100))%")
+                                .font(.caption)
+                                .foregroundColor(confidenceColor(duplicate.confidence))
+                        }
+                    }
+                    Button("Not a Duplicate") {
+                        markAsNotDuplicate(duplicate)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
                 }
             }
             .padding(.vertical, 2)
@@ -195,6 +204,14 @@ struct Payees: View {
                 }
                 Logger.payees.error("\(error.localizedDescription)")
             }
+        }
+    }
+
+    private func markAsNotDuplicate(_ duplicate: PayeeDuplicate) {
+        let ignoredPair = IgnoredPayeeDuplicatePair(payee1: duplicate.payee1, payee2: duplicate.payee2)
+        IgnoredPayeeDuplicateSettings.add(ignoredPair)
+        duplicates.removeAll {
+            IgnoredPayeeDuplicatePair(payee1: $0.payee1, payee2: $0.payee2) == ignoredPair
         }
     }
 
