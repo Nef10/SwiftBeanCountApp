@@ -8,10 +8,6 @@
 import Foundation
 
 struct IgnoredPayeeDuplicatePair: Codable, Hashable {
-    private enum CodingKeys: String, CodingKey {
-        case payee1
-        case payee2
-    }
 
     let payee1: String
     let payee2: String
@@ -28,19 +24,11 @@ struct IgnoredPayeeDuplicatePair: Codable, Hashable {
         }
     }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        try self.init(payee1: container.decode(String.self, forKey: .payee1),
-                      payee2: container.decode(String.self, forKey: .payee2))
-    }
-
     private static func shouldSwap(_ left: String, _ right: String) -> Bool {
-        let normalizedLeft = left.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
-        let normalizedRight = right.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
-        if normalizedLeft == normalizedRight {
-            return left > right
-        }
-        return normalizedLeft > normalizedRight
+        // too keep consitent when changing locale, do not use localized compare
+        // Otherwise, after chaning locale, the order might change, so they would
+        // no longer match and show up incorrectly again
+        left > right
     }
 }
 
@@ -89,9 +77,7 @@ enum IgnoredPayeeDuplicateSettings {
     }
 
     private static func normalized(_ pairs: [IgnoredPayeeDuplicatePair]) -> [IgnoredPayeeDuplicatePair] {
-        Array(Set(pairs
-            .filter { !$0.payee1.isEmpty && !$0.payee2.isEmpty }
-        ))
+        Array(Set(pairs.filter { !$0.payee1.isEmpty && !$0.payee2.isEmpty }))
             .sorted {
                 if $0.payee1 == $1.payee1 {
                     return $0.payee2.localizedCaseInsensitiveCompare($1.payee2) == .orderedAscending
