@@ -79,12 +79,17 @@ struct SettingsTableView<T: SettingsTableViewDataSource>: View {
         .contextMenu(forSelectionType: T.ID.self) { ids in
             let items = ids.map { id in allData.first { $0.id == id } }
             if let item = items.first {
-                Button("Edit") { edit(item!) }.keyboardShortcut(.defaultAction)
+                if T.isEditable {
+                    Button("Edit") { edit(item!) }.keyboardShortcut(.defaultAction)
+                }
                 Button("Delete", role: .destructive) { delete(item!.id) }.keyboardShortcut(.delete)
             } else {
                 EmptyView()
             }
         } primaryAction: { ids in
+            guard T.isEditable else {
+                return
+            }
             let items = ids.map { id in allData.first { $0.id == id } }
             if let item = items.first {
                 edit(item!)
@@ -108,6 +113,9 @@ struct SettingsTableView<T: SettingsTableViewDataSource>: View {
         }
 #endif
         .onKeyPress(.return) {
+            guard T.isEditable else {
+                return .ignored
+            }
             if let editing, editing == selected {
                 endEditing()
                 return .handled

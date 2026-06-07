@@ -37,14 +37,14 @@ enum PayeeDuplicateDetector {
             counts[payee, default: 0] += 1
         }
         let sortedCounts = counts.sorted { $0.key.lowercased() < $1.key.lowercased() }.map { ($0.key, $0.value) }
-        let duplicates = Self.findDuplicates(in: counts)
+        let duplicates = Self.findDuplicates(in: counts, ignoring: IgnoredPayeeDuplicateSettings.allPairsSet())
         return (sortedCounts, duplicates)
     }
 
     /// Finds potential duplicate payees from a list of payee names
     /// - Parameter payees: Array of payee names
     /// - Returns: Array of potential duplicates sorted by confidence (highest first)
-    private static func findDuplicates(in payees: [String: Int]) -> [PayeeDuplicate] {
+    private static func findDuplicates(in payees: [String: Int], ignoring ignoredPairs: Set<IgnoredPayeeDuplicatePair>) -> [PayeeDuplicate] {
         var duplicates = [PayeeDuplicate]()
         let payeeList = payees.map(\.0).sorted()
 
@@ -52,6 +52,9 @@ enum PayeeDuplicateDetector {
             for j in (i + 1)..<payeeList.count {
                 let payee1 = payeeList[i]
                 let payee2 = payeeList[j]
+                guard !ignoredPairs.contains(IgnoredPayeeDuplicatePair(payee1: payee1, payee2: payee2)) else {
+                    continue
+                }
 
                 if let (confidence, reason) = detectDuplicate(payee1, payee2) {
                     let count1 = payees[payee1] ?? 0
