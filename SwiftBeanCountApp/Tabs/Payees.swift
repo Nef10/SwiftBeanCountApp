@@ -135,35 +135,37 @@ struct Payees: View {
 
     private var duplicateList: some View {
         List(duplicates) { duplicate in
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Text(duplicate.payee1).bold()
-                            Text("\(duplicate.countPayee1)")
-                            Text("↔").foregroundColor(.secondary)
-                            Text(duplicate.payee2).bold()
-                            Text("\(duplicate.countPayee2)")
-                        }
-                        HStack {
-                            Text(duplicate.reason)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                            Text("Confidence: \(Int(duplicate.confidence * 100))%")
-                                .font(.caption)
-                                .foregroundColor(confidenceColor(duplicate.confidence))
-                        }
-                    }
-                    Button("Not a Duplicate") {
-                        markAsNotDuplicate(duplicate)
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-                }
-            }
-            .padding(.vertical, 2)
+            duplicateView(duplicate)
         }
+    }
+
+    func duplicateView(_ duplicate: PayeeDuplicate) -> some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text(duplicate.payee1).bold()
+                Text("(\(duplicate.countPayee1))")
+                Text("↔").foregroundColor(.secondary)
+                Text(duplicate.payee2).bold()
+                Text("(\(duplicate.countPayee2))")
+                Spacer()
+                Button("Not a Duplicate") {
+                    markAsNotDuplicate(duplicate)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+            }
+            HStack {
+                Text(duplicate.reason)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text("Confidence: \(Int(duplicate.confidence * 100))%")
+                    .font(.caption)
+                    .foregroundColor(confidenceColor(duplicate.confidence))
+                    .padding(.trailing, 8)
+            }
+        }
+        .padding(.vertical, 2)
     }
 
     private func confidenceColor(_ confidence: Double) -> Color {
@@ -219,4 +221,9 @@ struct Payees: View {
 
 #Preview {
     Payees().environmentObject(LedgerManager(URL(fileURLWithPath: "/Users/User/Download/Test.beancount")))
+}
+
+#Preview {
+    Payees().duplicateView(PayeeDuplicate(payee1: "Test Sushi", countPayee1: 4, payee2: "Tes Sushi", countPayee2: 3, confidence: 0.4, reason: "1 character difference"))
+        .padding()
 }
