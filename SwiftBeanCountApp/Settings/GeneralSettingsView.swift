@@ -17,14 +17,16 @@ struct GeneralSettingsView: View {
         let payees: [String: String]
         let accounts: [String: String]
         let descriptions: [String: String]
-        let ignoredPayeeDuplicates: [IgnoredPayeeDuplicatePair]?
+        let ignoredPayeeDuplicates: [IgnoredPayeeDuplicatePair]
         let dateTolerance: String
 
-        init(payees: [String: String],
-             accounts: [String: String],
-             descriptions: [String: String],
-             ignoredPayeeDuplicates: [IgnoredPayeeDuplicatePair]? = nil,
-             dateTolerance: String) {
+        init(
+            payees: [String: String],
+            accounts: [String: String],
+            descriptions: [String: String],
+            ignoredPayeeDuplicates: [IgnoredPayeeDuplicatePair],
+            dateTolerance: String
+        ) {
             self.payees = payees
             self.accounts = accounts
             self.descriptions = descriptions
@@ -149,7 +151,7 @@ struct GeneralSettingsView: View {
         for (description, account) in settingsFile.accounts {
             Settings.setAccountMapping(key: description, account: account)
         }
-        IgnoredPayeeDuplicateSettings.replaceAll(with: settingsFile.ignoredPayeeDuplicates ?? [])
+        IgnoredPayeeDuplicateSettings.replaceAll(with: settingsFile.ignoredPayeeDuplicates)
         if let dateTolerance = Int(settingsFile.dateTolerance) {
             Settings.dateToleranceInDays = dateTolerance
             self.dateTolerance = dateTolerance

@@ -14,40 +14,24 @@ struct SettingsView: View {
 #if os(macOS)
         TabView {
             SwiftUI.Tab("General", systemImage: "gear") {
-                HStack {
-                    VStack {
-                        GeneralSettingsView()
-                        Spacer()
-                    }
-                    Spacer()
-                }.padding()
+                settingsContainer {
+                    GeneralSettingsView()
+                }
             }
             SwiftUI.Tab("Description Mapping", image: "DescriptionMapping") {
-                HStack {
-                    VStack {
-                        SettingsTableView<DescriptionPayeeMapping>()
-                        Spacer()
-                    }
-                    Spacer()
-                }.padding()
+                settingsContainer {
+                    SettingsTableView<DescriptionPayeeMapping>()
+                }
             }
             SwiftUI.Tab("Account Mapping", image: "AccountMapping") {
-                HStack {
-                    VStack {
-                        SettingsTableView<PayeeAccountMapping>()
-                        Spacer()
-                    }
-                    Spacer()
-                }.padding()
+                settingsContainer {
+                    SettingsTableView<PayeeAccountMapping>()
+                }
             }
             SwiftUI.Tab("Ignored Duplicates", systemImage: "xmark.circle") {
-                HStack {
-                    VStack {
-                        SettingsTableView<IgnoredPayeeDuplicateMapping>()
-                        Spacer()
-                    }
-                    Spacer()
-                }.padding()
+                settingsContainer {
+                    SettingsTableView<IgnoredPayeeDuplicateMapping>()
+                }
             }
         }
         .frame(minWidth: 900, minHeight: 500)
@@ -80,6 +64,18 @@ struct SettingsView: View {
             Text("Select a Settings option")
         }
 #endif
+    }
+
+    @ViewBuilder
+    private func settingsContainer<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        HStack {
+            VStack {
+                content()
+                Spacer()
+            }
+            Spacer()
+        }
+        .padding()
     }
 
 }

@@ -27,11 +27,6 @@ protocol SettingsTableViewDataSource: Identifiable { // swiftlint:disable:this f
     func delete()
 }
 
-extension SettingsTableViewDataSource {
-
-    static var isEditable: Bool { true }
-}
-
 struct DescriptionPayeeMapping: SettingsTableViewDataSource {
     static var keyName: String { "Imported Description" }
     static var hasValue2: Bool { true }
@@ -136,4 +131,8 @@ struct IgnoredPayeeDuplicateMapping: SettingsTableViewDataSource {
     func delete() {
         IgnoredPayeeDuplicateSettings.remove(IgnoredPayeeDuplicatePair(payee1: key, payee2: payee2))
     }
+}
+
+extension SettingsTableViewDataSource {
+    static var isEditable: Bool { true }
 }
