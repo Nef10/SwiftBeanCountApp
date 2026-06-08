@@ -319,9 +319,16 @@ extension ImportManager: ImporterDelegate {
         credentialLock.lock()
         defer { credentialLock.unlock() }
 
-        if !saveCredentialLocked(value, for: key) {
-            Logger.importer.error("Failed to save credential into shared storage")
+        var credentials = readStoredCredentialsLocked()
+
+        // the keychain does not allow saving empty strings,
+        // so empty values remove the stored credential instead
+        if value.isEmpty {
+            credentials.removeValue(forKey: key)
+        } else {
+            credentials[key] = value
         }
+        persistStoredCredentialsLocked(credentials)
     }
 
     func readCredential(_ key: String) -> String? {
@@ -329,25 +336,7 @@ extension ImportManager: ImporterDelegate {
         defer { credentialLock.unlock() }
 
         let credentials = readStoredCredentialsLocked()
-        if let credential = credentials[key] {
-            return credential
-        }
-
-        do {
-            let legacyCredential = try keychain.string(forKey: key)
-            if saveCredentialLocked(legacyCredential, for: key) {
-                Logger.importer.debug("Migrated legacy credential into shared storage")
-            } else {
-                Logger.importer.error("Failed to migrate legacy credential into shared storage")
-            }
-            return legacyCredential
-        } catch {
-            guard case SimpleKeychainError.itemNotFound = error else {
-                Logger.importer.error("Error reading legacy credential: \(error)")
-                return nil
-            }
-            return nil
-        }
+        return credentials[key]
     }
 
     func error(_ error: Error, completion: @escaping () -> Void) {
@@ -358,34 +347,21 @@ extension ImportManager: ImporterDelegate {
         }
     }
 
-}
-
-private extension ImportManager {
-
     // Call only while holding credentialLock.
-    func saveCredentialLocked(_ value: String, for key: String) -> Bool {
-        var credentials = readStoredCredentialsLocked()
-
-        // the keychain does not allow saving empty strings,
-        // so empty values remove the stored credential instead
-        if value.isEmpty {
-            credentials.removeValue(forKey: key)
-        } else {
-            credentials[key] = value
-        }
-
-        guard persistStoredCredentialsLocked(credentials) else {
-            return false
-        }
-        deleteLegacyCredentialLocked(for: key)
-        return true
-    }
-
-    // Call only while holding credentialLock.
-    func readStoredCredentialsLocked() -> [String: String] {
-        let storedCredentials: String
+    private func readStoredCredentialsLocked() -> [String: String] {
         do {
-            storedCredentials = try keychain.string(forKey: CredentialStorage.keychainKey)
+            let storedCredentials = try keychain.string(forKey: CredentialStorage.keychainKey)
+            guard let data = storedCredentials.data(using: .utf8) else {
+                Logger.importer.error("Failed to convert credentials string to UTF-8 data")
+                return [:]
+            }
+
+            do {
+                return try JSONDecoder().decode([String: String].self, from: data)
+            } catch {
+                Logger.importer.error("Error decoding credentials from JSON: \(error)")
+                return [:]
+            }
         } catch {
             guard case SimpleKeychainError.itemNotFound = error else {
                 Logger.importer.error("Error reading shared credentials: \(error)")
@@ -393,65 +369,31 @@ private extension ImportManager {
             }
             return [:]
         }
-
-        guard let data = storedCredentials.data(using: .utf8) else {
-            Logger.importer.error("Failed to convert credentials string to UTF-8 data")
-            return [:]
-        }
-
-        do {
-            return try JSONDecoder().decode([String: String].self, from: data)
-        } catch {
-            Logger.importer.error("Error decoding credentials from JSON: \(error)")
-            return [:]
-        }
     }
 
     // Call only while holding credentialLock.
-    func persistStoredCredentialsLocked(_ credentials: [String: String]) -> Bool {
+    private func persistStoredCredentialsLocked(_ credentials: [String: String]) {
         if credentials.isEmpty {
             do {
                 try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
             } catch {
-                logDeletionError(error,
-                    failureMessage: "Error deleting credentials",
-                    notFoundMessage: "No shared importer credentials found to delete")
+                guard case SimpleKeychainError.itemNotFound = error else {
+                    Logger.importer.error("Error deleting credentials: \(error)")
+                    return
+                }
+                Logger.importer.debug("No shared importer credentials found to delete")
             }
-            return true
         }
 
         do {
             let data = try JSONEncoder().encode(credentials)
             guard let storedCredentials = String(data: data, encoding: .utf8) else {
                 Logger.importer.error("Failed to convert encoded credentials to UTF-8 string")
-                return false
+                return
             }
             try keychain.set(storedCredentials, forKey: CredentialStorage.keychainKey)
-            return true
         } catch {
             Logger.importer.error("Error saving credentials: \(error)")
-            return false
         }
     }
-
-    // Call only while holding credentialLock.
-    func deleteLegacyCredentialLocked(for key: String) {
-        do {
-            try keychain.deleteItem(forKey: key)
-        } catch {
-            logDeletionError(error,
-                failureMessage: "Error deleting legacy credential",
-                notFoundMessage: "Legacy credential already absent during cleanup")
-        }
-    }
-
-    // Does not require credentialLock.
-    func logDeletionError(_ error: Error, failureMessage: String, notFoundMessage: String) {
-        guard case SimpleKeychainError.itemNotFound = error else {
-            Logger.importer.error("\(failureMessage): \(error)")
-            return
-        }
-        Logger.importer.debug("\(notFoundMessage)")
-    }
-
 }
