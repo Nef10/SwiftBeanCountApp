@@ -24,6 +24,10 @@ private enum ImportPhase {
 
 class ImportManager: ObservableObject {
 
+    private enum CredentialStorage {
+        static let keychainKey = "importer-credentials"
+    }
+
     @Published var resultLedger = Ledger()
     @Published var showLoadingIndicator = true
     @Published var loadingMessage: String? = "Organizing imports"
@@ -46,6 +50,7 @@ class ImportManager: ObservableObject {
     private var transaction: ImportedTransaction?
     private var inputRequestCompletion: ((String) -> Bool)?
     private var errorAlertCompletion: (() -> Void)?
+    private let credentialLock = NSLock()
     private let keychain = SimpleKeychain(accessibility: .whenUnlocked)
 
     private var errors = [String]()
@@ -311,25 +316,27 @@ extension ImportManager: ImporterDelegate {
     }
 
     func saveCredential(_ value: String, for key: String) {
-        // seems the keychain does not allow saving empty strings
-        // it will not save but just keep the old value
+        credentialLock.lock()
+        defer { credentialLock.unlock() }
+
+        var credentials = readStoredCredentialsLocked()
+
+        // the keychain does not allow saving empty strings,
+        // so empty values remove the stored credential instead
         if value.isEmpty {
-            do {
-                try keychain.deleteItem(forKey: key)
-            } catch {
-                Logger.importer.error("Error deleting credential: \(error)")
-            }
+            credentials.removeValue(forKey: key)
         } else {
-            do {
-                try keychain.set(value, forKey: key)
-            } catch {
-                Logger.importer.error("Error saving credential: \(error)")
-            }
+            credentials[key] = value
         }
+        persistStoredCredentialsLocked(credentials)
     }
 
     func readCredential(_ key: String) -> String? {
-        try? keychain.string(forKey: key)
+        credentialLock.lock()
+        defer { credentialLock.unlock() }
+
+        let credentials = readStoredCredentialsLocked()
+        return credentials[key]
     }
 
     func error(_ error: Error, completion: @escaping () -> Void) {
@@ -340,4 +347,53 @@ extension ImportManager: ImporterDelegate {
         }
     }
 
+    // Call only while holding credentialLock.
+    private func readStoredCredentialsLocked() -> [String: String] {
+        do {
+            let storedCredentials = try keychain.string(forKey: CredentialStorage.keychainKey)
+            guard let data = storedCredentials.data(using: .utf8) else {
+                Logger.importer.error("Failed to convert credentials string to UTF-8 data")
+                return [:]
+            }
+
+            do {
+                return try JSONDecoder().decode([String: String].self, from: data)
+            } catch {
+                Logger.importer.error("Error decoding credentials from JSON: \(error)")
+                return [:]
+            }
+        } catch {
+            guard case SimpleKeychainError.itemNotFound = error else {
+                Logger.importer.error("Error reading shared credentials: \(error)")
+                return [:]
+            }
+            return [:]
+        }
+    }
+
+    // Call only while holding credentialLock.
+    private func persistStoredCredentialsLocked(_ credentials: [String: String]) {
+        if credentials.isEmpty {
+            do {
+                try keychain.deleteItem(forKey: CredentialStorage.keychainKey)
+            } catch {
+                guard case SimpleKeychainError.itemNotFound = error else {
+                    Logger.importer.error("Error deleting credentials: \(error)")
+                    return
+                }
+                Logger.importer.debug("No shared importer credentials found to delete")
+            }
+        }
+
+        do {
+            let data = try JSONEncoder().encode(credentials)
+            guard let storedCredentials = String(data: data, encoding: .utf8) else {
+                Logger.importer.error("Failed to convert encoded credentials to UTF-8 string")
+                return
+            }
+            try keychain.set(storedCredentials, forKey: CredentialStorage.keychainKey)
+        } catch {
+            Logger.importer.error("Error saving credentials: \(error)")
+        }
+    }
 }
