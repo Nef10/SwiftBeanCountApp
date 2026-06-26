@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser",
       "state" : {
-        "revision" : "626b5b7b2f45e1b0b1c6f4a309296d1d21d7311b",
-        "version" : "1.7.1"
+        "revision" : "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+        "version" : "1.8.2"
       }
     },
     {
@@ -123,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCount",
       "state" : {
-        "revision" : "510ee118a007b97dd8de97667558b5eb6cae9985",
-        "version" : "0.2.0"
+        "revision" : "7db5602074779ac18e966882ea11d42d0e32bd0e",
+        "version" : "0.2.1"
       }
     },
     {
@@ -141,8 +141,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
       "state" : {
-        "revision" : "8a4640d14777685ba8f14e832373160498fbab92",
-        "version" : "0.63.2"
+        "revision" : "ecb6907e0db6f79ed2c7a569df4e723a47615208",
+        "version" : "0.64.1"
       }
     },
     {
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/WealthsimpleDownloader.git",
       "state" : {
-        "revision" : "16073376b77ef1382b4daf872bbf9b2b1f64ca6b",
-        "version" : "3.1.0"
+        "revision" : "663c7aca3f5a564d8e1d0f99f026544ee62098cf",
+        "version" : "3.1.1"
       }
     }
   ],

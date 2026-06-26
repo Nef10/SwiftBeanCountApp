@@ -445,7 +445,7 @@
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
 			requirement = {
 				kind = exactVersion;
-				version = 0.63.2;
+				version = 0.64.1;
 			};
 		};
 		F99BF6C82F131945003ED89A /* XCRemoteSwiftPackageReference "SwiftBeanCount" */ = {
@@ -453,7 +453,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCount";
 			requirement = {
 				kind = exactVersion;
-				version = 0.2.0;
+				version = 0.2.1;
 			};
 		};
 		F9A2C0F92D1189FA00E925F4 /* XCRemoteSwiftPackageReference "SimpleKeychain" */ = {
